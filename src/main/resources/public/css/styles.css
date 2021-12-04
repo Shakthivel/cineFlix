@@ -11,7 +11,18 @@
 }
 
 .navbar-nav{
-    margin-left: 73%;
+    margin-left: 65%;
     padding: 1.5rem;
 }
 
+
+
+/* Inner Classes */
+
+.container-nowShow{
+padding: 1.2rem;
+}
+
+.badge-div{
+    padding-bottom: .8em;
+}
