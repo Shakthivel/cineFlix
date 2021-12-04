@@ -3,3 +3,15 @@
 *{
     font-family: 'Ubuntu', sans-serif;
 }
+
+/* Bootstrap Changes */
+
+.nav-link{
+    font-size: 1.09rem;
+}
+
+.navbar-nav{
+    margin-left: 73%;
+    padding: 1.5rem;
+}
+
