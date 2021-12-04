@@ -2,6 +2,7 @@
 
 *{
     font-family: 'Ubuntu', sans-serif;
+    
 }
 
 /* Bootstrap Changes */
@@ -11,13 +12,23 @@
 }
 
 .navbar-nav{
-    margin-left: 65%;
+    margin-left: 63%;
     padding: 1.5rem;
+}
+
+.btn-outline-dark{
+  color: #125D98 !important;
+}
+
+.btn-outline-dark:hover{
+  color: #ffffff !important;
+  background-color: #125D98 !important;
 }
 
 
 
-/* Inner Classes */
+
+/* Index File Classes */
 
 .container-nowShow{
 padding: 1.2rem;
@@ -25,4 +36,68 @@ padding: 1.2rem;
 
 .badge-div{
     padding-bottom: .8em;
+}
+
+.container { 
+  height: 30px;
+  position: relative;
+
+}
+
+.bg-grey{
+  background-color: #fafafa;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+
+/* User Login Files */
+
+.login-container {
+    height: 100vh;
+    width: 100%;
+}
+.login-form {
+    margin: auto;
+    width: 370px;
+    background-color: #f7f7f7;
+    padding: 30px;
+    max-width: 100%;
+    border-radius: .5rem;
+    
+}
+
+.login-form .form-control {
+    font-size: 15px;
+    min-height: 48px;
+    font-weight: 500;
+}
+
+.login-form a {
+    text-decoration: none;
+    color: #f7f7f7;
+}
+
+
+
+.forgot-link {
+    font-size: 13px;
+}
+
+.btn-login{
+background-color: #125D98 !important;
+border-color: #125D98 !important;
+}
+
+.btn-login:hover{
+  border-color: #125D98 !important;
+  background-color: #ffffff !important;
+  color: #125D98 !important;
 }
