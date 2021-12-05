@@ -38,6 +38,9 @@ padding: 1.2rem;
     padding-bottom: .8em;
 }
 
+.span-bold{
+  font-weight: 600;
+}
 .container { 
   height: 30px;
   position: relative;
@@ -47,6 +50,8 @@ padding: 1.2rem;
 .bg-grey{
   background-color: #fafafa;
 }
+
+
 
 .center {
   margin: 0;
@@ -66,9 +71,9 @@ padding: 1.2rem;
 }
 .login-form {
     margin: auto;
-    width: 370px;
+    width: 460px;
     background-color: #f7f7f7;
-    padding: 30px;
+    padding: 20px;
     max-width: 100%;
     border-radius: .5rem;
     
@@ -88,7 +93,7 @@ padding: 1.2rem;
 
 
 .forgot-link {
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .btn-login{
@@ -96,8 +101,28 @@ background-color: #125D98 !important;
 border-color: #125D98 !important;
 }
 
+.btn-cineflex{
+  background-color: #125D98 !important ;
+}
+.btn-cineflex:hover{
+  border-color: #125D98 !important;
+  background-color: #ffffff !important;
+  color: #125D98 !important;
+}
+
+.btn-bookings:hover{
+  border-color: #f0ad4e !important;
+  color: #f0ad4e !important;
+  background-color: #ffffff !important;
+
+}
+
 .btn-login:hover{
   border-color: #125D98 !important;
   background-color: #ffffff !important;
   color: #125D98 !important;
+}
+
+.form-link{
+  color: black !important;
 }
