@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Title Icon -->
+        <link rel="icon" href="https://res.cloudinary.com/dfep0loer/image/upload/v1638813013/CineFlix/favicon_bhytgt.ico"
+            type="image/x-icon">
+        <!-- Title -->
+        <title>CineFlix Admin - Add Movies</title>
+        <!-- Local Stylesheet -->
+        <link rel="stylesheet" type="text/css" href="../resources/css/admin-styles.css">
+        <!-- Font Awesome CDN -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+            integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+        <!-- Bootstrap CDN -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+   
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #125D98;">
+        <a class="navbar-brand" href="#"><img
+                src="https://res.cloudinary.com/dfep0loer/image/upload/v1638775333/CineFlix/CineFlixAdmin_asr8e0.png"
+                alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav" style="margin-left: 83%;">
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-login.html">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="movie-form">
+        <div class="container-fluid">
+            <div style="padding: 2rem;">
+                <h1>Add Movies</h1>
+            </div>
+
+            <form>
+                <div class="form-row">
+                    <div class="col">
+                        <h5>Movie</h5>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <h5>Censor Rating</h5>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option>U</option>
+                                <option>U/A</option>
+                                <option>A</option>
+                                <option>R</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <form>
+                <div class="form-row">
+                    <div class="col">
+                    <h5>Release Date</h5>
+                    <input type="date" class="form-control">
+                    </div>
+                    <div class="col">
+                    <h5>Genre</h5>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option>Drama</option>
+                        <option>Action</option>
+                        <option>Animation</option>
+                        <option>Anime</option>
+                        <option>Thriller</option>
+                        <option>Comedy</option>
+                        <option>Romance</option>
+                        <option>Horror</option>
+                    </select>
+                    </div>
+                </div>
+            </form>
+
+            <form>
+                <div class="form-row">
+                    <div class="col">
+                        <h5>Screen Type</h5>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>IMAX - 3D</option>
+                            <option>IMAX - 2D</option>
+                            <option>Dolby - 3D</option>
+                            <option>Dolby - 2D</option>
+                            <option>2D</option>
+                            <option>3D</option>
+                        </select>
+                        
+                    </div>
+                    <div class="col">
+                        <h5>Language</h5>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>English</option>
+                            <option>Tamil</option>
+                            <option>Telugu</option>
+                            <option>Malayalam</option>
+                            <option>Kannada</option>
+                            <option>Hindi</option>
+                            <option>Marathi</option>
+                            <option>Bengali</option>
+                            <option>Japanese</option>
+                            <option>Korean</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+
+                <form>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group">
+                                <h5>Movie Poster</h5>
+                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <h5>Synopsis</h5>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="text-center m-2">
+                    <a class="btn btn-primary btn-lg btn-login" style="color: #125D98;" href="#" role="button">Save Details</a>
+                </div>
+        </div>
+    </section>
+</body>
+</html>
