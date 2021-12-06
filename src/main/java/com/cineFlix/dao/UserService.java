@@ -26,14 +26,7 @@ public class UserService {
 		this.userDAO = userDAO;
 	}
 
-	public void service() {
-		User user = new User();
-		user.setUserId(2);
-		user.setName("ModifyTest");
-		user.setAddress("Chennai");
-		user.setEmail("shakthibala1884@gmail.com");
-		user.setNumber("7904017458");
-		user.setPassword("secret");
+	public void register(User user) {
 		try {
 			userDAO.save(user);
 		} catch (PersistenceException e) {
@@ -46,4 +39,7 @@ public class UserService {
 		}
 	}
 
+	public boolean login(String name,String password) {
+		return userDAO.existsByNameAndPassword(name, password);
+	}
 }

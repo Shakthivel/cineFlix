@@ -9,7 +9,7 @@
     <!-- Title -->
     <title>CineFlix - Never Miss A Premiere!</title>
     <!-- Local Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="../../resources/public/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/styles.css"> 
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <!-- Bootstrap CDN -->
@@ -39,7 +39,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">Account</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-user-circle" ></i> View Profile</a>
-                            <a class="dropdown-item" href="user-login.html" ><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            <a class="dropdown-item" href="/user/login" ><i class="fas fa-sign-out-alt"></i> Logout</a>
                         </div>
 
 <!-- Profile Modal -->

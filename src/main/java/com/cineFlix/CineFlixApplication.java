@@ -14,8 +14,6 @@ public class CineFlixApplication {
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(CineFlixApplication.class, args);
-		UserService userService = context.getBean("userService",UserService.class);
-		userService.service();
 	}
 
 }

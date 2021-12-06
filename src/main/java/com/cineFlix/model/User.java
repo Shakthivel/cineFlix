@@ -17,6 +17,7 @@ public class User {
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userId;
 	private String name;
 	private String password;
@@ -26,8 +27,6 @@ public class User {
 	private String number;
 	private String address;
 
-	
-	
 	public User(String name, String password, String email, String number, String address) {
 		super();
 		this.name = name;

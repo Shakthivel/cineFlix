@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +20,7 @@
     <!-- Title -->
     <title>Cineflix - Signup</title>
     <!-- Local Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="../../resources/public/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/styles.css"> 
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
@@ -28,22 +31,24 @@
 
 <body>
     <div class="d-flex justify-content-center align-items-center login-container">
-        <form class="login-form text-center">
+        <form:form class="login-form text-center" method="POST" modelAttribute="user">
 
             <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638596050/CineFlix/cineflix-black_nleijx.png"
                 class="img-fluid" alt="...">
             <h2 class="mb-5"> Register</h2>
 
-            <!-- Fullname & Username -->
+            <!-- Fullname & Address -->
             <div class="form-row">
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-lg" placeholder="Fullname">
+                        <form:input type="text" path="name" class="form-control form-control-lg" placeholder="Fullname"/>
+                    	<form:errors path="name"/>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-lg" placeholder="Username">
+                        <form:input type="text" path="address" class="form-control form-control-lg" placeholder="City"/>
+                    	<form:errors path="address"/>
                     </div>
                 </div>
             </div>
@@ -52,12 +57,12 @@
             <div class="form-row">
                 <div class="col">
                     <div class="form-group">
-                        <input type="email" class="form-control form-control-lg" placeholder="Email id">
+                        <form:input type="email" path="email" class="form-control form-control-lg" placeholder="Email id"/>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <input type="tel" class="form-control form-control-lg" placeholder="Phone Number">
+                        <form:input type="tel" path="number" class="form-control form-control-lg" placeholder="Phone Number"/>
                     </div>
                 </div>
             </div>
@@ -65,7 +70,7 @@
             <div class="form-row">
                 <div class="col">
                     <div class="form-group">
-                        <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="password" class="form-control form-control-lg" placeholder="Password">
+                        <form:input type="password" path="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="password" class="form-control form-control-lg" placeholder="Password"/>
                     </div>
                 </div>
                 <div class="col">
@@ -83,13 +88,13 @@
                     <input type="checkbox" class="form-check-input" id="remember">
                     <label class="form-check-label" for="remember">Remember Password</label>
                 </div>
-                <a href="#" style="color: black;">Forgot Password?</a>
+               
             </div>
-            <a href="index.html" class="btn btn-dark btn-block btn-login" >Register</a>
+            <button type="submit" class="btn btn-dark btn-block btn-login" >Register</button>
             <div style="margin-top: 10px;">
-                <a href="user-login.html" class="form-link">Already an user? Login</a>
+                <a href="/user/login" class="form-link">Already an user? Login</a>
             </div>
-        </form>
+        </form:form>
     </div>
 </body>
 
