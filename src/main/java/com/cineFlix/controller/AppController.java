@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @ComponentScan("com") 
 public class AppController {
 	
-	@RequestMapping(value = { "/", "/list" }, method = RequestMethod.GET)
-    public String listEmployees(ModelMap model) {
+	@RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
+    public String landingPage(ModelMap model) {
 		//TODO: Implement session management and redirect to user home or corp home
         return "index";
     }

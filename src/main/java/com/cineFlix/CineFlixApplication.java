@@ -6,7 +6,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import com.cineFlix.dao.UserService;
+import com.cineFlix.service.UserService;
 
 @SpringBootApplication
 @ComponentScan("com.cineFlix")

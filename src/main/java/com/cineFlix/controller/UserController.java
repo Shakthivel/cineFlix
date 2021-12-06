@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cineFlix.dao.UserService;
 import com.cineFlix.model.User;
-
+import com.cineFlix.service.UserService;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
-	
+
 	@Autowired
 	UserService userService;
 
@@ -26,16 +25,14 @@ public class UserController {
 		return "user-login";
 	}
 
-	
 	@RequestMapping(value = { "/login" }, method = RequestMethod.POST)
-	public String postLogin(@RequestParam("name")String name,@RequestParam("password")String password) {
+	public String postLogin(@RequestParam("name") String name, @RequestParam("password") String password) {
 		// TODO: User authentication
-		if(userService.login(name, password))
-		{
-			return "index";
+		User u = userService.login(name, password);
+		if (u != null) {
+			return "redirect:/welcome";
 		}
 		return "user-login";
-		// Return welcome page
 	}
 
 	@RequestMapping(value = { "/register" }, method = RequestMethod.GET)
@@ -44,10 +41,12 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "user-register";
 	}
+
 	@RequestMapping(value = { "/register" }, method = RequestMethod.POST)
-	public String postRegister(User user,BindingResult result) {
-		
-		userService.register(user);
+	public String postRegister(User user, BindingResult result) {
+
+		User u = userService.register(user);
+		System.out.println(u);
 		return "index";
 	}
 }

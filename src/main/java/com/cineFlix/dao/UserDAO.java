@@ -10,5 +10,6 @@ import com.cineFlix.model.User;
 public interface UserDAO extends JpaRepository<User, Integer>{
 
 	public boolean existsByNameAndPassword(String name,String password);
+	public User findByNameAndPassword(String name,String password);
 	
 }
