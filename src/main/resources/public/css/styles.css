@@ -51,6 +51,22 @@ padding: 1.2rem;
   background-color: #fafafa;
 }
 
+.btn-cineflex{
+  background-color: #125D98 !important ;
+}
+.btn-cineflex:hover{
+  border-color: #125D98 !important;
+  background-color: #ffffff !important;
+  color: #125D98 !important;
+}
+
+.btn-bookings:hover{
+  border-color: #f0ad4e !important;
+  color: #f0ad4e !important;
+  background-color: #ffffff !important;
+
+}
+
 
 
 .center {
@@ -90,10 +106,10 @@ padding: 1.2rem;
     color: #f7f7f7;
 }
 
-
-
-.forgot-link {
-    font-size: 15px;
+.btn-login:hover{
+  border-color: #125D98 !important;
+  background-color: #ffffff !important;
+  color: #125D98 !important;
 }
 
 .btn-login{
@@ -101,26 +117,8 @@ background-color: #125D98 !important;
 border-color: #125D98 !important;
 }
 
-.btn-cineflex{
-  background-color: #125D98 !important ;
-}
-.btn-cineflex:hover{
-  border-color: #125D98 !important;
-  background-color: #ffffff !important;
-  color: #125D98 !important;
-}
-
-.btn-bookings:hover{
-  border-color: #f0ad4e !important;
-  color: #f0ad4e !important;
-  background-color: #ffffff !important;
-
-}
-
-.btn-login:hover{
-  border-color: #125D98 !important;
-  background-color: #ffffff !important;
-  color: #125D98 !important;
+.forgot-link {
+    font-size: 15px;
 }
 
 .form-link{
