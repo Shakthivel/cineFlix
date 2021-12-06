@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +17,7 @@
     <!-- Title -->
     <title>Cineflix - Login </title>
     <!-- Local Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="../../resources/public/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/styles.css"> 
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
@@ -26,14 +27,14 @@
 </head>
 <body>
     <div class="d-flex justify-content-center align-items-center login-container">
-        <form class="login-form text-center">
+        <form class="login-form text-center" method="POST">
             <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638596050/CineFlix/cineflix-black_nleijx.png" class="img-fluid" alt="...">
             <h2 class="mb-5"> Login</h2>
             <div class="form-group">
-                <input type="text" class="form-control form-control-lg" placeholder="Username">
+                <input type="text" name="name"class="form-control form-control-lg" placeholder="Username">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control form-control-lg" placeholder="Password">
+                <input type="password" name="password" class="form-control form-control-lg" placeholder="Password">
             </div>
             <div class="forgot-link form-group d-flex justify-content-between align-items-center">
                 <div class="form-check">
@@ -42,9 +43,9 @@
                 </div>
                 <a href="#" class="form-link">Forgot Password?</a>
             </div>
-            <a href="index.html" class="btn btn-dark btn-block btn-login">Login</a>
+            <button type="submit" class="btn btn-dark btn-block btn-login">Login</button>
             <div style="margin-top: 10px;">
-                <a href="user-register.html" class="form-link" >Not an user? Register</a>
+                <a href="/user/register" class="form-link" >Not an user? Register</a>
             </div>
            
         </form>
