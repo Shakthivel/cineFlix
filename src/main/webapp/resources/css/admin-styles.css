@@ -27,8 +27,37 @@
 
 .card-deck-spacing{
     margin-right: 2rem !important;
+    padding-top: 2rem !important;
     margin-left: 2rem !important;
 }
+
+.btn-float{
+    border-color: #125D98 !important;
+    background-color: #125D98 !important;
+    color: #ffffff;
+     text-align: center !important;
+  width: 70px;
+  height: 70px;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  font-size: 50px !important;
+    margin: 3.5rem;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    /* left: 30; */
+}
+
+.btn-float:hover{
+    background-color: #ffffff !important;
+    border-color: #125D98 !important;
+    color: #125D98 !important;
+}
+
+
 
 .card-spacing{
     margin-left: 1.5rem !important;
@@ -43,6 +72,17 @@
     margin-left: 90%;
     padding: 1rem;
 }
+
+.form-row{
+    padding: 1rem 2rem 1rem 2rem !important;
+}
+
+.form-control{
+    padding: 1.4rem !important;
+    border-radius: 10px !important;
+}
+
+
 
 .nav-link{
     font-size: 1.25rem;
