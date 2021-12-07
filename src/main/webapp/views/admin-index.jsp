@@ -53,12 +53,12 @@
 			</div>
 			<!-- Start of Deck 1 -->
 			<!-- For loop len(list)%3 -->
-			<div class="card-deck card-deck-spacing">
+			<div class="row card-deck-spacing">
 				<!-- For loop : 3 times-->
-
+				<div class="col-sm-4">
 				<c:forEach items="${movies}" var="movie">
-					<div class="card card-spacing">
-						<img src="${movie.imageUrl}">
+					<div class="card">
+						<img src="${movie.imageUrl}" class="card-img-top">
 						<div class="card-body">
 							<h6 class="card-title">${movie.movieName.toUpperCase()}</h6>
 							<div class="badge-div">
@@ -76,6 +76,7 @@
 
 					</div>
 				</c:forEach>
+				</div>
 				<!-- For loop : 3 times-->
 			</div>
 			<!-- For loop len(list)%3 -->

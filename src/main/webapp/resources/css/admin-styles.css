@@ -25,11 +25,6 @@
     margin-top: 1rem;
 }
 
-.card-deck-spacing{
-    margin-right: 2rem !important;
-    padding-top: 2rem !important;
-    margin-left: 2rem !important;
-}
 
 .btn-float{
     border-color: #125D98 !important;
@@ -59,11 +54,17 @@
 
 
 
-.card-spacing{
-    margin-left: 1.5rem !important;
-    margin-right: 1.5rem !important;
+.card-deck-spacing{
+    margin-right: 1rem !important;
+    padding-top: 2rem !important;
+    margin-left: 1rem !important;
 }
 
+.card-img-top{
+    width: 100%;
+    height: 20vw;
+    object-fit: cover;
+}
 .form-check-label{
     color: #ffffff;
 }
