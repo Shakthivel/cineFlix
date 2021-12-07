@@ -55,12 +55,12 @@
                 <div class="form-row">
                     <div class="col">
                         <h5>Movie Name</h5>
-                        <form:input path="movieName" type="text" class="form-control"/>
+                        <form:input path="movieName" type="text" class="form-style"/>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <h5>Censor Rating</h5>
-                            <form:select path="censor" class="form-control" id="exampleFormControlSelect1">   
+                            <form:select path="censor" class="form-style" id="exampleFormControlSelect1">   
      					<form:option value="u" label="U"/>
                         <form:option value="ua" label="U/A"/>
                         <form:option value="a" label="A"/>
@@ -74,11 +74,11 @@
                 <div class="form-row">
                     <div class="col">
                     <h5>Release Date</h5>
-                    <form:input path="releaseDate" type="date" class="form-control"/>
+                    <form:input path="releaseDate" type="date" class="form-style"/>
                     </div>
                     <div class="col">
                     <h5>Genre</h5>
-                   <form:select path="genre" class="form-control" id="exampleFormControlSelect1">   
+                   <form:select path="genre" class="form-style" id="exampleFormControlSelect1">   
      					<form:option value="drama" label="Drama"/>
                         <form:option value="action" label="Action"/>
                         <form:option value="animation" label="Animation"/>
@@ -95,7 +95,7 @@
         <div class="form-row">
                     <div class="col">
                         <h5>Language</h5>
-                        <form:select path="language" class="form-control" id="exampleFormControlSelect1" >
+                        <form:select path="language" class="form-style" id="exampleFormControlSelect1" >
                             <form:option value="english">English</form:option>
                             <form:option value="tamil">Tamil</form:option>
                             <form:option value="telugu">Telugu</form:option>
@@ -111,7 +111,7 @@
                     <div class="col">
                             <div class="form-group">
                                 <h5>Movie Poster Url</h5>
-                                 <form:input path="imageUrl" type="text" class="form-control"/>
+                                 <form:input path="imageUrl" type="text" class="form-style"/>
                             </div>
                         </div>
                  </div>   
@@ -122,7 +122,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <h5>Synopsis</h5>
-                                <form:input path="movieSynopsis" type="text" class="form-control"/>
+                                <form:input path="movieSynopsis" type="text" class="form-style"/>
                             </div>
                         </div>
                     </div>
