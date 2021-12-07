@@ -39,6 +39,7 @@
 <!-- Tab Switch Starts -->
         <div class="pt-3">
 
+<<<<<<< HEAD:src/main/webapp/views/corporate-index.jsp
             <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#acquired-movies" role="tab" aria-controls="home"
@@ -79,14 +80,198 @@
 
                         
 
-                    </div>
+=======
+        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="acquired-movies-tab" data-toggle="tab" href="#acquired-movies" role="tab" aria-controls="acquired-movies"
+                    aria-selected="true">Acquired Movies</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="all-movies-tab" data-toggle="tab" href="#all-movies" role="tab" aria-controls="all-movies"
+                    aria-selected="false">Profile</a>
+            </li>
 
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="acquired-movies" role="tabpanel" aria-labelledby="acquired-movies-tab">
+
+                <div class="row card-deck-spacing">
+                
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638627653/CineFlix/Coming%20Soon%20Images/batman-soon_s4llso.jpg"
+                                class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <div class="card-title">THE BATMAN</div>
+                                <div class="badge-div">
+                                    <span class="badge badge-pill badge-info">A</span>
+                                    <span class="badge badge-pill badge-secondary">Action</span>
+                                    <span class="badge badge-pill badge-primary">English</span>
+                                </div>
+                                <div class="card-text">
+                                    THE BATMAN is an edgy, action-packed thriller that depicts Batman in his early years,
+                                    struggling to balance rage with
+                                    righteousness as he investigates a disturbing mystery that has terrorized Gotham. Robert Pattinson
+                                    delivers a raw,
+                                    intense portrayal of Batman as a disillusioned, desperate vigilante awakened by the realization that
+                                    the
+                                    anger consuming
+                                    him makes him no better than the ruthless serial killer he’s hunting.
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-dark btn-block btn-login" style="color: #125D98;" href="" role="button">Edit</a>
+                            </div>
+                        </div>
+>>>>>>> f14615c03dcadb72336be835c9b822c3ed022a04:src/main/webapp/views/corporate-index.html
+                    </div>
+                
+                    <div class="col-sm-4 ">
+                        <div class="card">
+                            <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638627653/CineFlix/Coming%20Soon%20Images/batman-soon_s4llso.jpg"
+                                class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <div class="card-title">THE BATMAN</div>
+                                <div class="badge-div">
+                                    <span class="badge badge-pill badge-info">A</span>
+                                    <span class="badge badge-pill badge-secondary">Action</span>
+                                    <span class="badge badge-pill badge-primary">English</span>
+                                </div>
+                                <div class="card-text">
+                                    THE BATMAN is an edgy, action-packed thriller that depicts Batman in his early years,
+                                    struggling to balance rage with
+                                    righteousness as he investigates a disturbing mystery that has terrorized Gotham. Robert Pattinson
+                                    delivers a raw,
+                                    intense portrayal of Batman as a disillusioned, desperate vigilante awakened by the realization that
+                                    the
+                                    anger consuming
+                                    him makes him no better than the ruthless serial killer he’s hunting.
+                                </div>
+                
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-dark btn-block btn-login" style="color: #125D98;" href="" role="button">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="col-sm-4 ">
+                        <div class="card">
+                            <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638627653/CineFlix/Coming%20Soon%20Images/batman-soon_s4llso.jpg"
+                                class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <div class="card-title">THE BATMAN</div>
+                                <div class="badge-div">
+                                    <span class="badge badge-pill badge-info">A</span>
+                                    <span class="badge badge-pill badge-secondary">Action</span>
+                                    <span class="badge badge-pill badge-primary">English</span>
+                                </div>
+                                <div class="card-text">
+                                    THE BATMAN is an edgy, action-packed thriller that depicts Batman in his early years,
+                                    struggling to balance rage with
+                                    righteousness as he investigates a disturbing mystery that has terrorized Gotham. Robert Pattinson
+                                    delivers a raw,
+                                    intense portrayal of Batman as a disillusioned, desperate vigilante awakened by the realization that
+                                    the
+                                    anger consuming
+                                    him makes him no better than the ruthless serial killer he’s hunting.
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-dark btn-block btn-login" style="color: #125D98;" href="" role="button">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                
                 </div>
             </div>
-                <div class="tab-pane fade" id="all-movies" role="tabpanel" aria-labelledby="profile-tab">...</div>
+            <div class="tab-pane fade" id="all-movies" role="tabpanel" aria-labelledby="all-movies-tab">
+                <div class="row card-deck-spacing">
                 
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638627658/CineFlix/Coming%20Soon%20Images/spiderman-soon_epqzz5.jpg"
+                                class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <div class="card-title">SPIDER-MAN : NO WAY HOME</div>
+                                <div class="badge-div">
+                                    <span class="badge badge-pill badge-info">U</span>
+                                    <span class="badge badge-pill badge-secondary">Action</span>
+                                    <span class="badge badge-pill badge-primary">English</span>
+                                </div>
+                                <div class="card-text">
+                                    With Spider-Man's identity now revealed, our friendly neighborhood
+                                    web-slinger is unmasked and no longer able to
+                                    separate his normal life as Peter Parker from the high stakes of being a superhero. When
+                                    Peter asks for help from Doctor
+                                    Strange, the stakes become even more dangerous, forcing him to discover what it truly
+                                    means to be Spider-Man.
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-dark btn-block btn-login" style="color: #125D98;" href="" role="button">Add This Movie</a>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="col-sm-4 ">
+                        <div class="card">
+                            <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638627658/CineFlix/Coming%20Soon%20Images/spiderman-soon_epqzz5.jpg"
+                                class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <div class="card-title">SPIDER-MAN : NO WAY HOME</div>
+                                <div class="badge-div">
+                                    <span class="badge badge-pill badge-info">U</span>
+                                    <span class="badge badge-pill badge-secondary">Action</span>
+                                    <span class="badge badge-pill badge-primary">English</span>
+                                </div>
+                                <div class="card-text">
+                                With Spider-Man's identity now revealed, our friendly neighborhood
+                                web-slinger is unmasked and no longer able to
+                                separate his normal life as Peter Parker from the high stakes of being a superhero. When
+                                Peter asks for help from Doctor
+                                Strange, the stakes become even more dangerous, forcing him to discover what it truly
+                                means to be Spider-Man.
+                                </div>
+                
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-dark btn-block btn-login" style="color: #125D98;" href="" role="button">Add This Movie</a>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="col-sm-4 ">
+                        <div class="card">
+                            <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638627658/CineFlix/Coming%20Soon%20Images/spiderman-soon_epqzz5.jpg"
+                                class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <div class="card-title">SPIDER-MAN : NO WAY HOME</div>
+                                <div class="badge-div">
+                                    <span class="badge badge-pill badge-info">U</span>
+                                    <span class="badge badge-pill badge-secondary">Action</span>
+                                    <span class="badge badge-pill badge-primary">English</span>
+                                </div>
+                                <div class="card-text">
+                                    With Spider-Man's identity now revealed, our friendly neighborhood
+                                    web-slinger is unmasked and no longer able to
+                                    separate his normal life as Peter Parker from the high stakes of being a superhero. When
+                                    Peter asks for help from Doctor
+                                    Strange, the stakes become even more dangerous, forcing him to discover what it truly
+                                    means to be Spider-Man.
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-dark btn-block btn-login" style="color: #125D98;" href="" role="button">Add This Movie</a>
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
             </div>
+           
         </div>
+    </div>
        
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
