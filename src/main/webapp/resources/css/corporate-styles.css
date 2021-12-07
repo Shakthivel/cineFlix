@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+*{
+    font-family: 'Ubuntu', sans-serif;
+    
+}
+
+.navbar-nav{
+    margin-left: 85%;
+    padding: 1rem;
+}
+
+.nav-link{
+    font-size: 1.25rem;
+    color: black;
+}
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+*{
+    font-family: 'Ubuntu', sans-serif;
+    
+}
+
+
+
+.card-text{
+    font-size: 14px;
+    margin-top: 1rem;
+}
+
+.card-deck-spacing{
+    margin-right: 2rem !important;
+    padding-top: 2rem !important;
+    margin-left: 2rem !important;
+}
+
+
+.btn-float:hover{
+    background-color: #ffffff !important;
+    border-color: #125D98 !important;
+    color: #125D98 !important;
+}
+
+
+
+.card-spacing{
+    margin-left: 1.5rem !important;
+    margin-right: 1.5rem !important;
+}
+
+.form-check-label{
+    color: #ffffff;
+}
+
+
+.form-row{
+    padding: 1rem 2rem 1rem 2rem !important;
+}
+
+.form-control{
+    padding: 1.4rem !important;
+    border-radius: 10px !important;
+}
+
+
+.login-form .form-control {
+    font-size: 15px;
+    min-height: 48px;
+    font-weight: 500;
+}
+
+.login-form a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.btn-login:hover{
+  border-color: #125D98 !important;
+  background-color: #125D98 !important;
+  color: #ffffff !important;
+}
+
+.btn-login{
+background-color: #fdfdfd !important;
+border-color: #125D98 !important;
+}
+
+
+
