@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,99 +51,87 @@
                 <h1>Add Movies</h1>
             </div>
 
-            <form>
+            <form:form method="POST" modelAttribute="movie">
                 <div class="form-row">
                     <div class="col">
-                        <h5>Movie</h5>
-                        <input type="text" class="form-control">
+                        <h5>Movie Name</h5>
+                        <form:input path="movieName" type="text" class="form-control"/>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <h5>Censor Rating</h5>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>U</option>
-                                <option>U/A</option>
-                                <option>A</option>
-                                <option>R</option>
-                            </select>
+                            <form:select path="censor" class="form-control" id="exampleFormControlSelect1">   
+     					<form:option value="u" label="U"/>
+                        <form:option value="ua" label="U/A"/>
+                        <form:option value="a" label="A"/>
+                        <form:option value="r" label="R"/>
+                        
+					</form:select> 
                         </div>
                     </div>
                 </div>
-            </form>
-            <form>
+    
                 <div class="form-row">
                     <div class="col">
                     <h5>Release Date</h5>
-                    <input type="date" class="form-control">
+                    <form:input path="releaseDate" type="date" class="form-control"/>
                     </div>
                     <div class="col">
                     <h5>Genre</h5>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option>Drama</option>
-                        <option>Action</option>
-                        <option>Animation</option>
-                        <option>Anime</option>
-                        <option>Thriller</option>
-                        <option>Comedy</option>
-                        <option>Romance</option>
-                        <option>Horror</option>
-                    </select>
+                   <form:select path="genre" class="form-control" id="exampleFormControlSelect1">   
+     					<form:option value="drama" label="Drama"/>
+                        <form:option value="action" label="Action"/>
+                        <form:option value="animation" label="Animation"/>
+                        <form:option value="anime" label="Anime"/>
+                        <form:option value="thriller" label="Thriller"/>
+                        <form:option value="comedy" label="Comedy"/>
+                        <form:option value="romance" label="Romance"/>
+                        <form:option value="horror" label="Horror"/>
+					</form:select> 
+                    
+                   
                     </div>
                 </div>
-            </form>
-
-            <form>
-                <div class="form-row">
-                    <div class="col">
-                        <h5>Screen Type</h5>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>IMAX - 3D</option>
-                            <option>IMAX - 2D</option>
-                            <option>Dolby - 3D</option>
-                            <option>Dolby - 2D</option>
-                            <option>2D</option>
-                            <option>3D</option>
-                        </select>
-                        
-                    </div>
+        <div class="form-row">
                     <div class="col">
                         <h5>Language</h5>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>English</option>
-                            <option>Tamil</option>
-                            <option>Telugu</option>
-                            <option>Malayalam</option>
-                            <option>Kannada</option>
-                            <option>Hindi</option>
-                            <option>Marathi</option>
-                            <option>Bengali</option>
-                            <option>Japanese</option>
-                            <option>Korean</option>
-                        </select>
+                        <form:select path="language" class="form-control" id="exampleFormControlSelect1" >
+                            <form:option value="english">English</form:option>
+                            <form:option value="tamil">Tamil</form:option>
+                            <form:option value="telugu">Telugu</form:option>
+                            <form:option value="malayalam">Malayalam</form:option>
+                            <form:option value="kannada">Kannada</form:option>
+                            <form:option value="hindi">Hindi</form:option>
+                            <form:option value="marathi">Marathi</form:option>
+                            <form:option value="bengali" label="Bengali" />
+                            <form:option value="japanese" label="Japanese"/>
+                            <form:option value="korean" label="Korean"/>
+                        </form:select>
                     </div>
-                </div>
-            </form>
-
-                <form>
-                    <div class="form-row">
-                        <div class="col">
+                    <div class="col">
                             <div class="form-group">
-                                <h5>Movie Poster</h5>
-                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                <h5>Movie Poster Url</h5>
+                                 <form:input path="imageUrl" type="text" class="form-control"/>
                             </div>
                         </div>
+                 </div>   
+                
+            
+                    <div class="form-row">
+                        
                         <div class="col">
                             <div class="form-group">
                                 <h5>Synopsis</h5>
-                                <input type="text" class="form-control">
+                                <form:input path="movieSynopsis" type="text" class="form-control"/>
                             </div>
                         </div>
                     </div>
-                </form>
+                     <div class="text-center m-2">
+                   		 <button type="submit" class="btn btn-primary btn-lg btn-login" style="color: #125D98;"  role="button" data-toggle="modal" data-target="#exampleModal">Save Details</button>
+                	</div>
+                </form:form>
 <!-- Form Ending -->
-                <div class="text-center m-2">
-                    <a class="btn btn-primary btn-lg btn-login" style="color: #125D98;" href="#" role="button" data-toggle="modal" data-target="#exampleModal">Save Details</a>
-                </div>
+               
 
                 <!-- Profile Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

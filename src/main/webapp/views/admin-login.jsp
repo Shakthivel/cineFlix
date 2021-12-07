@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body{
-            background-image: url("https://res.cloudinary.com/dfep0loer/image/upload/v1638814043/CineFlix/movie_yciiue.jpg");
+            background-image: url("https://res.cloudinary.com/dfep0loer/image/upload/v1638772165/CineFlix/theatre-bg_l5ongl.jpg");
         }
     </style>
     <!-- Title Icon -->
-    <link rel="icon" href="https://res.cloudinary.com/dfep0loer/image/upload/v1638813013/CineFlix/favicon_bhytgt.ico"
+    <link rel="icon" href="https://res.cloudinary.com/dfep0loer/image/upload/v1638545823/CineFlix/favicon_trcikr.ico"
         type="image/x-icon">
     <!-- Title -->
-    <title>CineFlix Admin - Login</title>
+    <title>CineFlix - Admin Login</title>
     <!-- Local Stylesheet -->
     <link rel="stylesheet" type="text/css" href="../resources/css/admin-styles.css">
     <!-- Font Awesome CDN -->
@@ -25,14 +25,14 @@
 </head>
 <body>
     <div class="d-flex justify-content-center align-items-center login-container">
-        <form class="login-form text-center">
+        <form  method="POST" class="login-form text-center">
             <h2 class="mb-5" style="color: #fff;"><img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638775333/CineFlix/CineFlixAdmin_asr8e0.png"
                 class="img-fluid" alt="..." style="margin-bottom: 15px;"></h2>
             <div class="form-group">
-                <input type="text" class="form-control form-control-lg" placeholder="Admin Id">
+                <input type="text"name="id" class="form-control form-control-lg" placeholder="Admin Id">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control form-control-lg" placeholder="Password">
+                <input type="password" name="password" class="form-control form-control-lg" placeholder="Password">
             </div>
             <div class="forgot-link form-group d-flex justify-content-between align-items-center">
                 <div class="form-check">
@@ -41,7 +41,7 @@
                 </div>
                 <a href="#" class="form-link">Forgot Password?</a>
             </div>
-            <a href="admin-index.html" class="btn btn-dark btn-block btn-login">Login</a>
+            <button type="submit" class="btn btn-dark btn-block btn-login" style="color: #000000">Login</button>
         </form>
     </div>
 </body>

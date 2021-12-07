@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OrderColumn;
@@ -13,9 +15,9 @@ import javax.persistence.OrderColumn;
 @Entity
 public class Movie implements Comparable<Movie> {
 
-	@Id
+	@Id@GeneratedValue(strategy = GenerationType.AUTO)
 	private int movieId;
-	private String movieName;
+	private String movieName =null;
 	@ManyToMany()
 	private List<Theatre> theatre;
 	private Date releaseDate;
@@ -23,9 +25,9 @@ public class Movie implements Comparable<Movie> {
 	private String censor;
 	private String imageUrl;
 	@OrderColumn
-	private String[] genre;
+	private String genre;
 	@OrderColumn
-	private String[] languages;
+	private String language;
 
 	public Movie() {
 		super();
@@ -33,12 +35,7 @@ public class Movie implements Comparable<Movie> {
 	}
 
 	
-	@Override
-	public String toString() {
-		return "Movie [movieId=" + movieId + ", movieName=" + movieName + ", theatre=" + theatre + ", releaseDate="
-				+ releaseDate + ", movieSynopsis=" + movieSynopsis + ", censor=" + censor + ", imageUrl=" + imageUrl
-				+ ", genre=" + Arrays.toString(genre) + ", languages=" + Arrays.toString(languages) + "]";
-	}
+
 
 
 	public int getMovieId() {
@@ -111,24 +108,49 @@ public class Movie implements Comparable<Movie> {
 	}
 
 
-	public String[] getGenre() {
+	
+
+	@Override
+	public String toString() {
+		return "Movie [movieId=" + movieId + ", movieName=" + movieName + ", theatre=" + theatre + ", releaseDate="
+				+ releaseDate + ", movieSynopsis=" + movieSynopsis + ", censor=" + censor + ", imageUrl=" + imageUrl
+				+ ", genre=" + genre + ", language=" + language + "]";
+	}
+
+
+
+
+
+	public String getGenre() {
 		return genre;
 	}
 
 
-	public void setGenre(String[] genre) {
+
+
+
+	public void setGenre(String genre) {
 		this.genre = genre;
 	}
 
 
-	public String[] getLanguages() {
-		return languages;
+
+
+
+	public String getLanguage() {
+		return language;
 	}
 
 
-	public void setLanguages(String[] languages) {
-		this.languages = languages;
+
+
+
+	public void setLanguage(String language) {
+		this.language = language;
 	}
+
+
+
 
 
 	@Override

@@ -47,6 +47,7 @@
             <div style="margin-top: 10px;">
                 <a href="/user/register" class="form-link" >Not an user? Register</a>
             </div>
+            
            
         </form>
         
