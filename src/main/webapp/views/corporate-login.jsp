@@ -31,7 +31,7 @@
             <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638860470/CineFlix/CineFlix-Corporate_ipe7kd.png" class="img-fluid pb-3" alt="...">
  
             <div class="form-group">
-                <input type="text" name="name"class="form-control form-control-lg" placeholder="Corporate ID">
+                <input type="text"name="id" class="form-control form-control-lg" placeholder="Corporate Id">
             </div>
             <div class="form-group">
                 <input type="password" name="password" class="form-control form-control-lg" placeholder="Password">
@@ -43,7 +43,7 @@
                 </div>
                 <a href="#" class="form-link">Forgot Password?</a>
             </div>
-            <a href="corporate-index.html" class="btn btn-dark btn-block btn-login">Login</a>
+            <button type="submit"  class="btn btn-dark btn-block btn-login">Login</button>
             <div style="margin-top: 10px;">
                 <a href="user-login.html" class="form-link">Not a Corporate User?</a>
             </div>

@@ -55,8 +55,9 @@
 			<!-- For loop len(list)%3 -->
 			<div class="row card-deck-spacing">
 				<!-- For loop : 3 times-->
-				<div class="col-sm-4">
+				
 				<c:forEach items="${movies}" var="movie">
+				<div class="col-sm-4">
 					<div class="card">
 						<img src="${movie.imageUrl}" class="card-img-top">
 						<div class="card-body">
@@ -75,8 +76,9 @@
 						</div>
 
 					</div>
+					</div>
 				</c:forEach>
-				</div>
+				
 				<!-- For loop : 3 times-->
 			</div>
 			<!-- For loop len(list)%3 -->

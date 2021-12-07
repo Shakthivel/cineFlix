@@ -30,7 +30,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="corporate-login.html">Logout</a>
+                        <a class="nav-link" href="/corporate/login">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -53,7 +53,7 @@
                 <div class="tab-pane fade show active" id="acquired-movies" role="tabpanel" aria-labelledby="home-tab">
                     
                     <div class="row card-deck-spacing">
-
+					
                         <div class="col-sm-4">
                             <div class="card">
                                 <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638627653/CineFlix/Coming%20Soon%20Images/batman-soon_s4llso.jpg" class="card-img-top" alt="...">
@@ -77,53 +77,7 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-4 ">
-                            <div class="card">
-                                <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638877383/CineFlix/Coming%20Soon%20Images/valimai_hdo3ym.jpg"
-                                    class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <div class="card-title">THE BATMAN</div>
-                                    <div class="badge-div">
-                                        <span class="badge badge-pill badge-info">A</span>
-                                        <span class="badge badge-pill badge-secondary">ActionS</span>
-                                        <span class="badge badge-pill badge-primary">English</span>
-                                    </div>
-                                    <div class="card-text">
-                                        THE BATMAN is an edgy, action-packed thriller that depicts Batman in his early years,
-                                        struggling to balance rage with
-                                        righteousness as he investigates a disturbing mystery that has terrorized Gotham. Robert Pattinson
-                                        delivers a raw,
-                                        intense portrayal of Batman as a disillusioned, desperate vigilante awakened by the realization that the
-                                        anger consuming
-                                        him makes him no better than the ruthless serial killer he’s hunting.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-4 ">
-                            <div class="card">
-                                <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638877383/CineFlix/Coming%20Soon%20Images/valimai_hdo3ym.jpg"
-                                    class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <div class="card-title">THE BATMAN</div>
-                                    <div class="badge-div">
-                                        <span class="badge badge-pill badge-info">A</span>
-                                        <span class="badge badge-pill badge-secondary">ActionS</span>
-                                        <span class="badge badge-pill badge-primary">English</span>
-                                    </div>
-                                    <div class="card-text">
-                                        THE BATMAN is an edgy, action-packed thriller that depicts Batman in his early years,
-                                        struggling to balance rage with
-                                        righteousness as he investigates a disturbing mystery that has terrorized Gotham. Robert Pattinson
-                                        delivers a raw,
-                                        intense portrayal of Batman as a disillusioned, desperate vigilante awakened by the realization that the
-                                        anger consuming
-                                        him makes him no better than the ruthless serial killer he’s hunting.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
 
                     </div>
 
