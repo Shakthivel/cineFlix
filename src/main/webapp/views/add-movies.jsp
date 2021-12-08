@@ -35,10 +35,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav" style="margin-left: 83%;">
                 <li class="nav-item">
-                    <a class="nav-link" href="admin-index.html">Home</a>
+                    <a class="nav-link" href="/admin/home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="admin-login.html">Logout</a>
+                    <a class="nav-link" href="/admin/login">Logout</a>
                 </li>
             </ul>
         </div>

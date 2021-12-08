@@ -49,7 +49,7 @@
             </div>
 
             <div style="margin-top: 10px;">
-                <a href="corporate-login.html" class="form-link">Corporate User</a>
+                <a href="/corporate/login" class="form-link">Corporate User</a>
             </div>
 
         </form>
