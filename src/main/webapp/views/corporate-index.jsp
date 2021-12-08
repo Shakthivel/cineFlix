@@ -39,48 +39,6 @@
 <!-- Tab Switch Starts -->
         <div class="pt-3">
 
-<<<<<<< HEAD:src/main/webapp/views/corporate-index.jsp
-            <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#acquired-movies" role="tab" aria-controls="home"
-                        aria-selected="true">Our Movies</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#all-movies" role="tab" aria-controls="profile"
-                        aria-selected="false">Movie Database</a>
-                </li>
-            </ul>
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="acquired-movies" role="tabpanel" aria-labelledby="home-tab">
-                    
-                    <div class="row card-deck-spacing">
-					
-                        <div class="col-sm-4">
-                            <div class="card">
-                                <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638627653/CineFlix/Coming%20Soon%20Images/batman-soon_s4llso.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <div class="card-title">THE BATMAN</div>
-                                    <div class="badge-div">
-                                        <span class="badge badge-pill badge-info">A</span>
-                                        <span class="badge badge-pill badge-secondary">ActionS</span>
-                                        <span class="badge badge-pill badge-primary">English</span>
-                                    </div>
-                                    <div class="card-text">
-                                        THE BATMAN is an edgy, action-packed thriller that depicts Batman in his early years,
-                                        struggling to balance rage with
-                                        righteousness as he investigates a disturbing mystery that has terrorized Gotham. Robert Pattinson
-                                        delivers a raw,
-                                        intense portrayal of Batman as a disillusioned, desperate vigilante awakened by the realization that the
-                                        anger consuming
-                                        him makes him no better than the ruthless serial killer he’s hunting.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        
-
-=======
         <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <a class="nav-link active" id="acquired-movies-tab" data-toggle="tab" href="#acquired-movies" role="tab" aria-controls="acquired-movies"
@@ -123,7 +81,6 @@
                                 <a class="btn btn-dark btn-block btn-login" style="color: #125D98;" href="" role="button">Edit</a>
                             </div>
                         </div>
->>>>>>> f14615c03dcadb72336be835c9b822c3ed022a04:src/main/webapp/views/corporate-index.html
                     </div>
                 
                     <div class="col-lg-4 d-flex align-items-stretch">
