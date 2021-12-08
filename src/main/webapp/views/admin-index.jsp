@@ -71,7 +71,7 @@
 							</div>
 							<div class="card-footer">
 								<a class="btn btn-dark btn-block btn-login"
-									style="color: #125D98;"
+									style="color: #ffffff;"
 									href="/admin/edit-${movie.movieId}-movie" role="button">Edit</a>
 							</div>
 
