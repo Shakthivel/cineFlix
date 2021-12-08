@@ -54,31 +54,31 @@
 			<!-- Start of Deck 1 -->
 			<!-- For loop len(list)%3 -->
 			<div class="row card-deck-spacing">
-				<!-- For loop : 3 times-->
-
+				<!-- For loop : 3 times-->	
 				<c:forEach items="${movies}" var="movie">
-				<div class="col-sm-4">
-					<div class="card">
-						<img src="${movie.imageUrl}" class="card-img-top">
-						<div class="card-body">
-							<h6 class="card-title">${movie.movieName.toUpperCase()}</h6>
-							<div class="badge-div">
-								<span class="badge badge-pill badge-info">${movie.censor.toUpperCase()}</span>
-								<span class="badge badge-pill badge-secondary">${movie.genre.toUpperCase()}</span>
-								<span class="badge badge-pill badge-primary">${movie.language.toUpperCase()}</span>
+					<div class="col-lg-4 p-3 d-flex align-items-stretch">
+						<div class="card">
+							<img src="${movie.imageUrl}" class="card-img-top">
+							<div class="card-body">
+								<h6 class="card-title">${movie.movieName.toUpperCase()}</h6>
+								<div class="badge-div">
+									<span class="badge badge-pill badge-info">${movie.censor.toUpperCase()}</span>
+									<span class="badge badge-pill badge-secondary">${movie.genre.toUpperCase()}</span>
+									<span class="badge badge-pill badge-primary">${movie.language.toUpperCase()}</span>
+								</div>
+
+								<p class="card-text">${movie.movieSynopsis}</p>
+							</div>
+							<div class="card-footer">
+								<a class="btn btn-dark btn-block btn-login"
+									style="color: #125D98;"
+									href="/admin/edit-${movie.movieId}-movie" role="button">Edit</a>
 							</div>
 
-							<p class="card-text">${movie.movieSynopsis}</p>
 						</div>
-						<div class="card-footer">
-							<a class="btn btn-dark btn-block btn-login"
-								style="color: #125D98;" href="/admin/edit-${movie.movieId}-movie" role="button">Edit</a>
-						</div>
-
-					</div>
 					</div>
 				</c:forEach>
-				
+
 				<!-- For loop : 3 times-->
 			</div>
 			<!-- For loop len(list)%3 -->
