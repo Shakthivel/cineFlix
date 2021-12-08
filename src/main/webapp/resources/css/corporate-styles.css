@@ -4,7 +4,9 @@
     font-family: 'Ubuntu', sans-serif;
     
 }
-
+.check-margin{
+    margin-top: 16px;
+}
 .navbar-nav{
     margin-left: 85%;
     padding: 1rem;
