@@ -136,7 +136,7 @@
                 <h1><img src="https://img.icons8.com/office/40/000000/starred-ticket.png" /> Now Showing</h1>
                 <!-- Card Deck 1 -->
                 <div class="row" style="padding: 2rem;">
-                    <div class="col-sm-4">
+                    <div class="col-lg-4 d-flex align-items-stretch">
                     <div class="card shadow p-3 mb-5">
                         <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638603265/CineFlix/Now%20Showing%20Images/maanadu-now_ztvu1i.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
@@ -153,7 +153,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-lg-4 d-flex align-items-stretch4">
                     <div class="card shadow p-3 mb-5">
                         <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638604637/CineFlix/Now%20Showing%20Images/re-now_cqvsgq.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
@@ -170,7 +170,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-lg-4 d-flex align-items-stretch">
                     <div class="card shadow p-3 mb-5">
                         <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638604471/CineFlix/Now%20Showing%20Images/i02_mha-now_ifvu0d.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
@@ -196,7 +196,7 @@
                                 <h1><img src="https://img.icons8.com/office/40/000000/starred-ticket.png" /> Now Showing</h1>
                                 <!-- Card Deck 1 -->
                                 <div class="row" style="padding: 2rem;">
-                                    <div class="col-sm-4">
+                                    <div class="col-lg-4 d-flex align-items-stretch">
                                         <div class="card shadow p-3 mb-5">
                                             <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638603265/CineFlix/Now%20Showing%20Images/maanadu-now_ztvu1i.jpg"
                                                 class="card-img-top" alt="...">
@@ -215,7 +215,7 @@
                                         </div>
                                     </div>
                     
-                                    <div class="col-sm-4">
+                                    <div class="col-lg-4 d-flex align-items-stretch">
                                         <div class="card shadow p-3 mb-5">
                                             <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638604637/CineFlix/Now%20Showing%20Images/re-now_cqvsgq.jpg"
                                                 class="card-img-top" alt="...">
@@ -236,7 +236,7 @@
                                         </div>
                                     </div>
                     
-                                    <div class="col-sm-4">
+                                    <div class="col-lg-4 d-flex align-items-stretch">
                                         <div class="card shadow p-3 mb-5">
                                             <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638604471/CineFlix/Now%20Showing%20Images/i02_mha-now_ifvu0d.jpg"
                                                 class="card-img-top" alt="...">
@@ -274,7 +274,7 @@
                 <h1><img src="https://img.icons8.com/office/40/000000/film-reel--v1.png" /> Coming Soon</h1>
                 <!-- Card Deck 1 -->
             <div class="row" style="padding: 2rem;">
-                <div class="col-sm-4">
+                <div class="col-lg-4 d-flex align-items-stretch">
                     <div class="card shadow p-3 mb-5">
                         <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638627658/CineFlix/Coming%20Soon%20Images/spiderman-soon_epqzz5.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
@@ -295,7 +295,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-lg-4 d-flex align-items-stretch">
                     <div class="card shadow p-3 mb-5">
                         <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638627654/CineFlix/Coming%20Soon%20Images/83-soon_p4v5b8.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
@@ -310,7 +310,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-lg-4 d-flex align-items-stretch">
                     <div class="card shadow p-3 mb-5">
                         <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638627653/CineFlix/Coming%20Soon%20Images/batman-soon_s4llso.jpg"
                             class="card-img-top" alt="...">
@@ -340,7 +340,7 @@
                                 <h1><img src="https://img.icons8.com/office/40/000000/film-reel--v1.png" /> Coming Soon</h1>
                                 <!-- Card Deck 1 -->
                                 <div class="row" style="padding: 2rem;">
-                                    <div class="col-sm-4">
+                                    <div class="col-lg-4 d-flex align-items-stretch">
                                         <div class="card shadow p-3 mb-5">
                                             <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638627658/CineFlix/Coming%20Soon%20Images/spiderman-soon_epqzz5.jpg"
                                                 class="card-img-top" alt="...">
@@ -365,7 +365,7 @@
                                         </div>
                                     </div>
                     
-                                    <div class="col-sm-4">
+                                    <div class="col-lg-4 d-flex align-items-stretch">
                                         <div class="card shadow p-3 mb-5">
                                             <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638627654/CineFlix/Coming%20Soon%20Images/83-soon_p4v5b8.jpg"
                                                 class="card-img-top" alt="...">
@@ -382,7 +382,7 @@
                                         </div>
                                     </div>
                     
-                                    <div class="col-sm-4">
+                                    <div class="col-lg-4 d-flex align-items-stretch">
                                         <div class="card shadow p-3 mb-5">
                                             <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638627653/CineFlix/Coming%20Soon%20Images/batman-soon_s4llso.jpg"
                                                 class="card-img-top" alt="...">
