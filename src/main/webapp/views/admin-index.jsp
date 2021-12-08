@@ -55,11 +55,7 @@
 			<!-- For loop len(list)%3 -->
 			<div class="row card-deck-spacing">
 				<!-- For loop : 3 times-->
-<<<<<<< HEAD
-				
-=======
-				<div class="col-sm-4 p-3">
->>>>>>> f14615c03dcadb72336be835c9b822c3ed022a04
+
 				<c:forEach items="${movies}" var="movie">
 				<div class="col-sm-4">
 					<div class="card">

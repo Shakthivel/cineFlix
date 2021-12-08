@@ -1,5 +1,6 @@
 package com.cineFlix.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,10 +36,12 @@ public class CorporateContoller {
 	@RequestMapping(value = "/login" , method=RequestMethod.POST)
 	public String postLogin(@RequestParam("id") int id, @RequestParam("password") String password, ModelMap model)
 	{
-		Theatre t = theatreService.login(id, password);
-		System.out.println(t);
-		if(t!=null)
+		Theatre theatre = theatreService.login(id, password);
+		System.out.println(theatre);
+		
+		if(theatre!=null)
 		{
+			model.addAttribute("theatre", theatre);
 		return "redirect:/corporate/home";
 		}
 		return "corporate-login";
@@ -48,7 +51,20 @@ public class CorporateContoller {
 	public String getHome(ModelMap model)
 	{
 		List<Movie> movies = movieService.getAllMovies();
+		List<Movie> acquiredMovies = new ArrayList<Movie>();
+		Theatre theatre = (Theatre) model.getAttribute("theatre");
+		for(Movie movie:movies)
+		{
+			if (movie.getTheatre().contains(theatre))
+			{
+				acquiredMovies.add(movie);
+				movies.remove(movie);
+			}
+		}
+		System.out.println(movies);
+		System.out.println(acquiredMovies);
 		model.addAttribute("movies",movies);
+		model.addAttribute("acquiredMovies",acquiredMovies);
 		return "corporate-index";
 	}
 	
