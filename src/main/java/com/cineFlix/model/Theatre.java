@@ -1,11 +1,15 @@
 package com.cineFlix.model;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import lombok.ToString;
 
 @Entity
 public class Theatre implements Comparable<Theatre> {
@@ -15,10 +19,11 @@ public class Theatre implements Comparable<Theatre> {
 	private String password;
 	private String theatreName;
 	private String theatreAddress;
-	@ManyToMany(mappedBy = "theatre")
-	private List<Movie> movies;
-	@OneToMany(mappedBy="theatre")
-	private List<Screen> screens;
+	@ToString.Exclude
+	@ManyToMany(mappedBy = "theatre", fetch = FetchType.EAGER)
+	private Set<Movie> movies;
+	@OneToMany(mappedBy = "theatre", fetch = FetchType.EAGER)
+	private Set<Screen> screens;
 
 	public Theatre() {
 		super();
@@ -63,27 +68,25 @@ public class Theatre implements Comparable<Theatre> {
 		this.theatreAddress = theatreAddress;
 	}
 
-	public List<Movie> getMovies() {
+	public Set<Movie> getMovies() {
 		return movies;
 	}
 
-	public void setMovies(List<Movie> movies) {
+	public void setMovies(Set<Movie> movies) {
 		this.movies = movies;
 	}
 
-	public List<Screen> getScreens() {
+	public Set<Screen> getScreens() {
 		return screens;
 	}
 
-	public void setScreens(List<Screen> screens) {
+	public void setScreens(Set<Screen> screens) {
 		this.screens = screens;
 	}
 
 	@Override
 	public int compareTo(Theatre o) {
-		return this.theatreId-o.theatreId;
+		return this.theatreId - o.theatreId;
 	}
-	
-	
 
 }

@@ -3,6 +3,7 @@ package com.cineFlix.model;
 import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -12,14 +13,17 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OrderColumn;
 
+import lombok.ToString;
+
 @Entity
 public class Movie implements Comparable<Movie> {
 
 	@Id@GeneratedValue(strategy = GenerationType.AUTO)
 	private int movieId;
 	private String movieName =null;
+	@ToString.Exclude
 	@ManyToMany()
-	private List<Theatre> theatre;
+	private Set<Theatre> theatre;
 	private Date releaseDate;
 	private String movieSynopsis;
 	private String censor;
@@ -58,12 +62,12 @@ public class Movie implements Comparable<Movie> {
 	}
 
 
-	public List<Theatre> getTheatre() {
+	public Set<Theatre> getTheatre() {
 		return theatre;
 	}
 
 
-	public void setTheatre(List<Theatre> theatre) {
+	public void setTheatre(Set<Theatre> theatre) {
 		this.theatre = theatre;
 	}
 
@@ -112,7 +116,7 @@ public class Movie implements Comparable<Movie> {
 
 	@Override
 	public String toString() {
-		return "Movie [movieId=" + movieId + ", movieName=" + movieName + ", theatre=" + theatre + ", releaseDate="
+		return "Movie [movieId=" + movieId + ", movieName=" + movieName  + ", releaseDate="
 				+ releaseDate + ", movieSynopsis=" + movieSynopsis + ", censor=" + censor + ", imageUrl=" + imageUrl
 				+ ", genre=" + genre + ", language=" + language + "]";
 	}
