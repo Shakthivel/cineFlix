@@ -53,7 +53,7 @@
 		<ul class="nav nav-tabs justify-content-center" id="myTab"
 			role="tablist">
 			<li class="nav-item" role="presentation"><a
-				class="nav-link active" id="home-tab" data-toggle="tab"
+				class="nav-link " id="home-tab" data-toggle="tab"
 				href="#all-movies" role="tab" aria-controls="home"
 				aria-selected="true">All Movies</a></li>
 			<li class="nav-item" role="presentation"><a class="nav-link"

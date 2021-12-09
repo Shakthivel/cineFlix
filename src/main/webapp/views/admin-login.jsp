@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body{
-            background-image: url("https://res.cloudinary.com/dfep0loer/image/upload/v1638772165/CineFlix/theatre-bg_l5ongl.jpg");
+            background-image: url("https://res.cloudinary.com/dfep0loer/image/upload/v1638814043/CineFlix/movie_yciiue.jpg");
         }
     </style>
     <!-- Title Icon -->
