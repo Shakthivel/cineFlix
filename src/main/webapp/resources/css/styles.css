@@ -67,6 +67,33 @@ padding: 1.2rem;
 
 }
 
+a.active{
+  background-color: #125D98 !important;
+}
+
+.list-group-item{
+  padding: 2rem !important;
+}
+
+.list-group-div{
+  margin: 0rem 2rem 0rem 2rem !important;
+}
+
+.pill-a{
+  font-size: 1.3rem;
+  background-color: rgb(255, 255, 255);
+   box-shadow:  3px 3px 1px #b6b6b6;
+   color: #125D98;
+   margin: 1.3rem;
+}
+
+
+
+.pill-span{
+  display: block;
+  font-size: .8rem;
+  text-align: center;
+}
 
 
 .center {
@@ -107,7 +134,7 @@ padding: 1.2rem;
 }
 
 .btn-login:hover{
-  border-color: #125D98 !important;
+  border-color: #858788 !important;
   background-color: #ffffff !important;
   color: #125D98 !important;
 }
@@ -115,6 +142,88 @@ padding: 1.2rem;
 .btn-login{
 background-color: #125D98 !important;
 border-color: #125D98 !important;
+
+}
+
+.btn-book{
+  background-color: #ffffff !important;
+  border-color: #125D98 !important;
+  color: #125D98 !important;
+  margin: 4rem 1rem 1rem 1rem;
+}
+
+.btn-book:hover{
+  background-color: #125D98 !important;
+  border-color: #125D98 !important;
+  color: #ffffff !important;
+}
+
+.btn-filled{
+   background-color: #ffffff !important;
+  border-color: #ff0101 !important;
+  color: #ff0101 !important;
+  margin: 4rem 1rem 1rem 1rem;
+}
+
+.btn-filling{
+   background-color: #ffffff !important;
+  border-color: #ffae00 !important;
+  color: #ffae00 !important;
+  margin: 4rem 1rem 1rem 1rem;
+}
+
+.btn-filling:hover{
+  background-color: #ffae00 !important;
+  border-color: #ffae00 !important;
+  color: #ffffff !important;
+}
+
+
+
+.tips {
+  display: inline-block;
+  position: relative;
+  
+  font-size: 1.2rem;
+  font-family: 'Ubuntu';
+}
+
+.tips:focus,
+.tips:hover {
+  cursor: pointer;
+}
+
+.tips:focus .tips-text,
+.tips:hover .tips-text {
+  display: block;
+}
+
+.tips-text {
+  display: none;
+  position: absolute;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 100px;
+  padding: 5px 5px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: center;
+  background: #003566;
+  font-family: 'Ubuntu';
+  border-radius: 5px;
+}
+
+.tips-text::after {
+  position: absolute;
+  content: '';
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px;
+  border-style: solid;
+  border-color: #001b35 transparent transparent;
 }
 
 .forgot-link {

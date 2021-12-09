@@ -150,6 +150,9 @@
                             <p class="card-text">On the day of a public conference by the state's Chief Minister, his bodyguard and a police officer become stuck in a
                             time loop.</p>
                         </div>
+                        <div class="card-footer">
+                            <a class="btn btn-dark btn-block btn-login" style="color: #fff;" href="movie-availability.html" role="button">Book Tickets</a>
+                        </div>
                     </div>
                 </div>
 
@@ -166,6 +169,10 @@
                             <p class="card-text">Welcome to Raccoon City, once the booming home of pharmaceutical giant Umbrella Corp. The company's exodus left the city
                             a wasteland, a dying town with great evil brewing below the surface. When that evil is unleashed, a group of survivors
                             must work together to uncover the truth behind Umbrella and make it through the night.</p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-dark btn-block btn-login" style="color: #ffffff;" href="user/movie-availability"
+                                type="submit">Book Tickets</button>
                         </div>
                     </div>
                 </div>
