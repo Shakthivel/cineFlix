@@ -27,14 +27,18 @@
 </head>
 <body>
     <div class="d-flex justify-content-center align-items-center login-container">
-        <form class="login-form text-center" method="POST">
+        <form class="login-form text-center" method="POST" novalidate>
             <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638860470/CineFlix/CineFlix-Corporate_ipe7kd.png" class="img-fluid pb-3" alt="...">
  
             <div class="form-group">
-                <input type="text"name="id" class="form-control form-control-lg" placeholder="Corporate Id">
+                <input type="text" name="id" id="id" class="form-control form-control-lg" placeholder="Corporate Id" required> 
+                <div class="valid-feedback">Sounds Great !</div>
+                <div class="invalid-feedback">Oh No ! Enter the Corporate Id!</div>
             </div>
             <div class="form-group">
-                <input type="password" name="password" class="form-control form-control-lg" placeholder="Password">
+                <input type="password" name="password" id="pass" class="form-control form-control-lg" placeholder="Password" required>
+                <div class="valid-feedback">Sounds Great !</div>
+                <div class="invalid-feedback">Oh No ! Enter the Password!</div>
             </div>
             <div class="forgot-link form-group d-flex justify-content-between align-items-center">
                 <div class="form-check">
@@ -53,5 +57,24 @@
         </form>
         
     </div>
+
+    <script type="text/javascript">
+        (function () {
+            "use strict";
+            window.addEventListener("load", function () {
+                let forms = document.getElementsByTagName("form");
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener("submit", function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add("was-validated");
+                    }, false);
+                });
+            }, false);
+        })
+            ();
+    </script>
 </body>
 </html>
