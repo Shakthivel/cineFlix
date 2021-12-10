@@ -1,8 +1,12 @@
 package com.cineFlix.model;
 
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -10,7 +14,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Screen implements Comparable<Screen>{
 	
-	@Id
+	@Id@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@ManyToOne()
 	private Theatre theatre;
@@ -24,8 +28,8 @@ public class Screen implements Comparable<Screen>{
 	private int totalRows;
 	private int totalColumns;
 	private int budgetRows;
-	@OneToMany(mappedBy="screen")
-	private List<ShowTable> shows;
+	@OneToMany(mappedBy="screen",cascade = {CascadeType.ALL})
+	private Set<ShowTable> shows;
 	public Screen() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -60,10 +64,10 @@ public class Screen implements Comparable<Screen>{
 	public void setBudgetRows(int budgetRows) {
 		this.budgetRows = budgetRows;
 	}
-	public List<ShowTable> getShows() {
+	public Set<ShowTable> getShows() {
 		return shows;
 	}
-	public void setShows(List<ShowTable> shows) {
+	public void setShows(Set<ShowTable> shows) {
 		this.shows = shows;
 	}
 	

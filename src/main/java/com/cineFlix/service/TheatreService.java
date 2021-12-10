@@ -7,4 +7,5 @@ import com.cineFlix.model.Theatre;
 @Component
 public interface TheatreService {
 	public Theatre login(int id,String password);
+	public Theatre update(Theatre theatre);
 }

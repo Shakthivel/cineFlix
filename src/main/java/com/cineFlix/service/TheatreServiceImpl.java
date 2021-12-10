@@ -2,6 +2,7 @@ package com.cineFlix.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cineFlix.dao.TheatreDAO;
 import com.cineFlix.model.Theatre;
@@ -17,4 +18,8 @@ public class TheatreServiceImpl implements TheatreService{
 		return theatreDAO.findByTheatreIdAndPassword(id, password);
 	}
 
+	public Theatre update(Theatre theatre)
+	{
+		return theatreDAO.save(theatre);
+	}
 }
