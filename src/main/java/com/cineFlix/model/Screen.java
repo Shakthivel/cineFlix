@@ -2,6 +2,8 @@ package com.cineFlix.model;
 
 import java.util.List;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,6 +13,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
+
+import org.hibernate.annotations.Sort;
 
 @Entity
 public class Screen implements Comparable<Screen>{
@@ -30,7 +35,8 @@ public class Screen implements Comparable<Screen>{
 	private int totalColumns;
 	private int budgetRows;
 	@OneToMany(mappedBy="screen",cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
-	private Set<ShowTable> shows;
+	@OrderBy
+	private SortedSet<ShowTable> shows;
 	public Screen() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -65,10 +71,10 @@ public class Screen implements Comparable<Screen>{
 	public void setBudgetRows(int budgetRows) {
 		this.budgetRows = budgetRows;
 	}
-	public Set<ShowTable> getShows() {
+	public SortedSet<ShowTable> getShows() {
 		return shows;
 	}
-	public void setShows(Set<ShowTable> shows) {
+	public void setShows(SortedSet<ShowTable> shows) {
 		this.shows = shows;
 	}
 	
