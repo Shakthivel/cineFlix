@@ -57,6 +57,10 @@
 			style="background-color: rgb(248, 248, 248); box-shadow: 0 10px 12px -3px rgba(0, 0, 0, 0.1);">
 			<div class="p-4">
 				<h3>${movie.movieName }</h3>
+
+				<h5 class="mt-4">From</h5>
+
+				<input type="date" style=" width: 200px;" name="" id="" class="form-style mt-3">
 			</div>
 		</div>
 		<div class="container-fluid">
@@ -98,7 +102,12 @@
 	</section>
 
 
-
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+	crossorigin="anonymous"></script>
 
 
 </body>
