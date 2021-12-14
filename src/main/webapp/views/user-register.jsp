@@ -31,7 +31,7 @@
 
 <body>
     <div class="d-flex justify-content-center align-items-center login-container">
-        <form:form class="login-form text-center" method="POST" modelAttribute="user">
+        <form:form class="login-form text-center" method="POST" modelAttribute="user" >
 
             <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638596050/CineFlix/cineflix-black_nleijx.png"
                 class="img-fluid" alt="...">
@@ -41,13 +41,13 @@
             <div class="form-row">
                 <div class="col">
                     <div class="form-group">
-                        <form:input type="text" path="name" class="form-control form-control-lg" placeholder="Fullname"/>
+                        <form:input type="text" path="name" required="required" class="form-control form-control-lg" placeholder="Fullname" />
                     	<form:errors path="name"/>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <form:input type="text" path="address" class="form-control form-control-lg" placeholder="City"/>
+                        <form:input type="text" path="address" required="required" class="form-control form-control-lg" placeholder="City"/>
                     	<form:errors path="address"/>
                     </div>
                 </div>
@@ -57,12 +57,12 @@
             <div class="form-row">
                 <div class="col">
                     <div class="form-group">
-                        <form:input type="email" path="email" class="form-control form-control-lg" placeholder="Email id"/>
+                        <form:input type="email" path="email" required="required" class="form-control form-control-lg" placeholder="Email id"/>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <form:input type="tel" path="number" class="form-control form-control-lg" placeholder="Phone Number"/>
+                        <form:input type="tel" path="number" required="required" class="form-control form-control-lg" placeholder="Phone Number"/>
                     </div>
                 </div>
             </div>
@@ -70,12 +70,12 @@
             <div class="form-row">
                 <div class="col">
                     <div class="form-group">
-                        <form:input type="password" path="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="password" class="form-control form-control-lg" placeholder="Password"/>
+                        <form:input type="password" path="password" required="required" id="password" class="form-control form-control-lg" placeholder="Password"/>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <input id="confirm-password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" type="password" class="form-control form-control-lg" placeholder="Confirm Password">
+                        <form:input id="confirm-password" path="" required="required" type="password" class="form-control form-control-lg" placeholder="Confirm Password"/>
                     </div>
                 </div>
             </div>
@@ -96,6 +96,17 @@
             </div>
         </form:form>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+        crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
+        
+    </script>
 </body>
 
 </html>

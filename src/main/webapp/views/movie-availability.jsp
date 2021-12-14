@@ -149,7 +149,7 @@
         <ul class="list-group">
             <li class="list-group-item">
                 <h4>Coda Cinemas</h4>
-                <a class="btn btn-book " href="#" role="button"><span class="tips">10:45 AM<span class="tips-text">Screen 1 <span class="pill-span">Budget : Rs. 60</span> <span class="pill-span">Elite : Rs. 190</span></span></span> </a>
+                <a class="btn btn-book " href="seat-screen.html" role="button"><span class="tips">10:45 AM<span class="tips-text">Screen 1 <span class="pill-span">Budget : Rs. 60</span> <span class="pill-span">Elite : Rs. 190</span></span></span> </a>
                <a class="btn btn-filling" href="#" role="button"><span class="tips">4:20 PM<span class="tips-text">Screen 2 <span class="pill-span">Budget : Rs. 60</span> <span class="pill-span">Elite : Rs. 190</span></span></span> </a>
                 <a class="btn btn-filled disabled" href="#" role="button"><span class="tips">7:30 AM<span class="tips-text">Screen 3 <span class="pill-span">Budget : Rs. 60</span> <span class="pill-span">Elite : Rs. 190</span></span></span></a>
                 <a class="btn btn-book" href="#" role="button"><span class="tips">10:00 AM<span class="tips-text">Screen 1 <span class="pill-span">Budget : Rs. 60</span> <span class="pill-span">Elite : Rs. 190</span></span></span>
