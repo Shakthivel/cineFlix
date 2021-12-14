@@ -171,7 +171,7 @@
                             must work together to uncover the truth behind Umbrella and make it through the night.</p>
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-dark btn-block btn-login" style="color: #ffffff;" href="user/movie-availability"
+                            <button class="btn btn-dark btn-block btn-login" style="color: #ffffff;" href="movie-availability.html"
                                 type="submit">Book Tickets</button>
                         </div>
                     </div>
@@ -191,89 +191,16 @@
                             of the future heroes. Within hours until the collapse of civilization, Deku, Bakugo, and Todoroki must work as a team,
                             but there is one problem: Deku's on the run for murder</p>
                         </div>
+                        <div class="card-footer">
+                            <button class="btn btn-dark btn-block btn-login" style="color: #ffffff;" href="movie-availability.html"
+                                type="submit">Book Tickets</button>
+                        </div>
                     </div>
                 </div>
             </div>
                 <!-- End of Card Deck 1 -->
-
-                <!-- Start of Card Deck 2 -->
-                    <section id="now-showing">
-                        <div class="container-fluid bg-grey" style="padding-top: 2rem;">
-                            <div class="container-nowShow">
-                                <h1><img src="https://img.icons8.com/office/40/000000/starred-ticket.png" /> Now Showing</h1>
-                                <!-- Card Deck 1 -->
-                                <div class="row" style="padding: 2rem;">
-                                    <div class="col-lg-4 d-flex align-items-stretch">
-                                        <div class="card shadow p-3 mb-5">
-                                            <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638603265/CineFlix/Now%20Showing%20Images/maanadu-now_ztvu1i.jpg"
-                                                class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                <h6 class="card-title">MAANAADU</h6>
-                                                <div class="badge-div">
-                                                    <span class="badge badge-pill badge-info">U/A</span>
-                                                    <span class="badge badge-pill badge-secondary">Drama</span>
-                                                    <span class="badge badge-pill badge-primary">Tamil</span>
-                                                </div>
-                    
-                                                <p class="card-text">On the day of a public conference by the state's Chief Minister, his
-                                                    bodyguard and a police officer become stuck in a
-                                                    time loop.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                    
-                                    <div class="col-lg-4 d-flex align-items-stretch">
-                                        <div class="card shadow p-3 mb-5">
-                                            <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638604637/CineFlix/Now%20Showing%20Images/re-now_cqvsgq.jpg"
-                                                class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                <h6 class="card-title">RESIDENT EVIL WELCOME TO RACCOON CITY</h6>
-                                                <div class="badge-div">
-                                                    <span class="badge badge-pill badge-info">A</span>
-                                                    <span class="badge badge-pill badge-secondary">Horror</span>
-                                                    <span class="badge badge-pill badge-primary">English</span>
-                                                </div>
-                                                <p class="card-text">Welcome to Raccoon City, once the booming home of pharmaceutical giant
-                                                    Umbrella Corp. The company's exodus left the city
-                                                    a wasteland, a dying town with great evil brewing below the surface. When that evil is
-                                                    unleashed, a group of survivors
-                                                    must work together to uncover the truth behind Umbrella and make it through the night.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                    
-                                    <div class="col-lg-4 d-flex align-items-stretch">
-                                        <div class="card shadow p-3 mb-5">
-                                            <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638604471/CineFlix/Now%20Showing%20Images/i02_mha-now_ifvu0d.jpg"
-                                                class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                <h6 class="card-title">MY HERO ACADEMIA WORLD HEROES MISSION</h6>
-                                                <div class="badge-div">
-                                                    <span class="badge badge-pill badge-info">U</span>
-                                                    <span class="badge badge-pill badge-secondary">Anime</span>
-                                                    <span class="badge badge-pill badge-primary">Japanese</span>
-                                                </div>
-                                                <p class="card-text">When a terrorist organization threatens to wipe out the superhuman
-                                                    society, the fate of the world hangs in the balance
-                                                    of the future heroes. Within hours until the collapse of civilization, Deku, Bakugo, and
-                                                    Todoroki must work as a team,
-                                                    but there is one problem: Deku's on the run for murder</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                <!-- End of Card Deck 2 -->
-            </div> 
-            <div class="container">
-                <div class="center">
-                    <button type="button" class="btn btn-outline-dark"><i class="fas fa-film"></i> View All Movies</button>
-                </div>
-            </div>
-        </div>
-    </section>
-<!-- End of Now Showing Section -->
-
+</section>
+              
 <!-- Start of Coming Soon Section -->
     <section id="coming-soon">
         <div class="container-fluid bg-grey" style="padding-top: 2rem;">
@@ -338,90 +265,11 @@
                 </div>
 
             </div>
+
+        </section>
                 <!-- End of Card Deck 1 -->
 
-                <!-- Card Deck 2️ -->
-                    <section id="coming-soon">
-                        <div class="container-fluid bg-grey" style="padding-top: 2rem;">
-                            <div class="container-nowShow">
-                                <h1><img src="https://img.icons8.com/office/40/000000/film-reel--v1.png" /> Coming Soon</h1>
-                                <!-- Card Deck 1 -->
-                                <div class="row" style="padding: 2rem;">
-                                    <div class="col-lg-4 d-flex align-items-stretch">
-                                        <div class="card shadow p-3 mb-5">
-                                            <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638627658/CineFlix/Coming%20Soon%20Images/spiderman-soon_epqzz5.jpg"
-                                                class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                <h6 class="card-title">SPIDERMAN - NO WAY HOME</h6>
-                                                <div class="badge-div">
-                    
-                                                    <span class="badge badge-pill badge-secondary">Action</span>
-                                                    <span class="badge badge-pill badge-warning">IMAX</span>
-                                                    <span class="badge badge-pill badge-danger">3D</span>
-                                                    <span class="badge badge-pill badge-primary">English & Regional Languages</span>
-                    
-                                                </div>
-                    
-                                                <p class="card-text">With Spider-Man's identity now revealed, our friendly neighborhood
-                                                    web-slinger is unmasked and no longer able to
-                                                    separate his normal life as Peter Parker from the high stakes of being a superhero. When
-                                                    Peter asks for help from Doctor
-                                                    Strange, the stakes become even more dangerous, forcing him to discover what it truly
-                                                    means to be Spider-Man.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                    
-                                    <div class="col-lg-4 d-flex align-items-stretch">
-                                        <div class="card shadow p-3 mb-5">
-                                            <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638627654/CineFlix/Coming%20Soon%20Images/83-soon_p4v5b8.jpg"
-                                                class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                <h6 class="card-title">83</h6>
-                                                <div class="badge-div">
-                                                    <span class="badge badge-pill badge-secondary">Sports</span>
-                                                    <span class="badge badge-pill badge-primary">Hindi</span>
-                                                </div>
-                                                <p class="card-text">On June 25, 1983, the Lord's Cricket Ground witnessed 14 men beat the
-                                                    twice over World Champions West Indies, putting
-                                                    India back onto the cricket world stage</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                    
-                                    <div class="col-lg-4 d-flex align-items-stretch">
-                                        <div class="card shadow p-3 mb-5">
-                                            <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638627653/CineFlix/Coming%20Soon%20Images/batman-soon_s4llso.jpg"
-                                                class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                <h6 class="card-title">THE BATMAN</h6>
-                                                <div class="badge-div">
-                                                    <span class="badge badge-pill badge-secondary">Action</span>
-                                                    <span class="badge badge-pill badge-warning">IMAX</span>
-                                                    <span class="badge badge-pill badge-danger">3D</span>
-                                                    <span class="badge badge-pill badge-primary">English & Regional Languages</span>
-                                                </div>
-                                                <p class="card-text">THE BATMAN is an edgy, action-packed thriller that depicts Batman in
-                                                    his early years, struggling to balance rage with
-                                                    righteousness as he investigates a disturbing mystery that has terrorized Gotham. Robert
-                                                    Pattinson delivers a raw,
-                                                    intense portrayal of Batman as a disillusioned, desperate vigilante awakened by the
-                                                    realization that the anger consuming
-                                                    him makes him no better than the ruthless serial killer he’s hunting.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                    
-                                </div>
-                <!-- End of Card Deck 2 -->
-            </div>
-            <div class="container">
-                <div class="center">
-                    <button type="button" class="btn btn-outline-dark"><i class="fas fa-film"></i> View All Movies</button>
-                </div>
-            </div>
-        </div>
-    </section>
+               
 
 
 
