@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -12,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.OrderColumn;
 
 import lombok.ToString;
@@ -24,7 +27,8 @@ public class Movie implements Comparable<Movie> {
 	private String movieName =null;
 	@ToString.Exclude
 	@ManyToMany(fetch = FetchType.EAGER)
-	private Set<Theatre> theatre;
+	@OrderBy
+	private SortedSet<Theatre> theatre;
 	private Date releaseDate;
 	private String movieSynopsis;
 	private String censor;
@@ -63,12 +67,12 @@ public class Movie implements Comparable<Movie> {
 	}
 
 
-	public Set<Theatre> getTheatre() {
+	public SortedSet<Theatre> getTheatre() {
 		return theatre;
 	}
 
 
-	public void setTheatre(Set<Theatre> theatre) {
+	public void setTheatre(SortedSet<Theatre> theatre) {
 		this.theatre = theatre;
 	}
 

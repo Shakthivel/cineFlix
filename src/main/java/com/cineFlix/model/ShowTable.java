@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
-public class ShowTable {
+public class ShowTable implements Comparable<ShowTable>{
 
 	@Id@GeneratedValue(strategy = GenerationType.AUTO)
 	private int showId;
@@ -69,6 +69,12 @@ public class ShowTable {
 	public String toString() {
 		return "Show [showId=" + showId  + ", showDate=" + showDate + ", showTime=" + showTime
 				+ ", movieName=" + movieName + "]";
+	}
+
+	@Override
+	public int compareTo(ShowTable o) {
+		// TODO Auto-generated method stub
+		return this.showId-o.showId;
 	}
 
 }

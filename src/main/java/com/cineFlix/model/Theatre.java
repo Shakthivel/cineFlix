@@ -2,12 +2,15 @@ package com.cineFlix.model;
 
 import java.util.List;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 import lombok.ToString;
 
@@ -21,9 +24,12 @@ public class Theatre implements Comparable<Theatre> {
 	private String theatreAddress;
 	@ToString.Exclude
 	@ManyToMany(mappedBy = "theatre", fetch = FetchType.EAGER)
-	private Set<Movie> movies;
+	@OrderBy
+	private SortedSet<Movie> movies;
+
 	@OneToMany(mappedBy = "theatre", fetch = FetchType.EAGER)
-	private Set<Screen> screens;
+	@OrderBy
+	private SortedSet<Screen> screens;
 
 	public Theatre() {
 		super();
@@ -33,7 +39,7 @@ public class Theatre implements Comparable<Theatre> {
 	@Override
 	public String toString() {
 		return "Theatre [theatreId=" + theatreId + ", password=" + password + ", theatreName=" + theatreName
-				+ ", theatreAddress=" + theatreAddress + ", movies=" + movies  + "]";
+				+ ", theatreAddress=" + theatreAddress + ", movies=" + movies + "]";
 	}
 
 	public int getTheatreId() {
@@ -68,19 +74,19 @@ public class Theatre implements Comparable<Theatre> {
 		this.theatreAddress = theatreAddress;
 	}
 
-	public Set<Movie> getMovies() {
+	public SortedSet<Movie> getMovies() {
 		return movies;
 	}
 
-	public void setMovies(Set<Movie> movies) {
+	public void setMovies(SortedSet<Movie> movies) {
 		this.movies = movies;
 	}
 
-	public Set<Screen> getScreens() {
+	public SortedSet<Screen> getScreens() {
 		return screens;
 	}
 
-	public void setScreens(Set<Screen> screens) {
+	public void setScreens(SortedSet<Screen> screens) {
 		this.screens = screens;
 	}
 

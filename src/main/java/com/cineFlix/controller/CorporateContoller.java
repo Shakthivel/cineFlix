@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -100,7 +102,7 @@ public class CorporateContoller {
 	public String postScreenInfo(HttpServletRequest request, ModelMap model, HttpSession session) {
 		int noOfScreens = (int) session.getAttribute("noOfScreens");
 		Theatre theatre = (Theatre) session.getAttribute("theatre");
-		Set<Screen> screens = new HashSet<Screen>();
+		SortedSet<Screen> screens = new TreeSet<Screen>();
 		for (int i = 0; i < noOfScreens; i++) {
 			String screenName = (String) (request.getParameterValues("screenName")[i]);
 			String budgetRows = (String) (request.getParameterValues("budgetRows")[i]);
@@ -112,7 +114,7 @@ public class CorporateContoller {
 			screen.setTotalColumns(Integer.parseInt(totalColumns));
 			screen.setScreenName(screenName);
 			screen.setTheatre(theatre);
-			Set<ShowTable> shows = new HashSet<ShowTable>();
+			SortedSet<ShowTable> shows = new TreeSet<ShowTable>();
 			for (int j = 1; j < 5; j++) {
 				ShowTable show = new ShowTable();
 				show.setScreen(screen);
