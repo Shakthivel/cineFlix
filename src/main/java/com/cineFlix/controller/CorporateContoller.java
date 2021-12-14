@@ -3,17 +3,26 @@ package com.cineFlix.controller;
 import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,10 +46,10 @@ public class CorporateContoller {
 
 	@Autowired
 	MovieService movieService;
-	
+
 	@Autowired
 	ScreenService screenService;
-	
+
 	@Autowired
 	ShowService showService;
 
@@ -50,8 +59,12 @@ public class CorporateContoller {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String postLogin(@RequestParam("id") int id, @RequestParam("password") String password, ModelMap model,
-			HttpSession session) {
+	public String postLogin(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+
+		int id = Integer.parseInt(request.getParameter("id"));
+		String password = request.getParameter("password");
+		HttpSession session = request.getSession();
+
 		Theatre theatre = theatreService.login(id, password);
 		session.setAttribute("theatre", theatre);
 		if (theatre != null) {
@@ -64,7 +77,6 @@ public class CorporateContoller {
 	@RequestMapping(value = "/get-theatre-info", method = RequestMethod.GET)
 	public String getTheatreInfo(ModelMap model, HttpSession session) {
 		Theatre theatre = (Theatre) session.getAttribute("theatre");
-		System.out.println(theatre);
 		model.addAttribute("theatre", theatre);
 		if (theatre.getTheatreName() == null || theatre.getTheatreAddress() == null || theatre.getScreens().size() == 0)
 			return "theatre-info";
@@ -73,31 +85,27 @@ public class CorporateContoller {
 
 	@RequestMapping(value = "/get-theatre-info", method = RequestMethod.POST)
 	public String postTheatreInfo(Theatre theatre, @RequestParam("noOfScreens") int noOfScreens, HttpSession session) {
-		System.out.println(theatre);
 		theatre = theatreService.update(theatre);
-		System.out.println(theatre);
+		session.setAttribute("theatre", theatre);
 		session.setAttribute("noOfScreens", noOfScreens);
 		return "redirect:/corporate/get-screen-info";
 	}
 
 	@RequestMapping(value = "/get-screen-info", method = RequestMethod.GET)
-	public String getScreenInfo(ModelMap model, HttpSession session) {
-		int noOfScreens = (int) session.getAttribute("noOfScreens");
+	public String getScreenInfo(ModelMap model) {
 		return "screen-info";
 	}
 
-	@RequestMapping(value="/get-screen-info",method=RequestMethod.POST)
-	public String postScreenInfo(HttpServletRequest request,ModelMap model,HttpSession session)
-	{
+	@RequestMapping(value = "/get-screen-info", method = RequestMethod.POST)
+	public String postScreenInfo(HttpServletRequest request, ModelMap model, HttpSession session) {
 		int noOfScreens = (int) session.getAttribute("noOfScreens");
 		Theatre theatre = (Theatre) session.getAttribute("theatre");
-		for(int i=0;i<noOfScreens;i++)
-		{
-			String screenName = (String)(request.getParameterValues("screenName")[i]);
-			String budgetRows = (String)(request.getParameterValues("budgetRows")[i]);
-			String totalRows = (String)(request.getParameterValues("totalRows")[i]);
-			String totalColumns = (String)(request.getParameterValues("totalColumns")[i]);
-			
+		Set<Screen> screens = new HashSet<Screen>();
+		for (int i = 0; i < noOfScreens; i++) {
+			String screenName = (String) (request.getParameterValues("screenName")[i]);
+			String budgetRows = (String) (request.getParameterValues("budgetRows")[i]);
+			String totalRows = (String) (request.getParameterValues("totalRows")[i]);
+			String totalColumns = (String) (request.getParameterValues("totalColumns")[i]);
 			Screen screen = new Screen();
 			screen.setBudgetRows(Integer.parseInt(budgetRows));
 			screen.setTotalRows(Integer.parseInt(totalRows));
@@ -105,21 +113,23 @@ public class CorporateContoller {
 			screen.setScreenName(screenName);
 			screen.setTheatre(theatre);
 			Set<ShowTable> shows = new HashSet<ShowTable>();
-			
-			for(int j=1;j<5;j++)
-			{			
-			ShowTable show = new ShowTable();
-			show.setScreen(screen);
-			show.setShowTime(Time.valueOf( LocalTime.parse( request.getParameterValues("show"+j)[i].toString() ) ));
-			showService.addShow(show);
-			shows.add(show);
+			for (int j = 1; j < 5; j++) {
+				ShowTable show = new ShowTable();
+				show.setScreen(screen);
+				show.setShowTime(Time.valueOf(LocalTime.parse(request.getParameterValues("show" + j)[i].toString())));
+				showService.addShow(show);
+				shows.add(show);
 			}
 
 			screen.setShows(shows);
 			screenService.addScreen(screen);
-			
+			screens.add(screen);
+
 		}
-		return "screen-info";
+		theatre.setScreens(screens);
+		theatre = theatreService.update(theatre);
+		session.setAttribute("theatre", theatre);
+		return "redirect:/corporate/home";
 	}
 
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
@@ -129,7 +139,6 @@ public class CorporateContoller {
 		Theatre theatre = (Theatre) session.getAttribute("theatre");
 
 		for (Movie movie : movies) {
-			System.out.println(movie.getTheatre());
 			for (Theatre existingTheatre : movie.getTheatre()) {
 
 				if (theatre.getTheatreId() == existingTheatre.getTheatreId()) {
@@ -144,25 +153,39 @@ public class CorporateContoller {
 	}
 
 	@RequestMapping(value = "/home", method = RequestMethod.POST)
-	public String postAddMovie(@RequestParam("movieId") String movieId, HttpSession session) {
-		System.out.println(movieId);
-		Movie movie = movieService.getMovieById(Integer.parseInt(movieId));
-		Set<Theatre> theatreList = movie.getTheatre();
+	public String postAddMovie(HttpServletRequest request, HttpServletResponse response) {
+		String movieId = (String) request.getParameter("movieId");
+		return "redirect:/corporate/set-" + movieId + "-screen";
+//		Set<Theatre> theatreList = movie.getTheatre();
+//		Theatre theatre = (Theatre) session.getAttribute("theatre");
+//		Set<Movie> moviesList = theatre.getMovies();
+//		moviesList.add(movie);
+//		theatre.setMovies(moviesList);
+//		theatreService.update(theatre);
+//		if (theatreList == null) {
+//			theatreList = new HashSet<Theatre>();
+//		}
+//		theatreList.add(theatre);
+//		movie.setTheatre(theatreList);
+//		movieService.addMovie(movie);
+//		return "redirect:/corporate/home";
+	}
 
+	@GetMapping(value = "/set-{movieId}-screen")
+	public String getSetScreen(@PathVariable int movieId, ModelMap model, HttpSession session) {
+		Movie movie = movieService.getMovieById(movieId);
+		System.out.println(movie);
 		Theatre theatre = (Theatre) session.getAttribute("theatre");
-		Set<Movie> moviesList = theatre.getMovies();
-		moviesList.add(movie);
-		theatre.setMovies(moviesList);
-		theatreService.update(theatre);
-
-		if (theatreList == null) {
-			theatreList = new HashSet<Theatre>();
+		model.addAttribute("movie", movie);
+		model.addAttribute("screens", theatre.getScreens());
+		for (Screen s : theatre.getScreens()) {
+			System.out.println(s);
+			for (ShowTable shows : s.getShows()) {
+				System.out.println(shows);
+			}
 		}
-		theatreList.add(theatre);
-		movie.setTheatre(theatreList);
-		movieService.addMovie(movie);
+		return "acquire-movie";
 
-		return "redirect:/corporate/home";
 	}
 
 }

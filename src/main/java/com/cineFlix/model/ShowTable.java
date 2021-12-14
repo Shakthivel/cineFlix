@@ -5,6 +5,7 @@ import java.sql.Time;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +17,7 @@ public class ShowTable {
 
 	@Id@GeneratedValue(strategy = GenerationType.AUTO)
 	private int showId;
-	@ManyToOne(targetEntity = Screen.class,cascade = {CascadeType.ALL})
+	@ManyToOne(targetEntity = Screen.class,cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
 	private Screen screen;
 	private Date showDate;
 	private Time showTime;
@@ -66,7 +67,7 @@ public class ShowTable {
 
 	@Override
 	public String toString() {
-		return "Show [showId=" + showId + ", screen=" + screen + ", showDate=" + showDate + ", showTime=" + showTime
+		return "Show [showId=" + showId  + ", showDate=" + showDate + ", showTime=" + showTime
 				+ ", movieName=" + movieName + "]";
 	}
 

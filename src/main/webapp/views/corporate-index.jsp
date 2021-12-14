@@ -52,7 +52,7 @@
 
 		<ul class="nav nav-tabs justify-content-center" id="myTab"
 			role="tablist">
-			<li class="nav-item" role="presentation"><a
+			<li class="nav-item active" role="presentation"><a
 				class="nav-link " id="home-tab" data-toggle="tab"
 				href="#all-movies" role="tab" aria-controls="home"
 				aria-selected="true">All Movies</a></li>
@@ -63,7 +63,7 @@
 		</ul>
 		<div class="tab-content" id="myTabContent">
 
-			<div class="tab-pane fade show " id="all-movies"
+			<div class="tab-pane fade show active" id="all-movies"
 				role="tabpanel" aria-labelledby="home-tab">
 
 				<form method="POST" name="myForm">

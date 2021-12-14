@@ -33,7 +33,7 @@ public class Theatre implements Comparable<Theatre> {
 	@Override
 	public String toString() {
 		return "Theatre [theatreId=" + theatreId + ", password=" + password + ", theatreName=" + theatreName
-				+ ", theatreAddress=" + theatreAddress + ", movies=" + movies + ", screens=" + screens + "]";
+				+ ", theatreAddress=" + theatreAddress + ", movies=" + movies  + "]";
 	}
 
 	public int getTheatreId() {

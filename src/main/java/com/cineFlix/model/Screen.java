@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +29,7 @@ public class Screen implements Comparable<Screen>{
 	private int totalRows;
 	private int totalColumns;
 	private int budgetRows;
-	@OneToMany(mappedBy="screen",cascade = {CascadeType.ALL})
+	@OneToMany(mappedBy="screen",cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
 	private Set<ShowTable> shows;
 	public Screen() {
 		super();
@@ -73,8 +74,8 @@ public class Screen implements Comparable<Screen>{
 	
 	@Override
 	public String toString() {
-		return "Screen [id=" + id + ", theatre=" + theatre + ", screenName=" + screenName + ", totalRows=" + totalRows
-				+ ", totalColumns=" + totalColumns + ", budgetRows=" + budgetRows + ", shows=" + shows + "]";
+		return "Screen [id=" + id +  ", screenName=" + screenName + ", totalRows=" + totalRows
+				+ ", totalColumns=" + totalColumns + ", budgetRows=" + budgetRows +  "]";
 	}
 	@Override
 	public int compareTo(Screen o) {

@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +23,7 @@ public class Movie implements Comparable<Movie> {
 	private int movieId;
 	private String movieName =null;
 	@ToString.Exclude
-	@ManyToMany()
+	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Theatre> theatre;
 	private Date releaseDate;
 	private String movieSynopsis;
