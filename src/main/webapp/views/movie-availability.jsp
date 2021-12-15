@@ -215,7 +215,7 @@
 								<c:forEach items="${theatre.getScreens() }" var="screen">
 									<c:forEach items="${screen.getShows() }" var="show">
 									<c:if test="${show.getMovieName() == movie.getMovieName() }">
-										<a class="btn btn-book"  href="screen-${screen.getId()}-date-${today.substring(2)}-seats" onclick=setDate() role="button">
+										<a class="btn btn-book"  href="screen-${screen.getId()}-show-${show.getShowId() }-date-${today.substring(2)}-seats" onclick=setDate() role="button">
 											<span class="tips">${show.getShowTime() }
 												<span class="tips-text">
 													${screen.getScreenName() }
@@ -243,7 +243,7 @@
 								<c:forEach items="${theatre.getScreens() }" var="screen">
 									<c:forEach items="${screen.getShows() }" var="show">
 									<c:if test="${show.getMovieName() == movie.getMovieName() }">
-										<a class="btn btn-book"  href="screen-${screen.getId()}-date_${today}_seats"  onclick=setDate role="button">
+										<a class="btn btn-book"  href="screen-${screen.getId()}-show-${show.getShowId() }-date-${today.substring(2)}-seats"  onclick=setDate role="button">
 											<span class="tips">${show.getShowTime() }
 												<span class="tips-text">
 													${screen.getScreenName() }

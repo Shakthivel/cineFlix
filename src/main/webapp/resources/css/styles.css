@@ -107,20 +107,32 @@ a.active{
 
 
 .booking-dets {
-    height: 50vh;
+    height: 85vh;
     width: 100%;
     
 }
 
-.booking-dets-container {
+.ticket {
     margin: auto;
-    width: 460px;
-    background-color: #cecece;
-    padding: 20px;
+    width: 550px;
+    border-radius: 10px;
     max-width: 100%;
-    border-radius: .5rem;
-    
+  
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* User Login Files */

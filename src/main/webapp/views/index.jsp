@@ -165,6 +165,7 @@
 	</section>
 	<!-- End of the Carousel Section -->
 
+
 	<!-- Start of Now Showing Section -->
 	<section id="now-showing">
 		<div class="container-fluid bg-grey" style="padding-top: 2rem;">
@@ -257,5 +258,6 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
 		crossorigin="anonymous"></script>
+
 </body>
 </html>
