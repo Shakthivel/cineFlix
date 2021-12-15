@@ -53,25 +53,25 @@
 		<ul class="nav nav-tabs justify-content-center" id="myTab"
 			role="tablist">
 			<li class="nav-item active" role="presentation"><a
-				class="nav-link " id="home-tab" data-toggle="tab"
-				href="#all-movies" role="tab" aria-controls="home"
-				aria-selected="true">All Movies</a></li>
+				class="nav-link " id="home-tab" data-toggle="tab" href="#all-movies"
+				role="tab" aria-controls="home" aria-selected="true">All Movies</a></li>
 			<li class="nav-item" role="presentation"><a class="nav-link"
 				id="profile-tab" data-toggle="tab" href="#acquired-movies"
 				role="tab" aria-controls="profile" aria-selected="false">Our
 					Movies</a></li>
 		</ul>
-		<div class="tab-content" id="myTabContent">
+		<form method="POST" name="myForm">
+			<div class="tab-content" id="myTabContent">
 
-			<div class="tab-pane fade show active" id="all-movies"
-				role="tabpanel" aria-labelledby="home-tab">
+				<div class="tab-pane fade show active" id="all-movies"
+					role="tabpanel" aria-labelledby="home-tab">
 
-				<form method="POST" name="myForm">
-				<input type="hidden" name="movieId" id="movieId" value=""/>
+
+					<input type="hidden" name="movieId" id="movieId" value="" />
 					<div class="row card-deck-spacing">
 
 						<c:forEach items="${movies}" var="movie">
-							
+
 							<div class="col-lg-4 d-flex align-items-stretch">
 								<div class="card">
 									<img src="${movie.imageUrl}" class="card-img-top"
@@ -87,7 +87,8 @@
 									</div>
 									<div class="card-footer">
 										<button type="submit" class="btn btn-dark btn-block btn-login"
-											style="color: #125D98;" role="button" onclick="submitForm(${movie.movieId})">Add</button>
+											style="color: #125D98;" role="button"
+											onclick="submitForm(${movie.movieId})">Add</button>
 									</div>
 								</div>
 							</div>
@@ -95,37 +96,38 @@
 						</c:forEach>
 
 					</div>
-				</form>
-			</div>
-			<div class="tab-pane fade show " id="acquired-movies"
-				role="tabpanel" aria-labelledby="home-tab">
 
-				<div class="row card-deck-spacing">
-					<c:forEach items="${acquiredMovies}" var="movie">
-						<div class="col-lg-4 d-flex align-items-stretch">
-							<div class="card">
-								<img src="${movie.imageUrl}" class="card-img-top"
-									alt="${movie.movieName}">
-								<div class="card-body">
-									<div class="card-title">${movie.movieName.toUpperCase()}</div>
-									<div class="badge-div">
-										<span class="badge badge-pill badge-info">${movie.censor.toUpperCase()}</span>
-										<span class="badge badge-pill badge-secondary">${movie.genre.toUpperCase()}</span>
-										<span class="badge badge-pill badge-primary">${movie.language.toUpperCase()}</span>
+				</div>
+				<div class="tab-pane fade show " id="acquired-movies"
+					role="tabpanel" aria-labelledby="home-tab">
+
+					<div class="row card-deck-spacing">
+						<c:forEach items="${acquiredMovies}" var="movie">
+							<div class="col-lg-4 d-flex align-items-stretch">
+								<div class="card">
+									<img src="${movie.imageUrl}" class="card-img-top"
+										alt="${movie.movieName}">
+									<div class="card-body">
+										<div class="card-title">${movie.movieName.toUpperCase()}</div>
+										<div class="badge-div">
+											<span class="badge badge-pill badge-info">${movie.censor.toUpperCase()}</span>
+											<span class="badge badge-pill badge-secondary">${movie.genre.toUpperCase()}</span>
+											<span class="badge badge-pill badge-primary">${movie.language.toUpperCase()}</span>
+										</div>
+										<div class="card-text">${movie.movieSynopsis}</div>
 									</div>
-									<div class="card-text">${movie.movieSynopsis}</div>
-								</div>
-								<div class="card-footer">
-									<a class="btn btn-dark btn-block btn-login"
-										style="color: #125D98;" href="" role="button">Edit</a>
+									<div class="card-footer">
+										<button type="submit" class="btn btn-dark btn-block btn-login"
+											style="color: #125D98;" role="button"
+											onclick="submitForm(${movie.movieId})">Edit</button>
+									</div>
 								</div>
 							</div>
-						</div>
-					</c:forEach>
+						</c:forEach>
+					</div>
 				</div>
 			</div>
-		</div>
-
+		</form>
 		<script
 			src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
 			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

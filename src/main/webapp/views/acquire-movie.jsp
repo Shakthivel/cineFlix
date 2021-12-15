@@ -1,6 +1,12 @@
+<%@page import="java.io.Console"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="java.util.SortedSet"%>
+<%@page import="java.util.TreeSet"%>
+<%@page import="java.sql.Time"%>
+<%@page import="com.cineFlix.model.ShowTable"%>
+<%@page import="com.cineFlix.model.Screen"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +35,7 @@
 	crossorigin="anonymous">
 </head>
 <body>
-
+<form method="POST" >
 	<nav class="navbar navbar-expand-lg navbar-dark"
 		style="background-color: #125D98;">
 		<a class="navbar-brand" href="#"><img
@@ -57,10 +63,6 @@
 			style="background-color: rgb(248, 248, 248); box-shadow: 0 10px 12px -3px rgba(0, 0, 0, 0.1);">
 			<div class="p-4">
 				<h3>${movie.movieName }</h3>
-
-				<h5 class="mt-4">From</h5>
-
-				<input type="date" style=" width: 200px;" name="" id="" class="form-style mt-3">
 			</div>
 		</div>
 		<div class="container-fluid">
@@ -68,6 +70,9 @@
 			<div class="row pt-4">
 				<!-- Screen - for loop starts -->
 				<c:forEach items="${screens }" var="screen">
+					<%
+					Screen screen = (Screen) pageContext.findAttribute("screen");
+					%>
 					<div class="col-lg-3">
 						<div class="card p-3">
 							<div class="card-body">
@@ -75,14 +80,35 @@
 								<div class="card-text">
 									<div class="row">
 										<!-- Show for loop starts -->
-										<c:forEach items="${screen.getShows() }" var="show">
+
+										<%
+										SortedSet<ShowTable> shows = (SortedSet<ShowTable>) ((Screen) (pageContext.findAttribute("screen"))).getShows();
+										SortedSet<Time> showTimings = new TreeSet<Time>();
+										for (ShowTable show : shows) {
+											showTimings.add(show.getShowTime());
+										}
+										request.setAttribute("showTimings", showTimings);
+										%>
+
+										<c:forEach items="${screen.shows}" var="show">
+
+											<!-- 
+										get screen value
+										get date value
+										get time value -> showTime
+										see if movie is already added in this screen on that date and timme
+										 -->
+
 											<div class="form-check form-check-inline">
 												<input class="form-check-input" type="checkbox"
-													id="inlineCheckbox1" value="showId">
-												<p class="check-margin">${show.showTime }</p>
+													name="${show.showId}"
+													<c:if test="${not empty show.movieName }">checked</c:if>
+													<c:if test="${(not empty show.movieName) and (movie.movieName ne show.movieName)}">disabled</c:if>
+													id="inlineCheckbox1" value="${show.showTime}">
+												<p class="check-margin">${show.showTime}</p>
 											</div>
-											</c:forEach>
-											<!-- Show for loop ends -->
+										</c:forEach>
+										<!-- Show for loop ends -->
 									</div>
 
 								</div>
@@ -93,7 +119,11 @@
 				<!-- for loop ends -->
 
 			</div>
-
+			<div class="text-center m-5">
+				<button type="submit" class="btn btn-primary btn-lg btn-login"
+					style="color: #125D98;" role="button" data-toggle="modal"
+					data-target="#exampleModal">Save Details</button>
+			</div>
 		</div>
 		</div>
 
@@ -102,13 +132,15 @@
 	</section>
 
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-	crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
-	crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+		crossorigin="anonymous"></script>
 
-
+</form>
 </body>
 </html>

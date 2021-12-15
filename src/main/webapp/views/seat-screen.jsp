@@ -12,7 +12,7 @@
 	href="https://res.cloudinary.com/dfep0loer/image/upload/v1638545823/CineFlix/favicon_trcikr.ico"
 	type="image/x-icon">
 <!-- Title -->
-<title>CineFlix - Never Miss A Premiere!</title>
+<title>CineFlix - Maanadu (U) (Tamil)</title>
 <!-- Local Stylesheet -->
 <link rel="stylesheet" type="text/css"
 	href="../resources/css/styles.css">
@@ -26,10 +26,13 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
 	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
 	crossorigin="anonymous">
+
 </head>
 <body>
 	<!-- Navbar Section -->
 	<section id="nav">
+
+		<div class="container-fluid"></div>
 		<!-- Start Of Navbar -->
 		<nav class="navbar navbar-expand-lg navbar-dark "
 			style="background-color: #125D98;">
@@ -44,6 +47,8 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<!-- Collapse Section Navbar -->
+
+
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link" href="#now-showing">Now
@@ -130,125 +135,107 @@
 	</section>
 	<!-- End of The Nav Section -->
 
-	<!-- Start of Carousel Section -->
-	<section id="carousel">
-		<div id="carouselExampleIndicators" class="carousel slide"
-			data-ride="carousel">
-			<div class="carousel-inner">
-				<!--Carousel Items-->
-				<c:forEach items="${movies}" var="movie" varStatus="status">
-					<c:if test="${status.first}">
-						<div class="carousel-item active">
-							<img src="${movie.getImageUrl() }" class="d-block w-100"
-								width="500px" height="545px">
-						</div>
-					</c:if>
-					<c:if test="${not status.first}">
-						<div class="carousel-item">
-							<img src="${movie.getImageUrl() }" class="d-block w-100"
-								width="500px" height="545px">
-						</div>
-					</c:if>
-
-				</c:forEach>
+	<section id="movie-info">
+		<div class="container-fluid">
+			<div class=""
+				style="background-color: rgb(248, 248, 248); box-shadow: 0 10px 12px -3px rgba(0, 0, 0, 0.1);">
+				<div class="p-4">
+					<h3>MAANADU - (U) - Tamil</h3>
+				</div>
 			</div>
-			<a class="carousel-control-prev" href="#carouselExampleIndicators"
-				role="button" data-slide="prev"> <span
-				class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-				class="sr-only">Previous</span>
-			</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
-				role="button" data-slide="next"> <span
-				class="carousel-control-next-icon" aria-hidden="true"></span> <span
-				class="sr-only">Next</span>
-			</a>
 		</div>
+
 	</section>
-	<!-- End of the Carousel Section -->
 
-	<!-- Start of Now Showing Section -->
-	<section id="now-showing">
-		<div class="container-fluid bg-grey" style="padding-top: 2rem;">
-			<div class="container-nowShow">
-				<h1>
-					<img
-						src="https://img.icons8.com/office/40/000000/starred-ticket.png" />
-					Now Showing
-				</h1>
-				<!-- Card Deck 1 -->
-				<div class="row" style="padding: 2rem;">
-					<!-- for loop -->
-					<c:forEach items="${nowShowing}" var="movie">
-						<div class="col-lg-4 d-flex align-items-stretch">
-							<div class="card shadow p-3 mb-5">
-								<img src="${movie.getImageUrl() }" class="card-img-top"
-									alt="...">
-								<div class="card-body">
-									<h6 class="card-title">${movie.getMovieName().toUpperCase() }</h6>
-									<div class="badge-div">
-										<span class="badge badge-pill badge-info">${movie.getCensor().toUpperCase() }</span>
-										<span class="badge badge-pill badge-secondary">${movie.getGenre().toUpperCase() }</span>
-										<span class="badge badge-pill badge-primary">${movie.getLanguage().toUpperCase() }</span>
-									</div>
+	<section class="seat-selection ">
+		<div class="">
+			<ul class="showcase">
+				<li>
+					<div class="available-seat seats"
+						style="cursor: default; transform: scale(1); background-color: #fff;"></div>
+					<p>Available</p>
+				</li>
+				<li>
+					<div class="selected-seat seats"
+						style="cursor: default; transform: scale(1);"></div>
+					<p>Selected</p>
+				</li>
+				<li>
+					<div class="sold-seat seats"></div>
+					<p>Sold</p>
+				</li>
+			</ul>
+			<form method="POST" name="myForm" id="myForm">
+			<input type="hidden" name="formValue" id="seatNumbers" value=""/>
+				<div class="seat-container">
+					<div class="screen"></div>
 
-									<p class="card-text">${movie.getMovieSynopsis() }</p>
-								</div>
-								<div class="card-footer">
-									<a class="btn btn-dark btn-block btn-login"
-										style="color: #fff;" href="/movie-${movie.getMovieId()}-availability"
-										role="button">Book Tickets</a>
-								</div>
-							</div>
+					<c:forEach begin="1" end="${screen.getTotalRows() }" var="row">
+						<div class="seat-rows">
+							<!-- for loop rows -->
+
+							<div class="row-name">&\#${(row+64)}</div>
+							<!-- for loop columns -->
+							<c:forEach begin="1" end="${screen.getTotalColumns() }"
+								var="column">
+								<%
+								char row = (char) (((int) (pageContext.findAttribute("row"))) + 64);
+								String column = String.valueOf(pageContext.findAttribute("column"));
+								request.setAttribute("id", (row + "_" + column));
+								%>
+								<div class="seats" id="${id}" onclick="makeSelected(this)"></div>
+							</c:forEach>
+
+							<!-- for loop columns -->
+
 						</div>
 					</c:forEach>
+					<!-- for loop rows -->
 				</div>
-				<!-- End of Card Deck 1 -->
-			</div>
+			</form>
+		</div>
+
+		<div class="ticket-container">
+			<h5 style="display: inline;" id="seatNumber">Seats :</h5>
+			<a class="mb-1" style="margin-left: 7rem; color: #fff;"
+				 onClick=submitForm() ><i
+				class="fas fa-lg fa-arrow-right"></i></a>
+
+
+		</div>
+
 		</div>
 	</section>
-	<!-- End of Now Showing Section -->
 
-	<!-- Start of Coming Soon Section -->
-	<section id="coming-soon">
-		<div class="container-fluid bg-grey" style="padding-top: 1rem;">
-			<div class="container-nowShow">
-				<h1>
-					<img
-						src="https://img.icons8.com/office/40/000000/film-reel--v1.png" />
-					Coming Soon
-				</h1>
-				<!-- Card Deck 1 -->
-				<div class="row" style="padding: 2rem;">
-					<c:forEach items="${upcomingMovies}" var="movie">
-						<div class="col-lg-4 d-flex align-items-stretch">
-							<div class="card shadow p-3 mb-5">
-								<img src="${movie.getImageUrl() }" class="card-img-top"
-									alt="...">
-								<div class="card-body">
-									<h6 class="card-title">${movie.getMovieName().toUpperCase() }</h6>
-									<div class="badge-div">
-										<span class="badge badge-pill badge-info">${movie.getCensor().toUpperCase() }</span>
-										<span class="badge badge-pill badge-secondary">${movie.getGenre().toUpperCase() }</span>
-										<span class="badge badge-pill badge-primary">${movie.getLanguage().toUpperCase() }</span>
-									</div>
+	<script type="text/javascript">
+		function makeSelected(obj) {
+			var seats = document.getElementById("seatNumber");
+			var selectedSeat="";
+			obj.id.split("_").forEach((index)=>{
+				selectedSeat+=index;
+			});
+			var alreadySelectedSeats = seats.innerHTML;
+			if(alreadySelectedSeats.includes(selectedSeat))
+				{
+				alreadySelectedSeats = alreadySelectedSeats.replace(selectedSeat+",","");
+				}
+			else{
+				alreadySelectedSeats = alreadySelectedSeats+selectedSeat+",";
+			}
+			seats.innerHTML = alreadySelectedSeats;
+			obj.classList.toggle("selected-seat");
+		}
+		function submitForm()
+		{
+			var seats = document.getElementById("seatNumber");
+			var formValue = seats.innerHTML.replace("Seats :","");
+			document.forms['myForm']['formValue'].value = formValue;
+			console.log(formValue);
+			document.getElementById("myForm").submit();
+		}
+	</script>
 
-									<p class="card-text">${movie.getMovieSynopsis() }</p>
-								</div>
 
-							</div>
-						</div>
-					</c:forEach>
-				</div>
-				<!-- End of Card Deck 1 -->
-			</div>
-			<div class="container">
-				<div class="center">
-					<button type="button" class="btn btn-outline-dark">
-						<i class="fas fa-film"></i> View All Movies
-					</button>
-				</div>
-			</div>
-		</div>
-	</section>
 	<script
 		src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -257,5 +244,6 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
 		crossorigin="anonymous"></script>
+
 </body>
 </html>

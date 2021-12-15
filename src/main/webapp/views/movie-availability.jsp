@@ -1,18 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.cineFlix.model.Movie"%>
+<%@ page import="com.cineFlix.model.Theatre"%>
+<%@ page import="java.util.SortedSet"%>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.time.Month" %>
+<%@ page import="java.time.DayOfWeek" %>
+<%@ page import="java.time.temporal.ChronoUnit" %>
+<%@ page import="java.util.Locale" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <!-- Title Icon -->
 <link rel="icon"
 	href="https://res.cloudinary.com/dfep0loer/image/upload/v1638545823/CineFlix/favicon_trcikr.ico"
 	type="image/x-icon">
 <!-- Title -->
-<title>CineFlix - Never Miss A Premiere!</title>
+<title>${movie.getMovieName().toUpperCase() }
+	(${movie.getCensor().toUpperCase() })
+	(${movie.getLanguage().toUpperCase() })</title>
 <!-- Local Stylesheet -->
 <link rel="stylesheet" type="text/css"
 	href="../resources/css/styles.css">
@@ -26,7 +37,9 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
 	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
 	crossorigin="anonymous">
+
 </head>
+
 <body>
 	<!-- Navbar Section -->
 	<section id="nav">
@@ -129,126 +142,137 @@
 
 	</section>
 	<!-- End of The Nav Section -->
-
-	<!-- Start of Carousel Section -->
-	<section id="carousel">
-		<div id="carouselExampleIndicators" class="carousel slide"
-			data-ride="carousel">
-			<div class="carousel-inner">
-				<!--Carousel Items-->
-				<c:forEach items="${movies}" var="movie" varStatus="status">
-					<c:if test="${status.first}">
-						<div class="carousel-item active">
-							<img src="${movie.getImageUrl() }" class="d-block w-100"
-								width="500px" height="545px">
-						</div>
-					</c:if>
-					<c:if test="${not status.first}">
-						<div class="carousel-item">
-							<img src="${movie.getImageUrl() }" class="d-block w-100"
-								width="500px" height="545px">
-						</div>
-					</c:if>
-
+	<%
+	Movie m = (Movie) pageContext.findAttribute("movie");
+	SortedSet<Theatre> theatres = m.getTheatre();
+	request.setAttribute("theatres", theatres);
+	%>
+	<section id="movie-info">
+		<div class=""
+			style="background-color: rgb(248, 248, 248); box-shadow: 0 10px 12px -3px rgba(0, 0, 0, 0.1);">
+			<div class="p-4">
+				<h3>${movie.getMovieName().toUpperCase() }
+					(${movie.getCensor().toUpperCase() })
+					(${movie.getLanguage().toUpperCase() })</h3>
+			</div>
+		</div>
+		<%
+		
+		%>
+		<div class="mt-3 p-5">
+			<ul class="nav nav-pills mb-3 ml-4 justify-content-center"
+				id="pills-tab" role="tablist">
+				
+				<%
+				LocalDate today = LocalDate.now();
+				int month = today.getMonthValue();
+				%>
+				
+				<c:forEach begin="0" end="6" var="days" varStatus="status">
+				<%
+					int days = (int)(pageContext.findAttribute("days"));
+					request.setAttribute("today","id"+today.toString().replace("-", "_"));
+					%>
+				<c:if test="${status.first}">
+				<li class="nav-item" role="presentation"><a
+					class="nav-link active pill-a" id="${today }-tab" 
+					href="#${today}" role="tab" aria-controls="pills-home" data-toggle="pill"
+					aria-selected="true"> <%out.print(Month.of(month).name().substring(0,3)+" "+today.getDayOfMonth()); %>
+					<span class="pill-span"><% 
+							DayOfWeek dow = today.getDayOfWeek();
+							out.println(dow); %></span>
+				</a></li>
+				</c:if>
+				<c:if test="${not status.first}">
+				<li class="nav-item" role="presentation"><a
+					class="nav-link pill-a" id="${today }-tab" data-toggle="pill"
+					href="#${today}"  role="tab" aria-controls="pills-home"
+					aria-selected="true"> <%out.print(Month.of(month).name().substring(0,3)+" "+today.getDayOfMonth()); %>
+					<span class="pill-span"><% 
+							DayOfWeek dow = today.getDayOfWeek();
+							out.println(dow); %></span>
+				</a></li>
+				</c:if>
+				<%
+				today = today.plus(1,ChronoUnit.DAYS); %>
 				</c:forEach>
-			</div>
-			<a class="carousel-control-prev" href="#carouselExampleIndicators"
-				role="button" data-slide="prev"> <span
-				class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-				class="sr-only">Previous</span>
-			</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
-				role="button" data-slide="next"> <span
-				class="carousel-control-next-icon" aria-hidden="true"></span> <span
-				class="sr-only">Next</span>
-			</a>
-		</div>
-	</section>
-	<!-- End of the Carousel Section -->
+			</ul>
+			
+			<div class="tab-content" id="pills-tabContent">
+			
+			<%today = LocalDate.now(); 
+			%>
+			
+			<c:forEach begin="0" end="6" var="days" varStatus="status">
+			<% request.setAttribute("today", "id"+today.toString().replace("-", "_")); %>
+			<c:if test="${status.first}">
+				<div class="tab-pane fade show active" id="${today}" role="tabpanel"
+					>
+					<ul class="list-group">
+						<c:forEach items="${theatres }" var="theatre">
+							<li class="list-group-item">
+								<h4>${theatre.getTheatreName() }</h4> 
+								<c:forEach items="${theatre.getScreens() }" var="screen">
+									<c:forEach items="${screen.getShows() }" var="show">
+									<c:if test="${show.getMovieName() == movie.getMovieName() }">
+										<a class="btn btn-book"  href="screen-${screen.getId()}-date-${today.substring(2)}-seats" onclick=setDate() role="button">
+											<span class="tips">${show.getShowTime() }
+												<span class="tips-text">
+													${screen.getScreenName() }
+													<span class="pill-span">Budget : Rs. 60</span> 
+													<span class="pill-span">Elite : Rs. 190</span>
+												</span>
+											</span> 
+										</a>
+										</c:if>
+									</c:forEach>
+								</c:forEach>
+							</li>
+						</c:forEach>
 
-	<!-- Start of Now Showing Section -->
-	<section id="now-showing">
-		<div class="container-fluid bg-grey" style="padding-top: 2rem;">
-			<div class="container-nowShow">
-				<h1>
-					<img
-						src="https://img.icons8.com/office/40/000000/starred-ticket.png" />
-					Now Showing
-				</h1>
-				<!-- Card Deck 1 -->
-				<div class="row" style="padding: 2rem;">
-					<!-- for loop -->
-					<c:forEach items="${nowShowing}" var="movie">
-						<div class="col-lg-4 d-flex align-items-stretch">
-							<div class="card shadow p-3 mb-5">
-								<img src="${movie.getImageUrl() }" class="card-img-top"
-									alt="...">
-								<div class="card-body">
-									<h6 class="card-title">${movie.getMovieName().toUpperCase() }</h6>
-									<div class="badge-div">
-										<span class="badge badge-pill badge-info">${movie.getCensor().toUpperCase() }</span>
-										<span class="badge badge-pill badge-secondary">${movie.getGenre().toUpperCase() }</span>
-										<span class="badge badge-pill badge-primary">${movie.getLanguage().toUpperCase() }</span>
-									</div>
-
-									<p class="card-text">${movie.getMovieSynopsis() }</p>
-								</div>
-								<div class="card-footer">
-									<a class="btn btn-dark btn-block btn-login"
-										style="color: #fff;" href="/movie-${movie.getMovieId()}-availability"
-										role="button">Book Tickets</a>
-								</div>
-							</div>
-						</div>
-					</c:forEach>
+					</ul>
 				</div>
-				<!-- End of Card Deck 1 -->
-			</div>
-		</div>
-	</section>
-	<!-- End of Now Showing Section -->
+				</c:if>
+				<c:if test="${not status.first}">
+				<div class="tab-pane fade show " id="${today}" role="tabpanel"
+					>
+					<ul class="list-group">
+						<c:forEach items="${theatres }" var="theatre">
+							<li class="list-group-item">
+								<h4>${theatre.getTheatreName() }</h4> 
+								<c:forEach items="${theatre.getScreens() }" var="screen">
+									<c:forEach items="${screen.getShows() }" var="show">
+									<c:if test="${show.getMovieName() == movie.getMovieName() }">
+										<a class="btn btn-book"  href="screen-${screen.getId()}-date_${today}_seats"  onclick=setDate role="button">
+											<span class="tips">${show.getShowTime() }
+												<span class="tips-text">
+													${screen.getScreenName() }
+													<span class="pill-span">Budget : Rs. 60</span> 
+													<span class="pill-span">Elite : Rs. 190</span>
+												</span>
+											</span> 
+										</a>
+										</c:if>
+									</c:forEach>
+								</c:forEach>
+							</li>
+						</c:forEach>
 
-	<!-- Start of Coming Soon Section -->
-	<section id="coming-soon">
-		<div class="container-fluid bg-grey" style="padding-top: 1rem;">
-			<div class="container-nowShow">
-				<h1>
-					<img
-						src="https://img.icons8.com/office/40/000000/film-reel--v1.png" />
-					Coming Soon
-				</h1>
-				<!-- Card Deck 1 -->
-				<div class="row" style="padding: 2rem;">
-					<c:forEach items="${upcomingMovies}" var="movie">
-						<div class="col-lg-4 d-flex align-items-stretch">
-							<div class="card shadow p-3 mb-5">
-								<img src="${movie.getImageUrl() }" class="card-img-top"
-									alt="...">
-								<div class="card-body">
-									<h6 class="card-title">${movie.getMovieName().toUpperCase() }</h6>
-									<div class="badge-div">
-										<span class="badge badge-pill badge-info">${movie.getCensor().toUpperCase() }</span>
-										<span class="badge badge-pill badge-secondary">${movie.getGenre().toUpperCase() }</span>
-										<span class="badge badge-pill badge-primary">${movie.getLanguage().toUpperCase() }</span>
-									</div>
-
-									<p class="card-text">${movie.getMovieSynopsis() }</p>
-								</div>
-
-							</div>
-						</div>
-					</c:forEach>
+					</ul>
 				</div>
-				<!-- End of Card Deck 1 -->
-			</div>
-			<div class="container">
-				<div class="center">
-					<button type="button" class="btn btn-outline-dark">
-						<i class="fas fa-film"></i> View All Movies
-					</button>
-				</div>
+				</c:if>
+				<%
+				today = today.plus(1,ChronoUnit.DAYS); %>
+				</c:forEach>
+				
 			</div>
 		</div>
+
+
+
 	</section>
+	
+
 	<script
 		src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -257,5 +281,6 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
 		crossorigin="anonymous"></script>
+
 </body>
 </html>
