@@ -1,5 +1,7 @@
 package com.cineFlix.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,13 +28,15 @@ public class UserController {
 	}
 
 	@RequestMapping(value = { "/login" }, method = RequestMethod.POST)
-	public String postLogin(@RequestParam("name") String name, @RequestParam("password") String password) {
+	public String postLogin(@RequestParam("name") String name, @RequestParam("password") String password,HttpSession session) {
 		// TODO: User authentication
 		User u = userService.login(name, password);
+		session.setAttribute("user", u);
+		System.out.println(u);
 		if (u != null) {
 			return "redirect:/welcome";
 		}
-		return "user-login";
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = { "/register" }, method = RequestMethod.GET)
@@ -47,6 +51,6 @@ public class UserController {
 
 		User u = userService.register(user);
 		System.out.println(u);
-		return "index";
+		return "redirect:/";
 	}
 }

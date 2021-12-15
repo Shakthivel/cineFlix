@@ -2,13 +2,14 @@ package com.cineFlix.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.cineFlix.dao.AdminDAO;
 import com.cineFlix.dao.MovieDAO;
 import com.cineFlix.model.Admin;
 import com.cineFlix.model.Movie;
 
-@Component
+@Service
 public class AdminServiceImpl implements AdminService {
 	
 	@Autowired

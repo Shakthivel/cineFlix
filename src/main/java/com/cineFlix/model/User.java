@@ -1,20 +1,20 @@
 package com.cineFlix.model;
 
+import java.util.SortedSet;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
 public class User {
 
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,14 +26,33 @@ public class User {
 	@Column(unique = true)
 	private String number;
 	private String address;
+	@OneToMany(mappedBy="user")
+	@OrderBy
+	private SortedSet<Ticket> ticket;
 
-	public User(String name, String password, String email, String number, String address) {
+	public User() {
 		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public User(int userId, String name, String password, String email, String number, String address,
+			SortedSet<Ticket> ticket) {
+		super();
+		this.userId = userId;
 		this.name = name;
 		this.password = password;
 		this.email = email;
 		this.number = number;
 		this.address = address;
+		this.ticket = ticket;
+	}
+
+	public SortedSet<Ticket> getTicket() {
+		return ticket;
+	}
+
+	public void setTicket(SortedSet<Ticket> ticket) {
+		this.ticket = ticket;
 	}
 
 	public int getUserId() {

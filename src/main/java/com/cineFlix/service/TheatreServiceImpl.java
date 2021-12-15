@@ -4,12 +4,13 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cineFlix.dao.TheatreDAO;
 import com.cineFlix.model.Theatre;
 
-@Component
+@Service
 public class TheatreServiceImpl implements TheatreService {
 
 	@Autowired

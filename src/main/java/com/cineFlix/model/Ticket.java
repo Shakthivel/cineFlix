@@ -1,35 +1,54 @@
 package com.cineFlix.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Ticket implements Comparable<Ticket> {
+public class Ticket implements Serializable, Comparable<Ticket> {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
-	private int userId;
+	private int ticketId =0;
+	
+
+	@ManyToOne
+	private User user;
+
 	private int noOfSeats;
 	private String movieName;
 	private String theatreName;
+
 	private String screenName;
+
 	private Date showDate;
+
 	private Time showTiming;
-	private int seatNumber;
+	private String seatNumbers;
 
 	public Ticket() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public int getNoOfSeats() {
@@ -72,12 +91,12 @@ public class Ticket implements Comparable<Ticket> {
 		this.showTiming = showTiming;
 	}
 
-	public int getSeatNumber() {
-		return seatNumber;
+	public String getSeatNumbers() {
+		return seatNumbers;
 	}
 
-	public void setSeatNumber(int seatNumber) {
-		this.seatNumber = seatNumber;
+	public void setSeatNumbers(String seatNumbers) {
+		this.seatNumbers = seatNumbers;
 	}
 
 	public Date getShowDate() {
@@ -88,11 +107,26 @@ public class Ticket implements Comparable<Ticket> {
 		this.showDate = showDate;
 	}
 
+
+
+
 	@Override
 	public String toString() {
-		return "TicketDTO [userId=" + userId + ", noOfSeats=" + noOfSeats + ", movieName=" + movieName
-				+ ", theatreName=" + theatreName + ", screenName=" + screenName + ", showDate=" + showDate
-				+ ", showTiming=" + showTiming + ", seatNumber=" + seatNumber + "]";
+		return "Ticket [ticketId=" + ticketId + ", user=" + user + ", noOfSeats=" + noOfSeats + ", movieName="
+				+ movieName + ", theatreName=" + theatreName + ", screenName=" + screenName + ", showDate=" + showDate
+				+ ", showTiming=" + showTiming + ", seatNumbers=" + seatNumbers + "]";
+	}
+
+	public int getTicketId() {
+		return ticketId;
+	}
+
+	public void setTicketId(int ticketId) {
+		this.ticketId = ticketId;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override

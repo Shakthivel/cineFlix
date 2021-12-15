@@ -4,11 +4,12 @@ import javax.persistence.PersistenceException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.cineFlix.dao.UserDAO;
 import com.cineFlix.model.User;
 
-@Component
+@Service
 public class UserServiceImpl implements UserService{
 
 	@Autowired

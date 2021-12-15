@@ -26,6 +26,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -188,6 +189,87 @@ public class CorporateContoller {
 		}
 		return "acquire-movie";
 
+	}
+
+	@PostMapping(value = "/set-{movieId}-screen")
+	public String postSetScreen(@PathVariable int movieId, HttpServletRequest request, HttpServletResponse response) {
+		Movie movie = movieService.getMovieById(movieId);
+		String movieName = movie.getMovieName();
+
+		HttpSession session = request.getSession();
+		Theatre theatre = (Theatre) session.getAttribute("theatre");
+		for (Screen screen : theatre.getScreens()) {
+			for (ShowTable show : screen.getShows()) {
+				if (request.getParameter(String.valueOf(show.getShowId())) != null) {
+					System.out.println(show);
+					show.setMovieName(movieName);
+					showService.addShow(show);
+					
+					SortedSet<Theatre> theatreList = movie.getTheatre();
+					SortedSet<Movie> moviesList = theatre.getMovies();
+
+					moviesList.add(movie);
+					theatre.setMovies(moviesList);
+					theatreService.update(theatre);
+
+					if (theatreList == null) {
+						theatreList = new TreeSet<Theatre>();
+					}
+					theatreList.add(theatre);
+					movie.setTheatre(theatreList);
+					movieService.addMovie(movie);
+					
+				} else {
+					if (show.getMovieName() != null) {
+						if (show.getMovieName().equals(movie.getMovieName())) {
+							System.out.println(show);
+							show.setMovieName(null);
+							showService.addShow(show);
+							
+							if(movieNotExistsInTheatre(theatre,movie))
+							{
+							SortedSet<Theatre> theatreList = movie.getTheatre();
+							SortedSet<Movie> moviesList = theatre.getMovies();
+
+							moviesList.remove(movie);
+							theatre.setMovies(moviesList);
+							theatreService.update(theatre);
+
+							if (theatreList == null) {
+								theatreList = new TreeSet<Theatre>();
+							}
+							theatreList.remove(theatre);
+							movie.setTheatre(theatreList);
+							movieService.addMovie(movie);
+							}
+						}
+					}
+					
+				}
+			}
+		}
+
+		
+		return "redirect:/corporate/home";
+	}
+	
+	public boolean movieNotExistsInTheatre(Theatre theatre,Movie movie)
+	{
+		for (Screen screen : theatre.getScreens()) {
+			for (ShowTable show : screen.getShows()) {
+				System.out.println(show);
+				if(show.getMovieName()!=null)
+				{
+					if(show.getMovieName().equals(movie.getMovieName()))
+					{
+						return false;
+					}
+				}
+				
+			}
+		}
+			
+		return true;
 	}
 
 }

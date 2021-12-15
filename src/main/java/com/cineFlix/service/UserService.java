@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import com.cineFlix.dao.UserDAO;
 import com.cineFlix.model.User;
 
-@Component("userService")
+@Service
 public interface UserService {
 
 	public User login(String name,String password);
