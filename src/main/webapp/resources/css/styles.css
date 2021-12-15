@@ -106,11 +106,6 @@ a.active{
 }
 
 
-.booking-dets {
-    height: 85vh;
-    width: 100%;
-    
-}
 
 .ticket {
     margin: auto;
@@ -123,7 +118,9 @@ a.active{
 
 
 
-
+.space{
+  padding: .3rem;
+}
 
 
 
@@ -358,9 +355,25 @@ border-color: #125D98 !important;
   
   vertical-align: middle;
   padding: 1rem;
-  width: 450px;
-  height: 60px;
+  width: 650px;
+  height: 50px;
   border-radius: 5px;
+}
+
+
+.book-arrow{
+  float: right; 
+  font-size: 1.7rem;
+  color: #003566;
+}
+
+.book-arrow:hover{
+  color: #ffffff;
+}
+
+
+.ticket-container h6{
+  font-size: 14px;
 }
 
 .row-name{
