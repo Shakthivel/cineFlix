@@ -32,7 +32,7 @@
 	<!-- Navbar Section -->
 	<section id="nav">
 
-		<div class="container-fluid"></div>
+		
 		<!-- Start Of Navbar -->
 		<nav class="navbar navbar-expand-lg navbar-dark "
 			style="background-color: #125D98;">
@@ -51,10 +51,9 @@
 
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="#now-showing">Now
-							Showing</a></li>
-					<li class="nav-item"><a class="nav-link" href="#coming-soon">Coming
-							Soon</a></li>
+					<li class="nav-item"><a class="nav-link" href="/">
+							Home</a></li>
+					
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
@@ -131,6 +130,8 @@
 				</ul>
 			</div>
 		</nav>
+			<h1 style="background-color: #125D98; color: #fff; padding: 1rem;">Ticket Confimation</h1>
+
 
 	</section>
 	<!-- End of The Nav Section -->
@@ -138,24 +139,33 @@
 
 	<section>
 		<form method="POST">
-			<div
-				class="d-flex justify-content-center align-items-center booking-dets">
+			
 
-				<div class="ticket text-center ">
+				<div class="container-fluid p-4">
 
-					<div class="card text-center">
-						<div class="card-header"
-							style="color: #fff; background-color: #125D98;">
-							<h2>Ticket Confimation</h2>
-						</div>
-						<div class="card-body text-center">
-							<h2>${ticket.movieName}</h2>
-							<h3>${ticket.theatreName}</h3>
-							<h4>${ticket.seatNumbers }</h4>
-							<h5>${ticket.showDate.toLocaleString().substring(0,12) }
-								${ticket.showTiming }</h5>
-							<div class="mt-4 ml-5 mr-5 text-center">
-								<table class="table">
+					
+						
+							<div class="space">
+								<h2>${ticket.movieName}</h2>
+							</div>
+							<div class="space">
+								<h3>${ticket.theatreName}</h3>
+							</div>
+							<div class="space">
+								<h4>${ticket.seatNumbers }</h4>
+							</div>
+							<div class="space">
+								<h5>${ticket.showDate.toLocaleString().substring(0,12) }
+									${ticket.showTiming }</h5>
+							</div>
+		
+						
+							
+							
+							
+							
+							<div class="mt-4 ml-5 mr-5 ">
+								<table class="table table-borderless">
 
 									<tbody>
 										<tr>
@@ -188,13 +198,13 @@
 								</table>
 
 							</div>
-						</div>
+						
+							<div class="text-center">
+								<button type="submit" class="btn btn-book">Make Payment</a>
+							</div>
 
-						<div class="card-footer ">
-							<button type="submit" class="btn btn-book btn-block"
-								style="margin: 0;">
-								Confirm Tickets</a>
-						</div>
+							
+						
 					</div>
 
 

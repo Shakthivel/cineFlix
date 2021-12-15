@@ -51,10 +51,9 @@
 
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="#now-showing">Now
-							Showing</a></li>
-					<li class="nav-item"><a class="nav-link" href="#coming-soon">Coming
-							Soon</a></li>
+					<li class="nav-item"><a class="nav-link" href="/">Now
+							Home</a></li>
+					
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
@@ -196,10 +195,10 @@
 		</div>
 
 		<div class="ticket-container">
-			<h5 style="display: inline;" id="seatNumber">Seats :</h5>
+			<h6 style="display: inline;" id="seatNumber">Seats :</h6>
 			<a class="mb-1" style="margin-left: 7rem; color: #fff;"
 				 onClick=submitForm() ><i
-				class="fas fa-lg fa-arrow-right"></i></a>
+				class="fas fa-lg fa-arrow-right book-arrow" ></i></a>
 
 
 		</div>
