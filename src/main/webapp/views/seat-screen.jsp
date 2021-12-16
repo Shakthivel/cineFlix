@@ -50,8 +50,8 @@
 
 
 			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="/">Now
+				<ul class="navbar-nav" style="margin-left: 80%;">
+					<li class="nav-item"><a class="nav-link" href="/">
 							Home</a></li>
 					
 					<li class="nav-item dropdown"><a
