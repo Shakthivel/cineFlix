@@ -6,11 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script type="text/javascript">
-        var uname = document.getElementById('uname');
-        var pass = document.getElementById('pass');
-    </script>
-
     <style>
         body{
             background-image: url("https://res.cloudinary.com/dfep0loer/image/upload/v1638642281/CineFlix/login-bg_oinwnx.jpg");
@@ -21,7 +16,7 @@
     <link rel="icon" href="https://res.cloudinary.com/dfep0loer/image/upload/v1638639673/CineFlix/favicon_k3r3vp.ico"
         type="image/x-icon">
     <!-- Title -->
-    <title>Cineflix - Login </title>
+    <title>Cineflix - OTP </title>
     <!-- Local Stylesheet -->
     <link rel="stylesheet" type="text/css" href="../resources/css/styles.css"> 
     <!-- Font Awesome CDN -->
@@ -35,26 +30,12 @@
     <div class="d-flex justify-content-center align-items-center login-container">
         <form class="login-form text-center " method="POST" novalidate id="login-form">
             <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638596050/CineFlix/cineflix-black_nleijx.png" class="img-fluid" alt="...">
-            <h2 class="mb-5"> Login</h2>
+            <h2 class="mb-5"> OTP AUTHENICATION</h2>
             <div class="form-group">
-                <input type="text" id="uname" name="name" class="form-control form-control-lg " placeholder="Phone Number" required> <div class="valid-feedback">Sounds Great !</div><div class="invalid-feedback">Oh No ! Enter a Value!</div>
+                <input type="text" id="otp" name="otp" class="form-control form-control-lg " placeholder="OTP" required>
             </div>
+            <button type="submit" class="btn btn-dark btn-block btn-login">Authenicate</button>
             
-            <div class="form-group">
-                <input type="password" id="pass" name="password" class="form-control form-control-lg" placeholder="Password" required> <div class="valid-feedback">Sounds Great !</div><div class="invalid-feedback">Oh No ! Enter the Password!</div>
-            </div>
-            <div class="forgot-link form-group d-flex justify-content-between align-items-center">
-                <a href="#" class="form-link">Forgot Password?</a>
-            </div>
-            <button type="submit" class="btn btn-dark btn-block btn-login">Login</button>
-            <div style="margin-top: 10px;">
-                <a href="/user/register" class="form-link" >Not an user? Register</a>
-            </div>
-
-            <div style="margin-top: 10px;">
-                <a href="/corporate/login" class="form-link">Corporate User</a>
-            </div>
-
         </form>
         
     </div>
@@ -67,23 +48,5 @@
         crossorigin="anonymous"></script>
 
 
-<script type="text/javascript">
-    (function () {
-        "use strict";
-        window.addEventListener("load", function () {
-            let forms = document.getElementsByTagName("form");
-            var validation = Array.prototype.filter.call(forms, function (form) {
-                form.addEventListener("submit", function (event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add("was-validated");
-                }, false);
-            });
-        }, false);
-    })
-        ();
-</script>
 </body>
 </html>
