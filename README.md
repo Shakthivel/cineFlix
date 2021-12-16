@@ -1,8 +1,5 @@
 # cineFlix
-SQL commands:
-create database cineFlix;
-insert into admin values(id,pass);
-insert into theatre values(id,pass,"","");
+Run Querys.sql
 
 ADMIN - App admin who adds/updates/deletes the movie info in db
 /admin/login - admin login
