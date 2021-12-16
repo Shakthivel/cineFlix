@@ -104,6 +104,10 @@ public class AppController {
 		String seats = request.getParameter("formValue");
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
+		if(user == null)
+		{
+			
+		}
 		Movie movie = (Movie) session.getAttribute("movie");
 		Theatre theatre = null;
 		for (Theatre t : movie.getTheatre()) {
@@ -139,12 +143,13 @@ public class AppController {
 	}
 
 	@PostMapping("/confirm-ticket")
-	public void postConfirmTicket(HttpSession session, ModelMap model) {
+	public String postConfirmTicket(HttpSession session, ModelMap model) {
 		Ticket ticket = (Ticket) session.getAttribute("ticket");
 		System.out.println(ticket);
 		ticketService.addTicket(ticket);
 		pdfService.generatePdf(ticket);
 		User user = (User) session.getAttribute("user");
 		emailService.sendEmail(ticket.getTicketId(),user);
+		return "redirect:/";
 	}
 }

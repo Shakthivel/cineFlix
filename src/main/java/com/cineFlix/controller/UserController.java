@@ -34,9 +34,9 @@ public class UserController {
 		session.setAttribute("user", u);
 		System.out.println(u);
 		if (u != null) {
-			return "redirect:/welcome";
+			return "redirect:/";
 		}
-		return "redirect:/";
+		return "redirect:/login";
 	}
 
 	@RequestMapping(value = { "/register" }, method = RequestMethod.GET)
@@ -51,6 +51,9 @@ public class UserController {
 
 		User u = userService.register(user);
 		System.out.println(u);
-		return "redirect:/";
+		if (u != null) {
+			return "redirect:/";
+		}
+		return "redirect:/register";
 	}
 }
