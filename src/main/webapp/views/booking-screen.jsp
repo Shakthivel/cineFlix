@@ -141,7 +141,7 @@
 		<form method="POST">
 			
 
-				<div class="container-fluid p-4">
+				<div class="container-fluid p-4 text-center">
 
 					
 						
