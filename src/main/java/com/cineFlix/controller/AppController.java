@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,21 +64,26 @@ public class AppController {
 	EmailService emailService;
 
 	@RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
-	public String landingPage(ModelMap model) {
+	public String landingPage(ModelMap model,HttpSession session) {
 		// TODO: Implement session management and redirect to user home or corp home
-		List<Movie> upcomingMovies = new ArrayList<Movie>();
-		List<Movie> nowShowing = new ArrayList<Movie>();
-		for (Movie movie : movieService.getAllMovies()) {
-			if (movie.getTheatre().size() > 0) {
-				nowShowing.add(movie);
-			} else {
-				upcomingMovies.add(movie);
+		User user = (User) session.getAttribute("user");
+		if(user!=null)
+		{
+			List<Movie> upcomingMovies = new ArrayList<Movie>();
+			List<Movie> nowShowing = new ArrayList<Movie>();
+			for (Movie movie : movieService.getAllMovies()) {
+				if (movie.getTheatre().size() > 0) {
+					nowShowing.add(movie);
+				} else {
+					upcomingMovies.add(movie);
+				}
 			}
+			model.addAttribute("nowShowing", nowShowing);
+			model.addAttribute("upcomingMovies", upcomingMovies);
+			model.addAttribute("movies", movieService.getAllMovies());
+			return "index";
 		}
-		model.addAttribute("nowShowing", nowShowing);
-		model.addAttribute("upcomingMovies", upcomingMovies);
-		model.addAttribute("movies", movieService.getAllMovies());
-		return "index";
+		return "redirect:/user/login";
 	}
 
 	@GetMapping("/movie-{movieId}-availability")
@@ -147,7 +154,15 @@ public class AppController {
 		Ticket ticket = (Ticket) session.getAttribute("ticket");
 		System.out.println(ticket);
 		ticketService.addTicket(ticket);
-		pdfService.generatePdf(ticket);
+		try {
+			pdfService.generatePdf(ticket);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		User user = (User) session.getAttribute("user");
 		emailService.sendEmail(ticket.getTicketId(),user);
 		return "redirect:/";

@@ -1,8 +1,11 @@
 package com.cineFlix.service;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Paths;
 import com.cineFlix.model.Ticket;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -17,7 +20,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PdfService {
-    public void generatePdf(Ticket ticket) {
+    public void generatePdf(Ticket ticket) throws MalformedURLException, IOException {
 
         Document doc = new Document();
 
@@ -39,22 +42,14 @@ public class PdfService {
 
 
             doc.add(Chunk.NEWLINE);
-            String imageFile = "https://res.cloudinary.com/dfep0loer/image/upload/v1638596050/CineFlix/cineflix-black_nleijx.png";
-            ImageData data = ImageDataFactory.create(imageFile);
-            Image img = new Image(data);
-            data.setAlignment(Element.ALIGN_CENTER);
+            Image img = Image.getInstance("https://res.cloudinary.com/dfep0loer/image/upload/v1638596050/CineFlix/cineflix-black_nleijx.png");
             doc.add(img);
             doc.add(Chunk.NEWLINE);
 
 
             doc.add(Chunk.NEWLINE);
             Font font = FontFactory.getFont(FontFactory.COURIER, 14, BaseColor.BLACK);
-            Paragraph paragraph = new Paragraph("Cineflix Ticket", font);
-            paragraph.setAlignment(Element.ALIGN_CENTER);
-            doc.add(paragraph);
-            doc.add(Chunk.NEWLINE);
-
-            paragraph = new Paragraph("Movie Name: " + ticket.getMovieName(), font);
+            Paragraph paragraph = new Paragraph("Movie Name: " + ticket.getMovieName(), font);
             doc.add(paragraph);
             doc.add(Chunk.NEWLINE);
 

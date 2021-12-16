@@ -39,6 +39,6 @@ public class UserServiceImpl implements UserService{
 
 	public User login(String name,String password) {
 		
-		return userDAO.findByNameAndPassword(name, password);
+		return userDAO.findByNumberAndPassword(name, password);
 	}
 }

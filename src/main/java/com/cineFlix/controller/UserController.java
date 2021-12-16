@@ -1,11 +1,14 @@
 package com.cineFlix.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cineFlix.model.User;
+import com.cineFlix.service.SMSService;
 import com.cineFlix.service.UserService;
 
 @Controller
@@ -21,6 +25,9 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	SMSService smsService;
 
 	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
 	public String getLogin() {
@@ -36,7 +43,7 @@ public class UserController {
 		if (u != null) {
 			return "redirect:/";
 		}
-		return "redirect:/login";
+		return "redirect:/user/login";
 	}
 
 	@RequestMapping(value = { "/register" }, method = RequestMethod.GET)
@@ -47,13 +54,35 @@ public class UserController {
 	}
 
 	@RequestMapping(value = { "/register" }, method = RequestMethod.POST)
-	public String postRegister(User user, BindingResult result) {
+	public String postRegister(User user, BindingResult result,HttpSession session) {
 
-		User u = userService.register(user);
-		System.out.println(u);
-		if (u != null) {
+		session.setAttribute("userTemp", user);
+		
+		return "redirect:/user/otp-auth";
+	}
+	
+	@GetMapping("/otp-auth")
+	public String getOtpAuth(HttpSession session)
+	{
+		User user = (User) session.getAttribute("userTemp");
+		System.out.println(user);
+		//smsService.sendSms();
+		return "otp-auth";
+	}
+	
+	@PostMapping("/otp-auth")
+	public String postOtpAuth(HttpServletRequest request, HttpServletResponse response)
+	{
+		HttpSession session = request.getSession();
+		String otp = request.getParameter("otp");
+		System.out.println(otp);
+		User user = (User) session.getAttribute("userTemp");
+		user = userService.register(user);
+		if(user != null)
+		{
+			session.setAttribute("user", user);
 			return "redirect:/";
 		}
-		return "redirect:/register";
+		return "redirect:/user/otp-auth";
 	}
 }
