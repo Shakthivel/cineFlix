@@ -31,15 +31,25 @@ public class PdfService {
             doc.open();
 
             Rectangle rect = new Rectangle(30, 30, 550, 800);
-            rect.setBorder(2);
+            rect.setBorder(4);
             rect.setBorderColor(BaseColor.BLACK);
             rect.setBorder(Rectangle.BOX);
-            rect.setBorderWidth(2);
+            rect.setBorderWidth(4);
             doc.add(rect);
+
+
+            doc.add(Chunk.NEWLINE);
+            String imageFile = "https://res.cloudinary.com/dfep0loer/image/upload/v1638596050/CineFlix/cineflix-black_nleijx.png";
+            ImageData data = ImageDataFactory.create(imageFile);
+            Image img = new Image(data);
+            data.setAlignment(Element.ALIGN_CENTER);
+            doc.add(img);
+            doc.add(Chunk.NEWLINE);
+
 
             doc.add(Chunk.NEWLINE);
             Font font = FontFactory.getFont(FontFactory.COURIER, 14, BaseColor.BLACK);
-            Paragraph paragraph = new Paragraph("Invoice for Ticket #" + ticket.getTicketId(), font);
+            Paragraph paragraph = new Paragraph("Cineflix Ticket", font);
             paragraph.setAlignment(Element.ALIGN_CENTER);
             doc.add(paragraph);
             doc.add(Chunk.NEWLINE);
