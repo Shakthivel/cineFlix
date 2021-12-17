@@ -183,15 +183,10 @@
 											<td>Rs. 30 x ${ticket.getNoOfSeats() }</td>
 
 										</tr>
-										<%
-										Ticket ticket = (Ticket) pageContext.findAttribute("ticket");
-										int n = ticket.getNoOfSeats();
-										int price = 180 * n + 10 * n + 30 * n;
-										request.setAttribute("price", price);
-										%>
+										
 										<tr>
 											<th scope="row">Total</th>
-											<td>Rs. ${price}</td>
+											<td>Rs. ${ticket.getPrice()}</td>
 
 										</tr>
 									</tbody>
