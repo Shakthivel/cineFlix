@@ -37,6 +37,7 @@ public class Ticket implements Serializable, Comparable<Ticket> {
 
 	private Time showTiming;
 	private String seatNumbers;
+	private int price;
 
 	public Ticket() {
 		super();
@@ -107,14 +108,11 @@ public class Ticket implements Serializable, Comparable<Ticket> {
 		this.showDate = showDate;
 	}
 
-
-
-
 	@Override
 	public String toString() {
-		return "Ticket [ticketId=" + ticketId + ", user=" + user + ", noOfSeats=" + noOfSeats + ", movieName="
-				+ movieName + ", theatreName=" + theatreName + ", screenName=" + screenName + ", showDate=" + showDate
-				+ ", showTiming=" + showTiming + ", seatNumbers=" + seatNumbers + "]";
+		return "Ticket [ticketId=" + ticketId + ", noOfSeats=" + noOfSeats + ", movieName=" + movieName
+				+ ", theatreName=" + theatreName + ", screenName=" + screenName + ", showDate=" + showDate
+				+ ", showTiming=" + showTiming + ", seatNumbers=" + seatNumbers + ", price=" + price + "]";
 	}
 
 	public int getTicketId() {
@@ -132,6 +130,14 @@ public class Ticket implements Serializable, Comparable<Ticket> {
 	@Override
 	public int compareTo(Ticket o) {
 		return 0;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 }

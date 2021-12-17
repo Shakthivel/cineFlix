@@ -2,9 +2,12 @@ package com.cineFlix.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,10 +34,10 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = { "/login" }, method = RequestMethod.POST)
-	public String postLogin(@RequestParam("id") int id, @RequestParam("password") String password) {
+	public String postLogin(@RequestParam("id") int id, @RequestParam("password") String password,HttpSession session) {
 		// TODO: Authenicate
 		Admin a = adminService.login(id, password);
-		System.out.println(a);
+		session.setAttribute("admin", a);
 		if (a == null) {
 			return "admin-login";
 		}
@@ -42,8 +45,13 @@ public class AdminController {
 		return "redirect:/admin/home";
 	}
 
-	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
-	public String getHome(ModelMap model) {
+	@RequestMapping(value = { "/","/home" }, method = RequestMethod.GET)
+	public String getHome(ModelMap model,HttpSession session) {
+		Admin a = (Admin) session.getAttribute("admin");
+		if(a==null)
+		{
+			return "redirect:/admin/login";
+		}
 		List<Movie> movies = movieService.getAllMovies();
 		System.out.println(movies);
 		model.addAttribute("movies",movies);
@@ -51,7 +59,12 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = { "/add-movie" }, method = RequestMethod.GET)
-	public String getAddMovie(ModelMap model) {
+	public String getAddMovie(ModelMap model,HttpSession session) {
+		Admin a = (Admin) session.getAttribute("admin");
+		if(a==null)
+		{
+			return "redirect:/admin/login";
+		}
 		Movie movie = new Movie();
 		model.addAttribute(movie);
 		return "add-movies";
@@ -68,7 +81,12 @@ public class AdminController {
 	}
 	
     @RequestMapping(value = { "/edit-{movieId}-movie" }, method = RequestMethod.GET)
-    public String getEditMovie(@PathVariable int movieId, ModelMap model) {
+    public String getEditMovie(@PathVariable int movieId, ModelMap model,HttpSession session) {
+    	Admin a = (Admin) session.getAttribute("admin");
+		if(a==null)
+		{
+			return "redirect:/admin/login";
+		}
         Movie movie = movieService.getMovieById(movieId);
         model.addAttribute("movie", movie);
         return "add-movies";
@@ -82,4 +100,11 @@ public class AdminController {
 		}
         return "add-movies";
     }
+    
+    @GetMapping("/logout")
+	public String logout(HttpSession session)
+	{
+		session.invalidate();
+		return "redirect:/admin/login";
+	}
 }

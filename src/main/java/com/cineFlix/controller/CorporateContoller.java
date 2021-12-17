@@ -140,7 +140,10 @@ public class CorporateContoller {
 		List<Movie> movies = movieService.getAllMovies();
 		List<Movie> acquiredMovies = new ArrayList<Movie>();
 		Theatre theatre = (Theatre) session.getAttribute("theatre");
-
+		if(theatre == null)
+		{
+			return "redirect:/corporate/login";
+		}
 		for (Movie movie : movies) {
 			for (Theatre existingTheatre : movie.getTheatre()) {
 
@@ -159,19 +162,7 @@ public class CorporateContoller {
 	public String postAddMovie(HttpServletRequest request, HttpServletResponse response) {
 		String movieId = (String) request.getParameter("movieId");
 		return "redirect:/corporate/set-" + movieId + "-screen";
-//		Set<Theatre> theatreList = movie.getTheatre();
-//		Theatre theatre = (Theatre) session.getAttribute("theatre");
-//		Set<Movie> moviesList = theatre.getMovies();
-//		moviesList.add(movie);
-//		theatre.setMovies(moviesList);
-//		theatreService.update(theatre);
-//		if (theatreList == null) {
-//			theatreList = new HashSet<Theatre>();
-//		}
-//		theatreList.add(theatre);
-//		movie.setTheatre(theatreList);
-//		movieService.addMovie(movie);
-//		return "redirect:/corporate/home";
+
 	}
 
 	@GetMapping(value = "/set-{movieId}-screen")
@@ -179,6 +170,10 @@ public class CorporateContoller {
 		Movie movie = movieService.getMovieById(movieId);
 		System.out.println(movie);
 		Theatre theatre = (Theatre) session.getAttribute("theatre");
+		if(theatre == null)
+		{
+			return "redirect:/corporate/login";
+		}
 		model.addAttribute("movie", movie);
 		model.addAttribute("screens", theatre.getScreens());
 		for (Screen s : theatre.getScreens()) {
@@ -204,7 +199,7 @@ public class CorporateContoller {
 					System.out.println(show);
 					show.setMovieName(movieName);
 					showService.addShow(show);
-					
+
 					SortedSet<Theatre> theatreList = movie.getTheatre();
 					SortedSet<Movie> moviesList = theatre.getMovies();
 
@@ -218,58 +213,60 @@ public class CorporateContoller {
 					theatreList.add(theatre);
 					movie.setTheatre(theatreList);
 					movieService.addMovie(movie);
-					
+
 				} else {
 					if (show.getMovieName() != null) {
 						if (show.getMovieName().equals(movie.getMovieName())) {
 							System.out.println(show);
 							show.setMovieName(null);
 							showService.addShow(show);
-							
-							if(movieNotExistsInTheatre(theatre,movie))
-							{
-							SortedSet<Theatre> theatreList = movie.getTheatre();
-							SortedSet<Movie> moviesList = theatre.getMovies();
 
-							moviesList.remove(movie);
-							theatre.setMovies(moviesList);
-							theatreService.update(theatre);
+							if (movieNotExistsInTheatre(theatre, movie)) {
+								SortedSet<Theatre> theatreList = movie.getTheatre();
+								SortedSet<Movie> moviesList = theatre.getMovies();
 
-							if (theatreList == null) {
-								theatreList = new TreeSet<Theatre>();
-							}
-							theatreList.remove(theatre);
-							movie.setTheatre(theatreList);
-							movieService.addMovie(movie);
+								moviesList.remove(movie);
+								theatre.setMovies(moviesList);
+								theatreService.update(theatre);
+
+								if (theatreList == null) {
+									theatreList = new TreeSet<Theatre>();
+								}
+								theatreList.remove(theatre);
+								movie.setTheatre(theatreList);
+								movieService.addMovie(movie);
 							}
 						}
 					}
-					
+
 				}
 			}
 		}
 
-		
 		return "redirect:/corporate/home";
 	}
-	
-	public boolean movieNotExistsInTheatre(Theatre theatre,Movie movie)
-	{
+
+	public boolean movieNotExistsInTheatre(Theatre theatre, Movie movie) {
 		for (Screen screen : theatre.getScreens()) {
 			for (ShowTable show : screen.getShows()) {
 				System.out.println(show);
-				if(show.getMovieName()!=null)
-				{
-					if(show.getMovieName().equals(movie.getMovieName()))
-					{
+				if (show.getMovieName() != null) {
+					if (show.getMovieName().equals(movie.getMovieName())) {
 						return false;
 					}
 				}
-				
+
 			}
 		}
-			
+
 		return true;
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session)
+	{
+		session.invalidate();
+		return "redirect:/corporate/login";
 	}
 
 }

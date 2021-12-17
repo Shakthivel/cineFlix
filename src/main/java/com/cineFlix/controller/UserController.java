@@ -1,5 +1,7 @@
 package com.cineFlix.controller;
 
+import java.util.Random;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,7 +27,7 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
-	
+
 	@Autowired
 	SMSService smsService;
 
@@ -35,7 +37,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = { "/login" }, method = RequestMethod.POST)
-	public String postLogin(@RequestParam("name") String name, @RequestParam("password") String password,HttpSession session) {
+	public String postLogin(@RequestParam("name") String name, @RequestParam("password") String password,
+			HttpSession session) {
 		// TODO: User authentication
 		User u = userService.login(name, password);
 		session.setAttribute("user", u);
@@ -54,34 +57,42 @@ public class UserController {
 	}
 
 	@RequestMapping(value = { "/register" }, method = RequestMethod.POST)
-	public String postRegister(User user, BindingResult result,HttpSession session) {
+	public String postRegister(User user, BindingResult result, HttpSession session) {
 
 		session.setAttribute("userTemp", user);
-		
+
 		return "redirect:/user/otp-auth";
 	}
-	
+
 	@GetMapping("/otp-auth")
-	public String getOtpAuth(HttpSession session)
-	{
+	public String getOtpAuth(HttpSession session) {
 		User user = (User) session.getAttribute("userTemp");
 		System.out.println(user);
-		//smsService.sendSms();
+		Random rand = new Random();
+
+		int resRandom = rand.nextInt((9999 - 100) + 1) + 10;
+		System.out.println(resRandom);
+
+		try {
+			smsService.sendSms();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "otp-auth";
 	}
-	
+
 	@PostMapping("/otp-auth")
-	public String postOtpAuth(HttpServletRequest request, HttpServletResponse response)
-	{
+	public String postOtpAuth(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		String otp = request.getParameter("otp");
-		System.out.println(otp);
-		User user = (User) session.getAttribute("userTemp");
-		user = userService.register(user);
-		if(user != null)
-		{
-			session.setAttribute("user", user);
-			return "redirect:/";
+
+		if (otp.equals("12345")) {
+			User user = (User) session.getAttribute("userTemp");
+			user = userService.register(user);
+			if (user != null) {
+				session.setAttribute("user", user);
+				return "redirect:/";
+			}
 		}
 		return "redirect:/user/otp-auth";
 	}
