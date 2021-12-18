@@ -4,11 +4,11 @@
 <%@ page import="com.cineFlix.model.Movie"%>
 <%@ page import="com.cineFlix.model.Theatre"%>
 <%@ page import="java.util.SortedSet"%>
-<%@ page import="java.time.LocalDate" %>
-<%@ page import="java.time.Month" %>
-<%@ page import="java.time.DayOfWeek" %>
-<%@ page import="java.time.temporal.ChronoUnit" %>
-<%@ page import="java.util.Locale" %>
+<%@ page import="java.time.LocalDate"%>
+<%@ page import="java.time.Month"%>
+<%@ page import="java.time.DayOfWeek"%>
+<%@ page import="java.time.temporal.ChronoUnit"%>
+<%@ page import="java.util.Locale"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,9 +59,8 @@
 			<!-- Collapse Section Navbar -->
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav" style="margin-left: 80%;">
-					<li class="nav-item"><a class="nav-link" href="/">
-							Home</a></li>
-					
+					<li class="nav-item"><a class="nav-link" href="/"> Home</a></li>
+
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
@@ -156,121 +155,140 @@
 			</div>
 		</div>
 		<%
-		
+
 		%>
 		<div class="mt-3 p-5">
 			<ul class="nav nav-pills mb-3 ml-4 justify-content-center"
 				id="pills-tab" role="tablist">
-				
+
 				<%
 				LocalDate today = LocalDate.now();
 				int month = today.getMonthValue();
 				%>
-				
+
 				<c:forEach begin="0" end="6" var="days" varStatus="status">
-				<%
-					int days = (int)(pageContext.findAttribute("days"));
-					request.setAttribute("today","id"+today.toString().replace("-", "_"));
+					<%
+					int days = (int) (pageContext.findAttribute("days"));
+					request.setAttribute("today", "id" + today.toString().replace("-", "_"));
 					%>
-				<c:if test="${status.first}">
-				<li class="nav-item" role="presentation"><a
-					class="nav-link active pill-a" id="${today }-tab" 
-					href="#${today}" role="tab" aria-controls="pills-home" data-toggle="pill"
-					aria-selected="true"> <%out.print(Month.of(month).name().substring(0,3)+" "+today.getDayOfMonth()); %>
-					<span class="pill-span"><% 
-							DayOfWeek dow = today.getDayOfWeek();
-							out.println(dow); %></span>
-				</a></li>
-				</c:if>
-				<c:if test="${not status.first}">
-				<li class="nav-item" role="presentation"><a
-					class="nav-link pill-a" id="${today }-tab" data-toggle="pill"
-					href="#${today}"  role="tab" aria-controls="pills-home"
-					aria-selected="true"> <%out.print(Month.of(month).name().substring(0,3)+" "+today.getDayOfMonth()); %>
-					<span class="pill-span"><% 
-							DayOfWeek dow = today.getDayOfWeek();
-							out.println(dow); %></span>
-				</a></li>
-				</c:if>
-				<%
-				today = today.plus(1,ChronoUnit.DAYS); %>
+					<c:if test="${status.first}">
+						<li class="nav-item" role="presentation"><a
+							class="nav-link active pill-a" id="${today }-tab"
+							href="#${today}" role="tab" aria-controls="pills-home"
+							data-toggle="pill" aria-selected="true"> <%
+ out.print(Month.of(month).name().substring(0, 3) + " " + today.getDayOfMonth());
+ %> <span class="pill-span"> <%
+ DayOfWeek dow = today.getDayOfWeek();
+ out.println(dow);
+ %>
+							</span>
+						</a></li>
+					</c:if>
+					<c:if test="${not status.first}">
+						<li class="nav-item" role="presentation"><a
+							class="nav-link pill-a" id="${today }-tab" data-toggle="pill"
+							href="#${today}" role="tab" aria-controls="pills-home"
+							aria-selected="true"> <%
+ out.print(Month.of(month).name().substring(0, 3) + " " + today.getDayOfMonth());
+ %> <span class="pill-span"> <%
+ DayOfWeek dow = today.getDayOfWeek();
+ out.println(dow);
+ %>
+							</span>
+						</a></li>
+					</c:if>
+					<%
+					today = today.plus(1, ChronoUnit.DAYS);
+					%>
 				</c:forEach>
 			</ul>
-			
+
 			<div class="tab-content" id="pills-tabContent">
-			
-			<%today = LocalDate.now(); 
-			%>
-			
-			<c:forEach begin="0" end="6" var="days" varStatus="status">
-			<% request.setAttribute("today", "id"+today.toString().replace("-", "_")); %>
-			<c:if test="${status.first}">
-				<div class="tab-pane fade show active" id="${today}" role="tabpanel"
-					>
-					<ul class="list-group">
-						<c:forEach items="${theatres }" var="theatre">
-							<li class="list-group-item">
-								<h4>${theatre.getTheatreName() }</h4> 
-								<c:forEach items="${theatre.getScreens() }" var="screen">
-									<c:forEach items="${screen.getShows() }" var="show">
-									<c:if test="${show.getMovieName() == movie.getMovieName() }">
-										<a class="btn btn-book"  href="screen-${screen.getId()}-show-${show.getShowId() }-date-${today.substring(2)}-seats" onclick=setDate() role="button">
-											<span class="tips">${show.getShowTime() }
-												<span class="tips-text">
-													${screen.getScreenName() }
-													<span class="pill-span">Budget : Rs. 60</span> 
-													<span class="pill-span">Elite : Rs. 190</span>
-												</span>
-											</span> 
-										</a>
-										</c:if>
-									</c:forEach>
-								</c:forEach>
-							</li>
-						</c:forEach>
 
-					</ul>
-				</div>
-				</c:if>
-				<c:if test="${not status.first}">
-				<div class="tab-pane fade show " id="${today}" role="tabpanel"
-					>
-					<ul class="list-group">
-						<c:forEach items="${theatres }" var="theatre">
-							<li class="list-group-item">
-								<h4>${theatre.getTheatreName() }</h4> 
-								<c:forEach items="${theatre.getScreens() }" var="screen">
-									<c:forEach items="${screen.getShows() }" var="show">
-									<c:if test="${show.getMovieName() == movie.getMovieName() }">
-										<a class="btn btn-book"  href="screen-${screen.getId()}-show-${show.getShowId() }-date-${today.substring(2)}-seats"  onclick=setDate role="button">
-											<span class="tips">${show.getShowTime() }
-												<span class="tips-text">
-													${screen.getScreenName() }
-													<span class="pill-span">Budget : Rs. 60</span> 
-													<span class="pill-span">Elite : Rs. 190</span>
-												</span>
-											</span> 
-										</a>
-										</c:if>
-									</c:forEach>
-								</c:forEach>
-							</li>
-						</c:forEach>
-
-					</ul>
-				</div>
-				</c:if>
 				<%
-				today = today.plus(1,ChronoUnit.DAYS); %>
+				today = LocalDate.now();
+				%>
+
+				<c:forEach begin="0" end="6" var="days" varStatus="status">
+					<%
+					request.setAttribute("today", "id" + today.toString().replace("-", "_"));
+					request.setAttribute("movieDate", today);
+					%>
+
+					<c:if test="${status.first}">
+						<div class="tab-pane fade show active" id="${today}"
+							role="tabpanel">
+							<ul class="list-group">
+								<c:forEach items="${theatres }" var="theatre">
+									<li class="list-group-item">
+										<h4>${theatre.getTheatreName() }</h4> <c:forEach
+											items="${theatre.getScreens() }" var="screen">
+											<c:forEach items="${screen.getShows() }" var="show">
+
+												<c:if test="${show.getMovieName() == movie.getMovieName() }">
+													<c:if
+														test="${show.getShowDate().toString() == movieDate.toString() }">
+														<a class="btn btn-book"
+															href="seat-${show.getShowId()}-show"
+															onclick=setDate() role="button"> <span class="tips">${show.getShowTime() }
+																<span class="tips-text"> ${screen.getScreenName() }
+																	<span class="pill-span">Budget : Rs. 60</span> <span
+																	class="pill-span">Elite : Rs. 190</span>
+															</span>
+														</span>
+														</a>
+													</c:if>
+												</c:if>
+											</c:forEach>
+										</c:forEach>
+									</li>
+								</c:forEach>
+
+							</ul>
+						</div>
+					</c:if>
+					<c:if test="${not status.first}">
+						<div class="tab-pane fade show " id="${today}" role="tabpanel">
+							<ul class="list-group">
+								<c:forEach items="${theatres }" var="theatre">
+									<li class="list-group-item">
+										<h4>${theatre.getTheatreName() }</h4> <c:forEach
+											items="${theatre.getScreens() }" var="screen">
+											<c:forEach items="${screen.getShows() }" var="show">
+												<c:if test="${show.getMovieName() == movie.getMovieName() }">
+													<c:if
+														test="${show.getShowDate().toString() == movieDate.toString() }">
+														<a class="btn btn-book"
+															href="seat-${show.getShowId()}-show"
+															onclick=setDate role="button"> <span class="tips">${show.getShowTime() }
+																<span class="tips-text"> ${screen.getScreenName() }
+																	<span class="pill-span">Budget : Rs. 60</span> <span
+																	class="pill-span">Elite : Rs. 190</span>
+															</span>
+														</span>
+														</a>
+													</c:if>
+												</c:if>
+											</c:forEach>
+										</c:forEach>
+									</li>
+								</c:forEach>
+
+							</ul>
+						</div>
+					</c:if>
+					<%
+					today = today.plus(1, ChronoUnit.DAYS);
+					%>
 				</c:forEach>
-				
+
 			</div>
 		</div>
 
 
 
 	</section>
-	
+
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
