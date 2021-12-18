@@ -9,15 +9,17 @@ import com.twilio.rest.api.v2010.account.Message;
 public class SMSService {
 	// Find your Account SID and Auth Token at twilio.com/console
 	// and set the environment variables. See http://twil.io/secure
-	public static final String ACCOUNT_SID = "AC1bd3695e955440f19af28b72ac34bf03";
-	public static final String AUTH_TOKEN = "6730e26a1e54c06a34aeaf764974c3e9";
-
-	public void sendSms() {
-		Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+	public static final String ACCOUNT_SID_PART1 = "ACc9cd333a6cfb9c0";
+	public static final String ACCOUNT_SID_PART2 = "df571d16333502da8";
+	public static final String AUTH_TOKEN_PART1 = "099f1d4a2b60886000";
+	public static final String AUTH_TOKEN_PART2 = "3c68b9ef469bb5";
+	
+	public void sendSms(String phoneNumber,String otp) {
+		Twilio.init(ACCOUNT_SID_PART1+ACCOUNT_SID_PART2, AUTH_TOKEN_PART1+AUTH_TOKEN_PART2);
 		Message message = Message.creator(
-						new com.twilio.type.PhoneNumber("+917904017459"),
-						new com.twilio.type.PhoneNumber("+19896231969"),
-						"12345")
+						new com.twilio.type.PhoneNumber("+91"+phoneNumber),
+						new com.twilio.type.PhoneNumber("+17278556565"),
+						otp)
 				.create();
 
 		System.out.println(message.getSid());

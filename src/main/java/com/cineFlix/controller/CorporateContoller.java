@@ -1,7 +1,10 @@
 package com.cineFlix.controller;
 
+import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -16,6 +19,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -35,10 +39,12 @@ import com.cineFlix.model.Movie;
 import com.cineFlix.model.Screen;
 import com.cineFlix.model.ShowTable;
 import com.cineFlix.model.Theatre;
+import com.cineFlix.model.Timings;
 import com.cineFlix.service.MovieService;
 import com.cineFlix.service.ScreenService;
 import com.cineFlix.service.ShowService;
 import com.cineFlix.service.TheatreService;
+import com.cineFlix.service.TimingService;
 
 @Controller
 @RequestMapping("/corporate")
@@ -52,6 +58,9 @@ public class CorporateContoller {
 
 	@Autowired
 	ScreenService screenService;
+
+	@Autowired
+	TimingService timingService;
 
 	@Autowired
 	ShowService showService;
@@ -115,16 +124,16 @@ public class CorporateContoller {
 			screen.setTotalColumns(Integer.parseInt(totalColumns));
 			screen.setScreenName(screenName);
 			screen.setTheatre(theatre);
-			SortedSet<ShowTable> shows = new TreeSet<ShowTable>();
+			SortedSet<Timings> timings = new TreeSet<Timings>();
 			for (int j = 1; j < 5; j++) {
-				ShowTable show = new ShowTable();
-				show.setScreen(screen);
-				show.setShowTime(Time.valueOf(LocalTime.parse(request.getParameterValues("show" + j)[i].toString())));
-				showService.addShow(show);
-				shows.add(show);
+				Timings timing = new Timings();
+				timing.setScreen(screen);
+				timing.setTiming(Time.valueOf(LocalTime.parse(request.getParameterValues("show" + j)[i].toString())));
+				timingService.addTimings(timing);
+				timings.add(timing);
 			}
 
-			screen.setShows(shows);
+			screen.setTimings(timings);
 			screenService.addScreen(screen);
 			screens.add(screen);
 
@@ -140,8 +149,7 @@ public class CorporateContoller {
 		List<Movie> movies = movieService.getAllMovies();
 		List<Movie> acquiredMovies = new ArrayList<Movie>();
 		Theatre theatre = (Theatre) session.getAttribute("theatre");
-		if(theatre == null)
-		{
+		if (theatre == null) {
 			return "redirect:/corporate/login";
 		}
 		for (Movie movie : movies) {
@@ -170,16 +178,15 @@ public class CorporateContoller {
 		Movie movie = movieService.getMovieById(movieId);
 		System.out.println(movie);
 		Theatre theatre = (Theatre) session.getAttribute("theatre");
-		if(theatre == null)
-		{
+		if (theatre == null) {
 			return "redirect:/corporate/login";
 		}
 		model.addAttribute("movie", movie);
 		model.addAttribute("screens", theatre.getScreens());
 		for (Screen s : theatre.getScreens()) {
 			System.out.println(s);
-			for (ShowTable shows : s.getShows()) {
-				System.out.println(shows);
+			for (Timings timing : s.getTimings()) {
+				System.out.println(timing);
 			}
 		}
 		return "acquire-movie";
@@ -187,19 +194,38 @@ public class CorporateContoller {
 	}
 
 	@PostMapping(value = "/set-{movieId}-screen")
+	@Transactional
 	public String postSetScreen(@PathVariable int movieId, HttpServletRequest request, HttpServletResponse response) {
 		Movie movie = movieService.getMovieById(movieId);
 		String movieName = movie.getMovieName();
 
 		HttpSession session = request.getSession();
 		Theatre theatre = (Theatre) session.getAttribute("theatre");
-		for (Screen screen : theatre.getScreens()) {
-			for (ShowTable show : screen.getShows()) {
-				if (request.getParameter(String.valueOf(show.getShowId())) != null) {
-					System.out.println(show);
-					show.setMovieName(movieName);
-					showService.addShow(show);
 
+		// get req names
+		// check if null or not
+		// if not null add show
+		// if null check if it alreadt added
+		for (Screen screen : theatre.getScreens()) {
+			SortedSet<ShowTable> shows = screen.getShows();
+			SortedSet<ShowTable> removedShows = new TreeSet<ShowTable>();
+			boolean upd = false;
+			if (shows == null) {
+				shows = new TreeSet<ShowTable>();
+			}
+			for (Timings timing : screen.getTimings()) {
+				String selectedTiming = (request.getParameter(String.valueOf(timing.getId())));
+				if (selectedTiming != null) {
+					for (int i = 0; i < 7; i++) {
+						ShowTable show = new ShowTable();
+						show.setMovieName(movieName);
+						show.setShowDate(Date.valueOf(LocalDate.now().plusDays(i)));
+						show.setScreen(screen);
+						show.setShowTime(timing.getTiming());
+						show.setShowId();
+						shows.add(show);
+					}
+					
 					SortedSet<Theatre> theatreList = movie.getTheatre();
 					SortedSet<Movie> moviesList = theatre.getMovies();
 
@@ -215,35 +241,127 @@ public class CorporateContoller {
 					movieService.addMovie(movie);
 
 				} else {
-					if (show.getMovieName() != null) {
-						if (show.getMovieName().equals(movie.getMovieName())) {
-							System.out.println(show);
-							show.setMovieName(null);
-							showService.addShow(show);
-
-							if (movieNotExistsInTheatre(theatre, movie)) {
-								SortedSet<Theatre> theatreList = movie.getTheatre();
-								SortedSet<Movie> moviesList = theatre.getMovies();
-
-								moviesList.remove(movie);
-								theatre.setMovies(moviesList);
-								theatreService.update(theatre);
-
-								if (theatreList == null) {
-									theatreList = new TreeSet<Theatre>();
+					if (screen.getShows() != null) {
+						for (ShowTable show : screen.getShows()) {
+							if (show.getShowTime().equals(timing.getTiming())) {
+								if (show.getMovieName() != null) {
+									if (show.getMovieName().equals(movie.getMovieName())) {
+										upd = true;
+										removedShows.add(show);
+										showService.deleteShow(show);
+									}
 								}
-								theatreList.remove(theatre);
-								movie.setTheatre(theatreList);
-								movieService.addMovie(movie);
 							}
 						}
 					}
-
 				}
+
 			}
+			if (upd) {
+				SortedSet<ShowTable> remainingShows = new TreeSet<ShowTable>();
+				remainingShows.addAll(shows);
+				remainingShows.removeAll(removedShows);
+				screen.setShows(remainingShows);
+			}
+			else {
+				screen.setShows(shows);
+				
+			}
+			screenService.addScreen(screen);
+
+		}
+		if (movieNotExistsInTheatre(theatre, movie)) {
+			SortedSet<Theatre> theatreList = movie.getTheatre();
+			SortedSet<Movie> moviesList = theatre.getMovies();
+
+			moviesList.remove(movie);
+			theatre.setMovies(moviesList);
+			theatreService.update(theatre);
+
+			if (theatreList == null) {
+				theatreList = new TreeSet<Theatre>();
+			}
+			theatreList.remove(theatre);
+			movie.setTheatre(theatreList);
+			movieService.addMovie(movie);
 		}
 
+//		for (Screen screen : theatre.getScreens()) {
+//			for (Timings timing : screen.getTimings()) {
+//				if (request.getParameter(String.valueOf(timing.getId())) != null) {
+//					System.out.println(timing);
+//					ShowTable show = new ShowTable();
+//					show.setMovieName(movieName);
+//					show.setShowDate(Date.valueOf(LocalDate.now()));
+//					show.setScreen(screen);
+//					show.setShowTime(timing.getTiming());
+//					System.out.println(show);
+//					showService.addShow(show);
+//					
+//					SortedSet<ShowTable> shows = screen.getShows();
+//					if (shows == null) {
+//						shows = new TreeSet<ShowTable>();
+//					}
+//					shows.add(show);
+//					screenService.addScreen(screen);
+//					SortedSet<Theatre> theatreList = movie.getTheatre();
+//					SortedSet<Movie> moviesList = theatre.getMovies();
+//
+//					moviesList.add(movie);
+//					theatre.setMovies(moviesList);
+//					theatreService.update(theatre);
+//
+//					if (theatreList == null) {
+//						theatreList = new TreeSet<Theatre>();
+//					}
+//					theatreList.add(theatre);
+//					movie.setTheatre(theatreList);
+//					movieService.addMovie(movie);
+//
+//				} else {
+//					SortedSet<ShowTable> removedShows = new TreeSet<ShowTable>();
+//					if (screen.getShows() != null) {
+//						for (ShowTable show : screen.getShows()) {
+//							if (show.getShowTime().equals(timing.getTiming())) {
+//								if (show.getMovieName() != null) {
+//									if (show.getMovieName().equals(movie.getMovieName())) {
+//										System.out.println(show);
+//										removedShows.add(show);
+//										screenService.addScreen(screen);
+//										showService.deleteShow(show);
+//
+//										if (movieNotExistsInTheatre(theatre, movie)) {
+//											SortedSet<Theatre> theatreList = movie.getTheatre();
+//											SortedSet<Movie> moviesList = theatre.getMovies();
+//
+//											moviesList.remove(movie);
+//											theatre.setMovies(moviesList);
+//											theatreService.update(theatre);
+//
+//											if (theatreList == null) {
+//												theatreList = new TreeSet<Theatre>();
+//											}
+//											theatreList.remove(theatre);
+//											movie.setTheatre(theatreList);
+//											movieService.addMovie(movie);
+//										}
+//									}
+//								}
+//							}
+//						}
+//					}
+//					SortedSet<ShowTable> allShows = screen.getShows();
+//					if (allShows != null) {
+//						allShows.removeAll(removedShows);
+//						screen.setShows(allShows);
+//						screenService.addScreen(screen);
+//					}	
+//				}
+//			}
+//		}
+
 		return "redirect:/corporate/home";
+
 	}
 
 	public boolean movieNotExistsInTheatre(Theatre theatre, Movie movie) {
@@ -261,10 +379,9 @@ public class CorporateContoller {
 
 		return true;
 	}
-	
+
 	@GetMapping("/logout")
-	public String logout(HttpSession session)
-	{
+	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/corporate/login";
 	}

@@ -69,12 +69,11 @@ public class UserController {
 		User user = (User) session.getAttribute("userTemp");
 		System.out.println(user);
 		Random rand = new Random();
-
-		int resRandom = rand.nextInt((9999 - 100) + 1) + 10;
-		System.out.println(resRandom);
-
+		String otp = String.format("%04d", rand.nextInt(9999)+1111);
+		System.out.println(otp);
+		session.setAttribute("otp", otp);
 		try {
-			smsService.sendSms();
+			smsService.sendSms(user.getNumber(),otp);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -85,8 +84,8 @@ public class UserController {
 	public String postOtpAuth(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		String otp = request.getParameter("otp");
-
-		if (otp.equals("12345")) {
+		String hashedOtp = (String) session.getAttribute("otp");
+		if (otp.equals(hashedOtp)) {
 			User user = (User) session.getAttribute("userTemp");
 			user = userService.register(user);
 			if (user != null) {

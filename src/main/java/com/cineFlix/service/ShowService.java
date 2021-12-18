@@ -11,5 +11,6 @@ import com.cineFlix.model.ShowTable;
 public interface ShowService  {
 
 	public ShowTable addShow(ShowTable show);
-	public ShowTable getShowById(int id);
+	public ShowTable getShowById(String showId);
+	public void deleteShow(ShowTable show);
 }

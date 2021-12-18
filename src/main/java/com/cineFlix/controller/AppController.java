@@ -80,7 +80,7 @@ public class AppController {
 	public String landingPage(ModelMap model, HttpSession session) {
 		// TODO: Implement session management and redirect to user home or corp home
 		User user = (User) session.getAttribute("user");
-		if (user != null) {
+		if (user != null) { 
 			List<Movie> upcomingMovies = new ArrayList<Movie>();
 			List<Movie> nowShowing = new ArrayList<Movie>();
 			for (Movie movie : movieService.getAllMovies()) {
@@ -107,19 +107,25 @@ public class AppController {
 		return "movie-availability";
 	}
 
-	@GetMapping("/screen-{screenId}-show-{showId}-date-{date}-seats")
-	public String getMovieSeats(@PathVariable int screenId, ModelMap model, HttpSession session) {
+	@GetMapping("/seat-{showId}-show")
+	public String getMovieSeats(@PathVariable String showId, ModelMap model, HttpSession session) {
+		int screenId = Integer.parseInt(showId.split("_")[0]);
 		Screen screen = screenService.getScreenById(screenId);
 		model.addAttribute("screen", screen);
+		ShowTable show = showService.getShowById(showId);
+		System.out.println(show);
 		return "seat-screen";
 	}
 
-	@PostMapping("/screen-{screenId}-show-{showId}-date-{date}-seats")
-	public String postMovieSeats(@PathVariable int screenId, @PathVariable int showId, @PathVariable String date,
+	@PostMapping("/seat-{showId}-show")
+	public String postMovieSeats(@PathVariable String showId,
 			HttpServletRequest request, HttpServletResponse response) {
 
+		int screenId = Integer.parseInt(showId.split("_")[0]);
+		String date = showId.split("_")[1];
 		Screen screen = screenService.getScreenById(screenId);
 		ShowTable show = showService.getShowById(showId);
+		System.out.println(show);
 		String seats = request.getParameter("formValue");
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
@@ -129,11 +135,15 @@ public class AppController {
 		Movie movie = (Movie) session.getAttribute("movie");
 		Theatre theatre = null;
 		for (Theatre t : movie.getTheatre()) {
-			for (Screen s : t.getScreens()) {
-				if (s.getId() == screen.getId()) {
-					theatre = t;
-					break;
+			for (Screen sc : t.getScreens()) {
+				for(ShowTable sh: sc.getShows() )
+				{
+					if (sh.getShowId().equals(show.getShowId()) ) {
+						theatre = t;
+						break;
+					}
 				}
+				
 			}
 		}
 		int n = seats.split(",").length;
@@ -142,7 +152,7 @@ public class AppController {
 		ticket.setNoOfSeats(n);
 		ticket.setScreenName(screen.getScreenName());
 		ticket.setSeatNumbers(seats);
-		ticket.setShowDate(Date.valueOf(date.replace("_", "-")));
+		ticket.setShowDate(Date.valueOf(date));
 		ticket.setShowTiming(show.getShowTime());
 		ticket.setTheatreName(theatre.getTheatreName());
 		ticket.setUser(user);
@@ -180,9 +190,7 @@ public class AppController {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					User user = (User) session.getAttribute("user");
-					emailService.sendEmail(ticket.getTicketId(), user);
-					ticketService.addTicket(ticket);
+					
 					return new ModelAndView("redirect:" + link.getHref());
 				}
 			}
@@ -196,8 +204,10 @@ public class AppController {
 
 	@GetMapping("/get-ticket")
 	public String getTicket(HttpSession session, ModelMap model) {
-		System.out.println("get TICKET PAGE");
-		
+		Ticket ticket = (Ticket) session.getAttribute("ticket");
+		User user = (User) session.getAttribute("user");
+		emailService.sendEmail(ticket.getTicketId(), user);
+		ticketService.addTicket(ticket);
 		return "redirect:/";
 	}
 }

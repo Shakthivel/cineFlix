@@ -3,7 +3,6 @@ package com.cineFlix.model;
 import java.sql.Date;
 import java.sql.Time;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,12 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 public class ShowTable implements Comparable<ShowTable>{
 
-	@Id@GeneratedValue(strategy = GenerationType.AUTO)
-	private int showId;
-	@ManyToOne(targetEntity = Screen.class,cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+	@Id
+	private String showId;
+	@ManyToOne(targetEntity = Screen.class,fetch = FetchType.EAGER)
 	private Screen screen;
 	private Date showDate;
 	private Time showTime;
@@ -25,12 +27,12 @@ public class ShowTable implements Comparable<ShowTable>{
 
 
 
-	public int getShowId() {
+	public String getShowId() {
 		return showId;
 	}
 
-	public void setShowId(int showId) {
-		this.showId = showId;
+	public void setShowId( ) {
+		this.showId =String.valueOf(this.screen.getId()) +"_"+this.getShowDate().toString()+"_"+this.getShowTime().toString().replace("-", "");
 	}
 
 	public Screen getScreen() {
@@ -74,7 +76,13 @@ public class ShowTable implements Comparable<ShowTable>{
 	@Override
 	public int compareTo(ShowTable o) {
 		// TODO Auto-generated method stub
-		return this.showId-o.showId;
+		if(this.showId==o.showId)
+		{
+			if(!this.equals(o))
+				return 1;
+		}
+			
+		return this.getShowId().compareTo(o.getShowId());
 	}
 
 }

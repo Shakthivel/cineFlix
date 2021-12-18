@@ -3,6 +3,8 @@ package com.cineFlix.service;
 import java.sql.Date;
 import java.sql.Time;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -17,13 +19,19 @@ public class ShowServiceImpl implements ShowService {
 	ShowDAO showDAO;
 
 	@Override
+	@Transactional
 	public ShowTable addShow(ShowTable show) {
 		return showDAO.save(show);
 	}
 
 	@Override
-	public ShowTable getShowById(int id) {
+	public ShowTable getShowById(String id) {
 		return showDAO.getById(id);
+	}
+
+	@Override
+	public void deleteShow(ShowTable show) {
+		showDAO.delete(show);
 	}
 
 }

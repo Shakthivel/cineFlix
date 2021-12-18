@@ -37,6 +37,7 @@ public class AdminController {
 	public String postLogin(@RequestParam("id") int id, @RequestParam("password") String password,HttpSession session) {
 		// TODO: Authenicate
 		Admin a = adminService.login(id, password);
+		System.out.println(a);
 		session.setAttribute("admin", a);
 		if (a == null) {
 			return "admin-login";
