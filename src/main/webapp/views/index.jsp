@@ -99,8 +99,8 @@
 									<div class="modal-footer">
 										<a class="btn btn-primary btn-cineflex"
 											href="edit-profile.html" role="button">Edit Profile</a> <a
-											class="btn btn-warning btn-bookings" href="bookings.html"
-											role="button">Your Bookings</a>
+											class="btn btn-warning btn-bookings" href="history.html"
+											role="button">Booking History</a>
 									</div>
 								</div>
 							</div>
