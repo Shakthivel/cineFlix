@@ -121,11 +121,12 @@
         <h1>Booking Successful!</h1>
 
         <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1639625915/CineFlix/success_wxzogl.png" style="width: 250px; height: 250px; " class="img-fluid m-5">
-
+		<form action="" method="POST">
         <div class="m-3">
-            <a class="btn btn-login m-4 p-2" href="#" role="button" style="color: #fff;"><i class="fas fa-download"></i> Download Ticket</a>
+            <button type="submit" class="btn btn-login m-4 p-2" style="color: #fff;"><i class="fas fa-download"></i> Download Ticket</button>
             <a class="btn btn-login m-4 p-2" href="/" role="button" style="color: #fff;"><i class="fas fa-ticket-alt"></i> Return to Booking Tickets</a>
         </div>
+        </form>
     </div>
 
 
