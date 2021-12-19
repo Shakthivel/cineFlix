@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 
+import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +26,7 @@ public class Ticket implements Serializable, Comparable<Ticket> {
 	private int ticketId =0;
 	
 
-	@ManyToOne
+	@ManyToOne(  fetch = FetchType.EAGER)
 	private User user;
 
 	private int noOfSeats;
@@ -129,7 +131,7 @@ public class Ticket implements Serializable, Comparable<Ticket> {
 
 	@Override
 	public int compareTo(Ticket o) {
-		return 0;
+		return this.getTicketId()-o.getTicketId();
 	}
 
 	public int getPrice() {

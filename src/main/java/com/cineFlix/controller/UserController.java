@@ -67,18 +67,19 @@ public class UserController {
 	@GetMapping("/otp-auth")
 	public String getOtpAuth(HttpSession session) {
 		User user = (User) session.getAttribute("userTemp");
-		System.out.println(user);
 		Random rand = new Random();
-		String otp = String.format("%04d", rand.nextInt(9999)+1111);
+		String otp = String.format("%04d", rand.nextInt(9999) + 1111);
 		System.out.println(otp);
 		session.setAttribute("otp", otp);
 		try {
-			smsService.sendSms(user.getNumber(),otp);
+			smsService.sendSms(user.getNumber(), otp);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "otp-auth";
 	}
+
+	
 
 	@PostMapping("/otp-auth")
 	public String postOtpAuth(HttpServletRequest request, HttpServletResponse response) {

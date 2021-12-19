@@ -24,8 +24,17 @@ public class ShowTable implements Comparable<ShowTable>{
 	private Date showDate;
 	private Time showTime;
 	private String movieName;
+	private String seats;
+	
 
 
+	public String getSeats() {
+		return seats;
+	}
+
+	public void setSeats(String seats) {
+		this.seats = seats;
+	}
 
 	public String getShowId() {
 		return showId;
@@ -67,10 +76,12 @@ public class ShowTable implements Comparable<ShowTable>{
 		this.movieName = movieName;
 	}
 
+	
+
 	@Override
 	public String toString() {
-		return "Show [showId=" + showId  + ", showDate=" + showDate + ", showTime=" + showTime
-				+ ", movieName=" + movieName + "]";
+		return "ShowTable [showId=" + showId + ", screen=" + screen + ", showDate=" + showDate + ", showTime="
+				+ showTime + ", movieName=" + movieName + ", seats=" + seats + "]";
 	}
 
 	@Override

@@ -65,8 +65,18 @@ public class CorporateContoller {
 	@Autowired
 	ShowService showService;
 
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String getHome(HttpSession session) {
+		Theatre theatre = (Theatre) session.getAttribute("theatre");
+		if (theatre == null)
+			return "redirect:/corporate/login";
+		return "redirect:/corporte/home";
+
+	}
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String getLogin() {
+
 		return "corporate-login";
 	}
 
@@ -150,11 +160,12 @@ public class CorporateContoller {
 		List<Movie> acquiredMovies = new ArrayList<Movie>();
 		Theatre theatre = (Theatre) session.getAttribute("theatre");
 		if (theatre == null) {
-			return "redirect:/corporate/login";
+			model.addAttribute("userRole", "corporate");
+			return "error-screen";
 		}
+		
 		for (Movie movie : movies) {
 			for (Theatre existingTheatre : movie.getTheatre()) {
-
 				if (theatre.getTheatreId() == existingTheatre.getTheatreId()) {
 					acquiredMovies.add(movie);
 				}
@@ -167,7 +178,14 @@ public class CorporateContoller {
 	}
 
 	@RequestMapping(value = "/home", method = RequestMethod.POST)
-	public String postAddMovie(HttpServletRequest request, HttpServletResponse response) {
+	public String postAddMovie(HttpServletRequest request, HttpServletResponse response,ModelMap model) {
+		HttpSession session = request.getSession();
+		Theatre theatre = (Theatre) session.getAttribute("theatre");
+		if (theatre == null) {
+			model.addAttribute("userRole", "corporate");
+			return "error-screen";
+		}
+		
 		String movieId = (String) request.getParameter("movieId");
 		return "redirect:/corporate/set-" + movieId + "-screen";
 
@@ -179,7 +197,8 @@ public class CorporateContoller {
 		System.out.println(movie);
 		Theatre theatre = (Theatre) session.getAttribute("theatre");
 		if (theatre == null) {
-			return "redirect:/corporate/login";
+			model.addAttribute("userRole", "corporate");
+			return "error-screen";
 		}
 		model.addAttribute("movie", movie);
 		model.addAttribute("screens", theatre.getScreens());
@@ -195,17 +214,17 @@ public class CorporateContoller {
 
 	@PostMapping(value = "/set-{movieId}-screen")
 	@Transactional
-	public String postSetScreen(@PathVariable int movieId, HttpServletRequest request, HttpServletResponse response) {
+	public String postSetScreen(@PathVariable int movieId, HttpServletRequest request, HttpServletResponse response,ModelMap model) {
 		Movie movie = movieService.getMovieById(movieId);
 		String movieName = movie.getMovieName();
 
 		HttpSession session = request.getSession();
 		Theatre theatre = (Theatre) session.getAttribute("theatre");
+		if (theatre == null) {
+			model.addAttribute("userRole", "corporate");
+			return "error-screen";
+		}
 
-		// get req names
-		// check if null or not
-		// if not null add show
-		// if null check if it alreadt added
 		for (Screen screen : theatre.getScreens()) {
 			SortedSet<ShowTable> shows = screen.getShows();
 			SortedSet<ShowTable> removedShows = new TreeSet<ShowTable>();
@@ -225,7 +244,7 @@ public class CorporateContoller {
 						show.setShowId();
 						shows.add(show);
 					}
-					
+
 					SortedSet<Theatre> theatreList = movie.getTheatre();
 					SortedSet<Movie> moviesList = theatre.getMovies();
 
@@ -262,10 +281,8 @@ public class CorporateContoller {
 				remainingShows.addAll(shows);
 				remainingShows.removeAll(removedShows);
 				screen.setShows(remainingShows);
-			}
-			else {
+			} else {
 				screen.setShows(shows);
-				
 			}
 			screenService.addScreen(screen);
 
@@ -285,81 +302,6 @@ public class CorporateContoller {
 			movie.setTheatre(theatreList);
 			movieService.addMovie(movie);
 		}
-
-//		for (Screen screen : theatre.getScreens()) {
-//			for (Timings timing : screen.getTimings()) {
-//				if (request.getParameter(String.valueOf(timing.getId())) != null) {
-//					System.out.println(timing);
-//					ShowTable show = new ShowTable();
-//					show.setMovieName(movieName);
-//					show.setShowDate(Date.valueOf(LocalDate.now()));
-//					show.setScreen(screen);
-//					show.setShowTime(timing.getTiming());
-//					System.out.println(show);
-//					showService.addShow(show);
-//					
-//					SortedSet<ShowTable> shows = screen.getShows();
-//					if (shows == null) {
-//						shows = new TreeSet<ShowTable>();
-//					}
-//					shows.add(show);
-//					screenService.addScreen(screen);
-//					SortedSet<Theatre> theatreList = movie.getTheatre();
-//					SortedSet<Movie> moviesList = theatre.getMovies();
-//
-//					moviesList.add(movie);
-//					theatre.setMovies(moviesList);
-//					theatreService.update(theatre);
-//
-//					if (theatreList == null) {
-//						theatreList = new TreeSet<Theatre>();
-//					}
-//					theatreList.add(theatre);
-//					movie.setTheatre(theatreList);
-//					movieService.addMovie(movie);
-//
-//				} else {
-//					SortedSet<ShowTable> removedShows = new TreeSet<ShowTable>();
-//					if (screen.getShows() != null) {
-//						for (ShowTable show : screen.getShows()) {
-//							if (show.getShowTime().equals(timing.getTiming())) {
-//								if (show.getMovieName() != null) {
-//									if (show.getMovieName().equals(movie.getMovieName())) {
-//										System.out.println(show);
-//										removedShows.add(show);
-//										screenService.addScreen(screen);
-//										showService.deleteShow(show);
-//
-//										if (movieNotExistsInTheatre(theatre, movie)) {
-//											SortedSet<Theatre> theatreList = movie.getTheatre();
-//											SortedSet<Movie> moviesList = theatre.getMovies();
-//
-//											moviesList.remove(movie);
-//											theatre.setMovies(moviesList);
-//											theatreService.update(theatre);
-//
-//											if (theatreList == null) {
-//												theatreList = new TreeSet<Theatre>();
-//											}
-//											theatreList.remove(theatre);
-//											movie.setTheatre(theatreList);
-//											movieService.addMovie(movie);
-//										}
-//									}
-//								}
-//							}
-//						}
-//					}
-//					SortedSet<ShowTable> allShows = screen.getShows();
-//					if (allShows != null) {
-//						allShows.removeAll(removedShows);
-//						screen.setShows(allShows);
-//						screenService.addScreen(screen);
-//					}	
-//				}
-//			}
-//		}
-
 		return "redirect:/corporate/home";
 
 	}

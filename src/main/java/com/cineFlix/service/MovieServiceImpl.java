@@ -1,6 +1,8 @@
 package com.cineFlix.service;
 
+import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -28,6 +30,12 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public Movie getMovieById(int movieId) {
 		return movieDAO.getById(movieId);
+	}
+
+	@Override
+	public Optional<Movie> findMovieByNameAndDate(String name, Date date) {
+		// TODO Auto-generated method stub
+		return movieDAO.findByMovieNameAndReleaseDate(name,date);
 	}
 
 }

@@ -3,6 +3,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -68,6 +69,12 @@ public class PaypalService {
 		paymentExecute.setPayerId(payerId);
 		System.out.println("execute payment 2");
 
-		return payment.execute(apiContext, paymentExecute);
+		Payment result = payment.execute(apiContext, paymentExecute);
+		 for (int i=0; i< apiContext.getHTTPHeaders().size();i++) {
+	            System.out.println(apiContext.getHTTPHeaders().keySet().toArray()[i]);
+	            System.out.println(apiContext.getHTTPHeaders().values().toArray()[i]);
+	    }
+		 
+		return result;
 	}
 }
