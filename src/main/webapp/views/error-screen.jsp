@@ -23,12 +23,16 @@
 <div class="d-flex justify-content-center align-items-center " style="width: 100%; height: 90vh;">
     <div class=" text-center ">
        
-   
+   	<%
+   	String userRole =(String) pageContext.findAttribute("userRole");
+   	String redirectUrl ="/"+userRole+"/login";
+   	request.setAttribute("redirectUrl", redirectUrl);
+   	%>
         
             <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1639766505/CineFlix/icons8-error-cloud_xongqq.gif" class="img-fluid p-4" width="400px" height="400px">
         
         
-            <h2>You don't seem to have access to the page! Please Login !</h2>
+            <h2>You don't seem to have access to the page! Please <a href="${redirectUrl }">Login</a> !</h2>
         
     </div>
 

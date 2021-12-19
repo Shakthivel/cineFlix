@@ -81,25 +81,24 @@
 										</div>
 
 										<div class="text-center p-4">
-											<h3>Hirotaka Nifuji</h3>
+											<h3>${user.getName() }</h3>
 										</div>
 
 										<ul class="list-group pl-3 pr-3">
 											<li class="list-group-item"><i
 												class="fas fa-phone-alt pr-1"></i> <span class="span-bold">Phone</span>
-												: 9940123423</li>
+												: ${user.getNumber() }</li>
 											<li class="list-group-item"><i
 												class="fas fa-envelope pr-1"></i> <span class="span-bold">E-Mail</span>
-												: hirotaka@presidio.com</li>
+												: ${user.getEmail() }</li>
 											<li class="list-group-item"><i
 												class="fas fa-location-arrow pr-1"></i> <span
-												class="span-bold">Home Location</span> : Chennai</li>
+												class="span-bold">Home Location</span> : ${user.getAddress() }</li>
 										</ul>
 									</div>
 									<div class="modal-footer">
-										<a class="btn btn-primary btn-cineflex"
-											href="edit-profile.html" role="button">Edit Profile</a> <a
-											class="btn btn-warning btn-bookings" href="history.html"
+										 <a
+											class="btn btn-warning btn-bookings" href="/history"
 											role="button">Booking History</a>
 									</div>
 								</div>
@@ -139,13 +138,13 @@
 				<c:forEach items="${movies}" var="movie" varStatus="status">
 					<c:if test="${status.first}">
 						<div class="carousel-item active">
-							<img src="${movie.getImageUrl() }" class="d-block w-100"
+							<img src="${movie.getImageUrl() }" class="d-block w-100" style="object-fit: cover;"
 								width="500px" height="545px">
 						</div>
 					</c:if>
 					<c:if test="${not status.first}">
 						<div class="carousel-item">
-							<img src="${movie.getImageUrl() }" class="d-block w-100"
+							<img src="${movie.getImageUrl() }" class="d-block w-100" style="object-fit: cover;"
 								width="500px" height="545px">
 						</div>
 					</c:if>

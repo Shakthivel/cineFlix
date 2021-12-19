@@ -54,7 +54,7 @@
 			<!-- Start of Deck 1 -->
 			<!-- For loop len(list)%3 -->
 			<div class="row card-deck-spacing">
-				<!-- For loop : 3 times-->	
+				<!-- For loop : 3 times-->
 				<c:forEach items="${movies}" var="movie">
 					<div class="col-lg-4 p-3 d-flex align-items-stretch">
 						<div class="card">
@@ -87,5 +87,10 @@
 		<a class="btn btn-primary btn-float shadow float-right "
 			href="/admin/add-movie" role="button">+ </a>
 	</section>
+	<form action="/admin/import" method="post"
+		enctype="multipart/form-data">
+		<input type="file" name="file"> <input type="submit"
+			value="Import">
+	</form>
 </body>
 </html>

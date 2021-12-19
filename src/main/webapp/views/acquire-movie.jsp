@@ -51,7 +51,7 @@
 
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link"
-						href="corporate-index.jsp">Home</a></li>
+						href="/corporate/home">Home</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="/corporate/logout">Logout</a></li>
 				</ul>

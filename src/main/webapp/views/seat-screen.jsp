@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.cineFlix.model.ShowTable"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,9 +52,8 @@
 
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav" style="margin-left: 80%;">
-					<li class="nav-item"><a class="nav-link" href="/">
-							Home</a></li>
-					
+					<li class="nav-item"><a class="nav-link" href="/"> Home</a></li>
+
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
@@ -139,7 +139,7 @@
 			<div class=""
 				style="background-color: rgb(248, 248, 248); box-shadow: 0 10px 12px -3px rgba(0, 0, 0, 0.1);">
 				<div class="p-4">
-					<h3>MAANADU - (U) - Tamil</h3>
+					<h3>${show.getMovieName() }</h3>
 				</div>
 			</div>
 		</div>
@@ -165,7 +165,7 @@
 				</li>
 			</ul>
 			<form method="POST" name="myForm" id="myForm">
-			<input type="hidden" name="formValue" id="seatNumbers" value=""/>
+				<input type="hidden" name="formValue" id="seatNumbers" value="" />
 				<div class="seat-container">
 					<div class="screen"></div>
 
@@ -179,10 +179,18 @@
 								var="column">
 								<%
 								char row = (char) (((int) (pageContext.findAttribute("row"))) + 64);
+								ShowTable show = (ShowTable) pageContext.findAttribute("show");
 								String column = String.valueOf(pageContext.findAttribute("column"));
-								request.setAttribute("id", (row + "_" + column));
+								String id = (row + "_" + column);
+								boolean sold = false;
+								if(show.getSeats()!=null)
+									sold = (show.getSeats().contains(id.replace("_", "")));
+								request.setAttribute("id", id);
 								%>
-								<div class="seats" id="${id}" onclick="makeSelected(this)"></div>
+
+								<div class=" <%if(sold){out.println("sold-seat");	}%> seats "
+									id="${id}"
+									onclick="<%if(!sold){out.println("makeSelected(this)");	}%>"></div>
 							</c:forEach>
 
 							<!-- for loop columns -->
@@ -197,8 +205,8 @@
 		<div class="ticket-container">
 			<h6 style="display: inline;" id="seatNumber">Seats :</h6>
 			<a class="mb-1" style="margin-left: 7rem; color: #fff;"
-				 onClick=submitForm() ><i
-				class="fas fa-lg fa-arrow-right book-arrow" ></i></a>
+				onClick=submitForm()><i
+				class="fas fa-lg fa-arrow-right book-arrow"></i></a>
 
 
 		</div>

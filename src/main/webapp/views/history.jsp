@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,21 +119,15 @@
 
         <div style="padding: 3rem 15rem 3rem 15rem;">
             <ul class="list-group">
+            <c:forEach items="${tickets }" var="ticket">
                 <li class="list-group-item">
-                    <h3>Maanadu - U - Tamil</h3>
-                    <h4>Coda Cinemas - Utopia</h4>
-                    <h5>17-12-2021 10:30 AM</h5>
+                    <h3>${ticket.getMovieName() }</h3>
+                    <h4>${ticket.getTheatreName() }</h4>
+                    <h4>${ticket.getScreenName() }</h4>
+                    <h4>${ticket.getSeatNumbers() }</h4>
+                    <h5>${ticket.getShowDate().toString() }} </h5>
                 </li>
-                <li class="list-group-item">
-                    <h3>Maanadu - U - Tamil</h3>
-                    <h4>Coda Cinemas - Utopia</h4>
-                    <h5>17-12-2021 10:30 AM</h5>
-                </li>
-                <li class="list-group-item">
-                    <h3>Maanadu - U - Tamil</h3>
-                    <h4>Coda Cinemas - Utopia</h4>
-                    <h5>17-12-2021 10:30 AM</h5>
-                </li>
+                </c:forEach>
              
             </ul>
         </div>
