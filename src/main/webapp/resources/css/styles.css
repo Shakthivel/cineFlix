@@ -360,6 +360,17 @@ border-color: #125D98 !important;
   border-radius: 5px;
 }
 
+.caption{
+  backdrop-filter: blur(20px);
+    position: absolute;
+  right: 15%;
+  bottom: 0px;
+  left: 1%;
+  z-index: 10;
+  padding: 1.5rem;
+  color: #fff;
+
+}
 
 .book-arrow{
   float: right; 
@@ -376,6 +387,20 @@ border-color: #125D98 !important;
   font-size: 14px;
 }
 
+
+.h1cine{
+  font-weight: 400; 
+  color: #fff;
+  font-size: 4rem;
+  margin: 2rem 2rem 0rem 2rem;
+}
+
+.h2cine{
+  font-weight: 400; 
+  color: #fff;
+  font-size: 4rem;
+  margin: 0rem 2rem 2rem 2rem;
+}
 .row-name{
   padding-right: 1rem;
   padding-bottom: 2px;

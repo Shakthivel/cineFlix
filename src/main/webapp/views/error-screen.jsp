@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
-<body>
+<body style="background-color: #125D98;">
 <div class="d-flex justify-content-center align-items-center " style="width: 100%; height: 90vh;">
     <div class=" text-center ">
        
@@ -29,11 +29,14 @@
    	request.setAttribute("redirectUrl", redirectUrl);
    	%>
         
-            <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1639766505/CineFlix/icons8-error-cloud_xongqq.gif" class="img-fluid p-4" width="400px" height="400px">
+            <h1 class="h1cine"><span style="font-weight: 800;">Cine</span>Flix</h1>
+            <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1639940536/CineFlix/404-error_grqmy5.png" class="img-fluid m-5" width="150px" height="150px">
+    
         
         
-            <h2>You don't seem to have access to the page! Please <a href="${redirectUrl }">Login</a> !</h2>
+            <h2 style="color: #fff;">You don't seem to have access to the page! Please Login!</h2>
         
+        <a class="btn btn-info pr-5 pl-5 mt-2" href="${redirectUrl }" role="button">Login</a>
     </div>
 
     </div>
