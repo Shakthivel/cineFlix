@@ -48,8 +48,13 @@
 
 	<section id="movie-cards">
 		<div class="container-fluid">
-			<div style="padding: 2rem;">
+			
+			<div style="padding-top: 2rem;">
+				<div class="text-right mr-5">
+					<a class="btn btn-login" href="import-excel.html" role="button" style="color: #125D98;"><i class="fas fa-file-excel"></i> Import Excel</a>
+				</div>
 				<h1>List of Movies</h1>
+				
 			</div>
 			<!-- Start of Deck 1 -->
 			<!-- For loop len(list)%3 -->
