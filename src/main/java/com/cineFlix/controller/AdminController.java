@@ -131,6 +131,17 @@ public class AdminController {
 		}
 		return "add-movies";
 	}
+	
+	@GetMapping("/import")
+	public String getFromExcel(HttpSession session, ModelMap model)
+	{
+		Admin a = (Admin) session.getAttribute("admin");
+		if (a == null) {
+			model.addAttribute("userRole", "admin");
+			return "error-screen";
+		}
+		return "import-excel";
+	}
 
 	@PostMapping("/import")
 	public String readFromExcel(@RequestParam("file") MultipartFile reapExcelDataFile) throws IOException {

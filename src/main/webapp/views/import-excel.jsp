@@ -49,13 +49,9 @@
         
             <div class="form-group p-3">
                
-
-                
-                    
                         <h2 style=" padding-bottom:1rem;">Upload Your Excel File</h2>
                         <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1">
                         <input type="submit" class="mt-3 btn-login btn" style="color: #125D98;" value="Import">
-                        <button type="button" data-toggle="modal" data-target="#exampleModal" class="mt-3 btn-outline-danger btn"> Note</button>
                         <!-- Button trigger modal -->
                         
                         
@@ -107,7 +103,7 @@
                         <td>Action</td>
                         <td>English</td>
                         <td>I'm Vengance</td>
-                        <td><a href="">Batman Poster</a></td>
+                        <td>Batman Poster</td>
                         
                     </tr>
                     

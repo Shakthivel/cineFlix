@@ -276,8 +276,8 @@ public class AppController {
 
 	@GetMapping("/booking-success")
 	public String getBookingSuccess(HttpSession session, ModelMap model) {
-		User user = (User) session.getAttribute("user");
-		if (user == null) {
+		Ticket ticket = (Ticket) session.getAttribute("ticket");
+		if (ticket == null) {
 			model.addAttribute("userRole", "user");
 			return "error-screen";
 		}
@@ -294,11 +294,11 @@ public class AppController {
 		String fileName = pdfDirectory + "Ticket_" + ticket.getTicketId() + ".pdf";
 
 		response.setContentType("application/pdf");
-		response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+		response.setHeader("Content-Disposition", "attachment; filename=" + ticket.getTicketId() + ".pdf");
 		response.setHeader("Content-Transfer-Encoding", "binary");
 		try {
 			BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
-			FileInputStream fis = new FileInputStream("Ticket.pdf");
+			FileInputStream fis = new FileInputStream(fileName);
 			int len;
 			byte[] buf = new byte[1024];
 			while ((len = fis.read(buf)) > 0) {

@@ -51,7 +51,7 @@
 			
 			<div style="padding-top: 2rem;">
 				<div class="text-right mr-5">
-					<a class="btn btn-login" href="import-excel.html" role="button" style="color: #125D98;"><i class="fas fa-file-excel"></i> Import Excel</a>
+					<a class="btn btn-login" href="/admin/import" role="button" style="color: #125D98;"><i class="fas fa-file-excel"></i> Import Excel</a>
 				</div>
 				<h1>List of Movies</h1>
 				
@@ -92,10 +92,6 @@
 		<a class="btn btn-primary btn-float shadow float-right "
 			href="/admin/add-movie" role="button">+ </a>
 	</section>
-	<form action="/admin/import" method="post"
-		enctype="multipart/form-data">
-		<input type="file" name="file"> <input type="submit"
-			value="Import">
-	</form>
+	
 </body>
 </html>
