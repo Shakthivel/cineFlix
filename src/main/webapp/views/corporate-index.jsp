@@ -11,6 +11,8 @@
 <link rel="icon"
 	href="https://res.cloudinary.com/dfep0loer/image/upload/v1638860594/CineFlix/theatre-icon_ostugn.ico"
 	type="image/x-icon">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/admin-styles.css">
 <!-- Title -->
 <title>Cineflix Corporate</title>
 <!-- Local Stylesheet -->
@@ -68,35 +70,37 @@
 
 
 					<input type="hidden" name="movieId" id="movieId" value="" />
-					<div class="row card-deck-spacing">
+					<section id="movie-cards">
+						<div class="row card-deck-spacing">
 
-						<c:forEach items="${movies}" var="movie">
+							<c:forEach items="${movies}" var="movie">
 
-							<div class="col-lg-4 d-flex align-items-stretch">
-								<div class="card">
-									<img src="${movie.imageUrl}" class="card-img-top"
-										alt="${movie.movieName}">
-									<div class="card-body">
-										<div class="card-title">${movie.movieName.toUpperCase()}</div>
-										<div class="badge-div">
-											<span class="badge badge-pill badge-info">${movie.censor.toUpperCase()}</span>
-											<span class="badge badge-pill badge-secondary">${movie.genre.toUpperCase()}</span>
-											<span class="badge badge-pill badge-primary">${movie.language.toUpperCase()}</span>
+								<div class="col-lg-4 d-flex align-items-stretch">
+									<div class="card">
+										<img src="${movie.imageUrl}" class="card-img-top"
+											alt="${movie.movieName}">
+										<div class="card-body">
+											<div class="card-title">${movie.movieName.toUpperCase()}</div>
+											<div class="badge-div">
+												<span class="badge badge-pill badge-info">${movie.censor.toUpperCase()}</span>
+												<span class="badge badge-pill badge-secondary">${movie.genre.toUpperCase()}</span>
+												<span class="badge badge-pill badge-primary">${movie.language.toUpperCase()}</span>
+											</div>
+											<div class="card-text">${movie.movieSynopsis}</div>
 										</div>
-										<div class="card-text">${movie.movieSynopsis}</div>
-									</div>
-									<div class="card-footer">
-										<button type="submit" class="btn btn-dark btn-block btn-login"
-											style="color: #125D98;" role="button"
-											onclick="submitForm(${movie.movieId})">Add</button>
+										<div class="card-footer">
+											<button type="submit"
+												class="btn btn-dark btn-block btn-login"
+												style="color: #125D98;" role="button"
+												onclick="submitForm(${movie.movieId})">Add</button>
+										</div>
 									</div>
 								</div>
-							</div>
 
-						</c:forEach>
+							</c:forEach>
 
-					</div>
-
+						</div>
+					</section>
 				</div>
 				<div class="tab-pane fade show " id="acquired-movies"
 					role="tabpanel" aria-labelledby="home-tab">
