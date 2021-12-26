@@ -29,7 +29,7 @@
             <h2 class="mb-5" style="color: #fff;"><img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638775333/CineFlix/CineFlixAdmin_asr8e0.png"
                 class="img-fluid" alt="..." style="margin-bottom: 15px;"></h2>
             <div class="form-group">
-                <input type="text"name="id" class="form-control form-control-lg" placeholder="Admin Id" required>
+                <input type="number"name="id" class="form-control form-control-lg" placeholder="Admin Id" required>
             </div>
             <div class="form-group">
                 <input type="password" name="password" class="form-control form-control-lg" placeholder="Password" required>

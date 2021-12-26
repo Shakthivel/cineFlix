@@ -37,7 +37,7 @@
             <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638596050/CineFlix/cineflix-black_nleijx.png" class="img-fluid" alt="...">
             <h2 class="mb-5"> Login</h2>
             <div class="form-group">
-                <input type="text" id="uname" name="name" class="form-control form-control-lg " placeholder="Phone Number" required> <div class="valid-feedback">Sounds Great !</div><div class="invalid-feedback">Oh No ! Enter a Value!</div>
+                <input type="number" id="uname" name="name" class="form-control form-control-lg " placeholder="Phone Number" required> <div class="valid-feedback">Sounds Great !</div><div class="invalid-feedback">Oh No ! Enter a Value!</div>
             </div>
             
             <div class="form-group">

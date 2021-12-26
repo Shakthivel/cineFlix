@@ -4,30 +4,18 @@ import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
-
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseCookie;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -307,9 +295,9 @@ public class CorporateContoller {
 	}
 
 	public boolean movieNotExistsInTheatre(Theatre theatre, Movie movie) {
+		
 		for (Screen screen : theatre.getScreens()) {
 			for (ShowTable show : screen.getShows()) {
-				System.out.println(show);
 				if (show.getMovieName() != null) {
 					if (show.getMovieName().equals(movie.getMovieName())) {
 						return false;
@@ -318,7 +306,6 @@ public class CorporateContoller {
 
 			}
 		}
-
 		return true;
 	}
 

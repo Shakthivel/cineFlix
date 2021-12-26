@@ -136,7 +136,10 @@
 	</section>
 	<!-- End of The Nav Section -->
 
-
+<%
+Ticket ticket = (Ticket) session.getAttribute("ticket");
+request.setAttribute("ticket", ticket);
+%>
 	<section>
 		<form method="POST">
 			

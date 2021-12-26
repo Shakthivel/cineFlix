@@ -13,4 +13,5 @@ public interface ShowService  {
 	public ShowTable addShow(ShowTable show);
 	public ShowTable getShowById(String showId);
 	public void deleteShow(ShowTable show);
+	public void getScreenIdById(String showId);
 }

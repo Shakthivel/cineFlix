@@ -31,7 +31,7 @@
             <img src="https://res.cloudinary.com/dfep0loer/image/upload/v1638860470/CineFlix/CineFlix-Corporate_ipe7kd.png" class="img-fluid pb-3" alt="...">
  
             <div class="form-group">
-                <input type="text" name="id" id="id" class="form-control form-control-lg" placeholder="Corporate Id" required> 
+                <input type="number" name="id" id="id" class="form-control form-control-lg" placeholder="Corporate Id" required> 
                 <div class="valid-feedback">Sounds Great !</div>
                 <div class="invalid-feedback">Oh No ! Enter the Corporate Id!</div>
             </div>
