@@ -14,7 +14,4 @@ USER/CUSTOMER - User who browses and buys a movie ticket
 / - landing page
 /user/login - user login
 
-YET TO DO:
-i) SMS Integration
-ii)Payment Service
-iii)Security
+
