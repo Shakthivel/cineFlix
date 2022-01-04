@@ -18,5 +18,6 @@ public interface UserService {
 
 	public User login(String name,String password);
 	public User register(User user);
+	public User encrypt(User user);
 	
 }

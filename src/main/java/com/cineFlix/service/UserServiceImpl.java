@@ -2,6 +2,7 @@ package com.cineFlix.service;
 
 import javax.persistence.PersistenceException;
 
+import org.jasypt.util.text.BasicTextEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,7 @@ import com.cineFlix.dao.UserDAO;
 import com.cineFlix.model.User;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDAO userDAO;
@@ -24,6 +25,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	public User register(User user) {
+		String encryptedPassword = encrypt(user.getNumber(),user.getPassword());
+		user.setPassword(encryptedPassword);
 		try {
 			return userDAO.save(user);
 		} catch (PersistenceException e) {
@@ -37,8 +40,28 @@ public class UserServiceImpl implements UserService{
 		return null;
 	}
 
-	public User login(String name,String password) {
-		
-		return userDAO.findByNumberAndPassword(name, password);
+	public User login(String name, String password) {
+		User user = userDAO.findByNumber(name);
+		String decryptedText = decrypt(user.getNumber(),user.getPassword());
+		if (password.equals(decryptedText)) {
+			return user;
+		}
+		return null;
 	}
+
+	public String encrypt(String key,String password) {
+		BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
+		textEncryptor.setPassword(key);
+		String encryptedText = textEncryptor.encrypt(password);
+		return encryptedText;
+	}
+	
+	public String decrypt(String key,String password)
+	{
+		BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
+		textEncryptor.setPassword(key);
+		String decryptedText = textEncryptor.decrypt(password);
+		return decryptedText;
+	}
+
 }

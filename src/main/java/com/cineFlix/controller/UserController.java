@@ -57,9 +57,7 @@ public class UserController {
 
 	@RequestMapping(value = { "/register" }, method = RequestMethod.POST)
 	public String postRegister(User user, BindingResult result, HttpSession session) {
-
 		session.setAttribute("userTemp", user);
-
 		return "redirect:/user/otp-auth";
 	}
 
