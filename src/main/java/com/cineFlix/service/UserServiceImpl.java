@@ -42,25 +42,35 @@ public class UserServiceImpl implements UserService {
 
 	public User login(String name, String password) {
 		User user = userDAO.findByNumber(name);
-		String decryptedText = decrypt(user.getNumber(),user.getPassword());
-		if (password.equals(decryptedText)) {
-			return user;
+		System.out.println(user);
+		if(user!=null)
+		{
+			String decryptedText = decrypt(user.getNumber(),user.getPassword());
+			if (password.equals(decryptedText)) {
+				
+				return user;
+			}
 		}
 		return null;
 	}
 
 	public String encrypt(String key,String password) {
+		System.out.println(password);
 		BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
 		textEncryptor.setPassword(key);
 		String encryptedText = textEncryptor.encrypt(password);
+		System.out.println(encryptedText);
 		return encryptedText;
 	}
 	
 	public String decrypt(String key,String password)
 	{
+
+		System.out.println(password);
 		BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
 		textEncryptor.setPassword(key);
 		String decryptedText = textEncryptor.decrypt(password);
+		System.out.println(decryptedText);
 		return decryptedText;
 	}
 

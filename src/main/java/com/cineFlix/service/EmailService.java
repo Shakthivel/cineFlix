@@ -25,7 +25,7 @@ public class EmailService {
     public void sendEmail(int ticketId,User user) {
     	String projectDirectory = Paths.get("").toAbsolutePath().toString();
         String pdfDirectory = projectDirectory + "\\src\\main\\resources\\static\\pdf\\";
-        String fileName = pdfDirectory + "Ticket_" + ticketId + ".pdf";
+        String fileName = pdfDirectory + "Ticket.pdf";
         
         String to = user.getEmail();
         String from = "cineflixtickets@gmail.com";

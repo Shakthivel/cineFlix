@@ -45,7 +45,7 @@ public class UserController {
 		if (u != null) {
 			return "redirect:/";
 		}
-		return "redirect:/user/login";
+		return "redirect:/user/login?error=true";
 	}
 
 	@RequestMapping(value = { "/register" }, method = RequestMethod.GET)

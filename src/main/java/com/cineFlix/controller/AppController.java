@@ -311,7 +311,7 @@ public class AppController {
 		Ticket ticket = (Ticket) session.getAttribute("ticket");
 		String projectDirectory = Paths.get("").toAbsolutePath().toString();
 		String pdfDirectory = projectDirectory + "\\src\\main\\resources\\static\\pdf\\";
-		String fileName = pdfDirectory + "Ticket_" + ticket.getTicketId() + ".pdf";
+		String fileName = pdfDirectory + "Ticket.pdf";
 
 		response.setContentType("application/pdf");
 		response.setHeader("Content-Disposition", "attachment; filename=ticket.pdf");
