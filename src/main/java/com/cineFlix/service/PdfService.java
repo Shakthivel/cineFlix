@@ -27,7 +27,7 @@ public class PdfService {
 
 		String projectDirectory = Paths.get("").toAbsolutePath().toString();
 		String pdfDirectory = projectDirectory + "\\src\\main\\resources\\static\\pdf\\";
-		String fileName = pdfDirectory + "Ticket_" + ticket.getTicketId() + ".pdf";
+		String fileName = pdfDirectory + "Ticket" + ".pdf";
 
 		try {
 			PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(fileName));

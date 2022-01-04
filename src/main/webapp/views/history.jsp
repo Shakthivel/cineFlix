@@ -125,7 +125,7 @@
                     <h4>${ticket.getTheatreName() }</h4>
                     <h4>${ticket.getScreenName() }</h4>
                     <h4>${ticket.getSeatNumbers() }</h4>
-                    <h5>${ticket.getShowDate().toString() }} </h5>
+                    <h5>${ticket.getShowDate().toString() } </h5>
                 </li>
                 </c:forEach>
              

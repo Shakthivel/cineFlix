@@ -78,7 +78,6 @@ public class UserController {
 		return "otp-auth";
 	}
 
-	
 
 	@PostMapping("/otp-auth")
 	public String postOtpAuth(HttpServletRequest request, HttpServletResponse response) {

@@ -314,7 +314,7 @@ public class AppController {
 		String fileName = pdfDirectory + "Ticket_" + ticket.getTicketId() + ".pdf";
 
 		response.setContentType("application/pdf");
-		response.setHeader("Content-Disposition", "attachment; filename=" + ticket.getTicketId() + ".pdf");
+		response.setHeader("Content-Disposition", "attachment; filename=ticket.pdf");
 		response.setHeader("Content-Transfer-Encoding", "binary");
 		try {
 			BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());

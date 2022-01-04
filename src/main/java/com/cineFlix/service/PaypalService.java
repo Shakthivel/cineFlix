@@ -32,6 +32,8 @@ public class PaypalService {
 			String description, 
 			String cancelUrl, 
 			String successUrl) throws PayPalRESTException{
+		apiContext.setMaskRequestId(true);
+		System.out.println(apiContext.getRequestId());
 		Amount amount = new Amount();
 		amount.setCurrency(currency);
 		total = new BigDecimal(total).setScale(2, RoundingMode.HALF_UP).doubleValue();
@@ -77,4 +79,21 @@ public class PaypalService {
 		 
 		return result;
 	}
+	
+	static String getRandomRequestId(int n)
+    {
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                    + "0123456789"
+                                    + "abcdefghijklmnopqrstuvxyz";
+        StringBuilder sb = new StringBuilder(n);
+  
+        for (int i = 0; i < n; i++) {
+            int index
+                = (int)(AlphaNumericString.length()
+                        * Math.random());
+            sb.append(AlphaNumericString
+                          .charAt(index));
+        }
+        return sb.toString();
+    }
 }
