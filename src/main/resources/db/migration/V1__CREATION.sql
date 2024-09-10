@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS theatre (
     theatre_address VARCHAR(255) NOT NULL
 );
 
--- Create movie table
+-- Create movie table with proper indexing for movieId
 CREATE TABLE IF NOT EXISTS movie (
     movieId INT PRIMARY KEY AUTO_INCREMENT,
     movieName VARCHAR(255) NOT NULL,
@@ -23,6 +23,9 @@ CREATE TABLE IF NOT EXISTS movie (
     genre VARCHAR(255),
     language VARCHAR(255)
 );
+
+-- Ensure movieId has an index for foreign key references
+CREATE INDEX idx_movieId ON movie (movieId);
 
 -- Create screen table (depends on theatre)
 CREATE TABLE IF NOT EXISTS screen (
@@ -62,7 +65,7 @@ CREATE TABLE IF NOT EXISTS user (
     address VARCHAR(255) NOT NULL
 );
 
--- Create ticket table (depends on user, screen)
+-- Create ticket table (depends on user and screen)
 CREATE TABLE IF NOT EXISTS ticket (
     ticket_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
@@ -95,7 +98,6 @@ CREATE TABLE IF NOT EXISTS movie_theatre (
     CONSTRAINT fk_movie_theatre_theatre FOREIGN KEY (theatre_id) REFERENCES theatre (theatre_id),
     PRIMARY KEY (movie_id, theatre_id)
 );
-
 
 -- Create order table (independent)
 CREATE TABLE IF NOT EXISTS `order` (

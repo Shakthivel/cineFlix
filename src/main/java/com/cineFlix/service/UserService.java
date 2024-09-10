@@ -18,7 +18,5 @@ public interface UserService {
 
 	public User login(String name,String password);
 	public User register(User user);
-	public String encrypt(String key,String password);
-	public String decrypt(String key,String password);
 	
 }

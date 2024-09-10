@@ -1,7 +1,5 @@
 package com.cineFlix.model;
 
-import java.util.List;
-import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -11,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 
 import lombok.ToString;
 
@@ -19,27 +19,23 @@ public class Theatre implements Comparable<Theatre> {
 
 	@Id
 	private int theatreId;
+
 	private String password;
+
 	private String theatreName;
+
 	private String theatreAddress;
-	@ToString.Exclude
+
 	@ManyToMany(mappedBy = "theatre", fetch = FetchType.EAGER)
 	@OrderBy
-	private SortedSet<Movie> movies;
+	private SortedSet<Movie> movies = new TreeSet<>();
 
 	@OneToMany(mappedBy = "theatre", fetch = FetchType.EAGER)
 	@OrderBy
-	private SortedSet<Screen> screens;
+	private SortedSet<Screen> screens = new TreeSet<>();
 
 	public Theatre() {
 		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public String toString() {
-		return "Theatre [theatreId=" + theatreId + ", password=" + password + ", theatreName=" + theatreName
-				+ ", theatreAddress=" + theatreAddress + ", movies=" + movies + "]";
 	}
 
 	public int getTheatreId() {
@@ -95,4 +91,9 @@ public class Theatre implements Comparable<Theatre> {
 		return this.theatreId - o.theatreId;
 	}
 
+	@Override
+	public String toString() {
+		return "Theatre [theatreId=" + theatreId + ", password=" + password + ", theatreName=" + theatreName
+				+ ", theatreAddress=" + theatreAddress + ", movies=" + movies + "]";
+	}
 }

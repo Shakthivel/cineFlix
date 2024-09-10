@@ -2,9 +2,7 @@ package com.cineFlix.service;
 
 import javax.persistence.PersistenceException;
 
-import org.jasypt.util.text.BasicTextEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.cineFlix.dao.UserDAO;
@@ -24,9 +22,10 @@ public class UserServiceImpl implements UserService {
 		this.userDAO = userDAO;
 	}
 
+	// Register a user without encryption
 	public User register(User user) {
-		String encryptedPassword = encrypt(user.getNumber(),user.getPassword());
-		user.setPassword(encryptedPassword);
+		String plainPassword = user.getPassword();
+		user.setPassword(plainPassword);  // Directly setting the plain password
 		try {
 			return userDAO.save(user);
 		} catch (PersistenceException e) {
@@ -40,38 +39,15 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+	// Login a user without decryption
 	public User login(String name, String password) {
 		User user = userDAO.findByNumber(name);
 		System.out.println(user);
-		if(user!=null)
-		{
-			String decryptedText = decrypt(user.getNumber(),user.getPassword());
-			if (password.equals(decryptedText)) {
-				
-				return user;
-			}
+		if (user != null && password.equals(user.getPassword())) {  // Directly comparing plain password
+			return user;
 		}
 		return null;
 	}
 
-	public String encrypt(String key,String password) {
-		System.out.println(password);
-		BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
-		textEncryptor.setPassword(key);
-		String encryptedText = textEncryptor.encrypt(password);
-		System.out.println(encryptedText);
-		return encryptedText;
-	}
-	
-	public String decrypt(String key,String password)
-	{
-
-		System.out.println(password);
-		BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
-		textEncryptor.setPassword(key);
-		String decryptedText = textEncryptor.decrypt(password);
-		System.out.println(decryptedText);
-		return decryptedText;
-	}
-
+	// Remove the encrypt and decrypt methods entirely as they are no longer needed
 }
