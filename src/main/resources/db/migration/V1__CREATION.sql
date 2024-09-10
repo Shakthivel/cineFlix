@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS theatre (
 -- Create movie table with proper indexing for movieId
 CREATE TABLE IF NOT EXISTS movie (
     movieId INT PRIMARY KEY AUTO_INCREMENT,
-    movieName VARCHAR(255) NOT NULL,
+    movieName VARCHAR(255),
     releaseDate DATE,
     movieSynopsis TEXT,
     censor VARCHAR(10),
